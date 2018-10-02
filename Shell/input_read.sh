@@ -1,0 +1,2 @@
+read var
+echo "$var"

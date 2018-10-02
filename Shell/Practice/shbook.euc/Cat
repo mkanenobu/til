@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# Copyright 1995, by Hewlett-Packard Company
+#
+# The code in this file is from the book "Shell Programming
+# Examples" by Bruce Blinn, published by Prentice Hall.
+# This file may be copied free of charge for personal,
+# non-commercial use provided that this notice appears in
+# all copies of the file.  There is no warranty, either
+# expressed or implied, supplied with this code.
+#
+# このファイルのコードはBruce Blinn著、Prentice Hall刊行の
+# 「Shell Programming Examples」に掲載されていたものです。
+# このファイルは、個人として営利を目的とせず利用する限り、
+# 無償で複製してかまいません。その場合、複製のすべてに
+# この説明文が含まれている必要があります。このコードに
+# 関しては、明示的にも暗黙的にもいかなる保証も行いません。
+#
+# 名称
+#    Cat - ファイルの連結、表示を行なう
+#
+# 書式
+#    Cat [file ...]
+#
+# 解説
+#    指定したファイルをその順に読み込み、そのまま標準出力に書き出す。
+#    結果としてしていたファイルを連結し表示する。
+#
+# リターン値
+#    0    正常終了
+#    1    指定したファイルが存在しない場合
+#
+############################################################
+ERROR=0             # 終了コードをセットする変数 (0=正常、1=エラー)
+LINE=               # ファイルから読み込む一行を代入する変数
+
+while [ $# -gt 0 ]
+do
+     if [ ! -r "$1" ]; then
+          echo "Cannot find file $1" 1>&2
+          ERROR=1
+     else
+          IFS=
+          while read LINE
+          do
+               echo "$LINE"
+          done <"$1"
+     fi
+     shift
+done
+
+exit $ERROR

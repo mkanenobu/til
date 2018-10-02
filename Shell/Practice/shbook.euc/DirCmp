@@ -1,0 +1,192 @@
+#!/bin/sh
+#
+# Copyright 1995, by Hewlett-Packard Company
+#
+# The code in this file is from the book "Shell Programming
+# Examples" by Bruce Blinn, published by Prentice Hall.
+# This file may be copied free of charge for personal,
+# non-commercial use provided that this notice appears in
+# all copies of the file.  There is no warranty, either
+# expressed or implied, supplied with this code.
+#
+# このファイルのコードはBruce Blinn著、Prentice Hall刊行の
+# 「Shell Programming Examples」に掲載されていたものです。
+# このファイルは、個人として営利を目的とせず利用する限り、
+# 無償で複製してかまいません。その場合、複製のすべてに
+# この説明文が含まれている必要があります。このコードに
+# 関しては、明示的にも暗黙的にもいかなる保証も行いません。
+#
+# 名称
+#    DirCmp - 二つのディレクトリ下のファイル構成を比較する
+#
+# 書式
+#    DirCmp [-v] [dir1] dir2
+#
+# 解説
+#    指定した二つのディレクトリ下にあるファイル構成を比較し、
+#    等しくないファイルをリスト表示する。
+#    以下の三パターンの表示を行なう。
+#
+#    1. １番目ののディレクトリ下にあって、２番目のディレクトリ下にはないファイル
+#    2. ２番目ののディレクトリ下にあって、１番目のディレクトリ下にはないファイル
+#    3. 両方のディレクトリにはあっても、名前が同じだけで実体が異なるファイル
+#
+#    -v   詳細表示オプション。
+#         二つのディレクトリ下に同じ名称のファイルがあって
+#         その中身が異なっているとき、
+#         ファイルの何行目がどのように違っているのかを表示する。
+#
+# リターン値
+#    0    二つのディレクトリのファイル構成が等しいとき
+#    1    使用法の誤りか、何らかのエラーで終了したとき
+#    2    二つのディレクトリのファイル構成が異なっていたとき
+#
+############################################################
+CMDNAME=`basename $0`
+USAGE="Usage: $CMDNAME [-v] [dir1] dir2"
+
+CURDIR=`pwd`                  # 現在のディレクトリ
+DIR1=                         # 引数の１番目のディレクトリ
+DIR2=                         # 引数の２番目のディレクトリ
+DIR1_FILES=/tmp/files1.$$     # １番目のディレクトリ下のファイル構成を書き込んだファイル
+DIR2_FILES=/tmp/files2.$$     # ２番目のディレクトリ下のファイル構成を書き込んだファイル
+ALL_FILES=/tmp/allfiles.$$    # 二つのディレクトリのどっちかに含まれるファイルのリスト
+COMMON_FILES=/tmp/comfiles.$$ # 二つのディレクトリの両方にに含まれるファイルのリスト
+TMP=/tmp/tmp.$$               # 作業用一時ファイル
+FOUND=FALSE                   # 違いがあったかなかったかをセットするフラグ
+FIRST=
+VERBOSE=FALSE
+
+trap 'rm -f /tmp/*.$$; exit 1'      1 2 3 15
+
+#
+# オプションの処理
+#
+while :
+do
+     case $1 in
+          -v)  VERBOSE=TRUE
+               shift
+               ;;
+          --)  shift
+               break
+               ;;
+          -*)  echo "$USAGE" 1>&2
+               exit 1
+               ;;
+          *)   break
+               ;;
+     esac
+done
+
+#
+# コマンド行に指定された引数のチェック
+#
+if [ $# -eq 1 ]; then
+     DIR1="."
+     DIR2="$1"
+elif [ $# -eq 2 ]; then
+     DIR1="$1"
+     DIR2="$2"
+else
+     echo "$USAGE" 1>&2
+     exit 1
+fi
+
+#
+# 指定された引数がちゃんとしたディレクトリかどうかのチェック
+#
+if [ ! -d $DIR1 ]; then
+     echo "$DIR1 is not a directory." 1>&2
+     exit 1
+fi
+
+if [ ! -d $DIR2 ]; then
+     echo "$DIR2 is not a directory." 1>&2
+     exit 1
+fi
+
+#
+# それぞれのディレクトリのファイル構成を求める
+#
+cd $DIR1
+find . \( -type f -o -type l \) -print | sort > $DIR1_FILES
+cd $CURDIR
+
+cd $DIR2
+find . \( -type f -o -type l \) -print | sort > $DIR2_FILES
+cd $CURDIR
+
+#
+# どっちかに含まれるファイル、
+# あるいは片一方にしかないファイルのリストを作成
+#
+cat $DIR1_FILES $DIR2_FILES | sort | uniq    > $ALL_FILES
+cat $DIR1_FILES $DIR2_FILES | sort | uniq -d > $COMMON_FILES
+
+#
+# ２番目のディレクトリ下にはあっても
+# １番目の方にないファイルのリストを表示
+#
+cat $DIR1_FILES $ALL_FILES | sort | uniq -u > $TMP
+if [ -s $TMP ]; then
+     FOUND=TRUE
+     echo ""
+     echo "Files missing from $DIR1:"
+     for f in `cat $TMP`
+     do
+          f=`expr $f : '..\(.*\)'`
+          echo "	$f"
+     done
+fi
+
+#
+# １番目のディレクトリ下にはあっても
+# ２番目の方にないファイルのリストを表示
+#
+cat $DIR2_FILES $ALL_FILES | sort | uniq -u > $TMP
+if [ -s $TMP ]; then
+     FOUND=TRUE
+     echo ""
+     echo "Files missing from $DIR2:"
+     for f in `cat $TMP`
+     do
+          f=`expr $f : '..\(.*\)'`
+          echo "	$f"
+     done
+fi
+
+#
+# 両方のディレクトリにはあるのだが、
+# 名称が同じだけで中身が異なるファイルのリストを表示
+#
+FIRST=TRUE
+for f in `cat $COMMON_FILES`
+do
+     cmp -s $DIR1/$f $DIR2/$f
+     if [ $? -ne 0 ]; then
+          FOUND=TRUE
+          f=`expr $f : '..\(.*\)'`
+          if [ "$FIRST" = "TRUE" ]; then
+               FIRST=FALSE
+               echo ""
+               echo "Files that are not the same:"
+          fi
+
+          if [ "$VERBOSE" = "TRUE" ]; then
+               echo ""
+               echo "File: $f"
+               diff $DIR1/$f $DIR2/$f
+          else
+               echo "	$f"
+          fi
+     fi
+done
+
+rm -f /tmp/*.$$
+if [ $FOUND = TRUE ]; then
+     exit 2
+else
+     echo "The directories are the same."
+     exit 0
+fi

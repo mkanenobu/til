@@ -1,0 +1,21 @@
+import  sequtils, strutils, algorithm, math
+
+var
+  n = readLine(stdin).parseInt
+  a = readLine(stdin).split.map(parseInt)
+  sumed, x:int
+  res:seq[int] = @[]
+
+for i in 0..max(n, max(a)):
+  x = i * -1
+  sumed = 0
+  for j in 1..n:
+    sumed += abs(a[j - 1] - (x + j))
+  res.add(sumed)
+  if i == 0:
+    discard
+  else:
+    if res[i] > res[i - 1]:
+      break
+
+echo min(res)

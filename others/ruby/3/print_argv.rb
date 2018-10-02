@@ -1,0 +1,5 @@
+puts "最初の引数: #{ARGV[0]}"
+puts "２番目の引数: #{ARGV[1]}"
+puts "３番目の引数: #{ARGV[2]}"
+puts "４番目の引数: #{ARGV[3]}"
+puts "５番目の引数: #{ARGV[4]}"

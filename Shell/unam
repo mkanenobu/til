@@ -1,0 +1,8 @@
+#!/bin/bash
+set -Cue
+if test $# -gt 0; then
+    for i in "$@"; do
+        unar "$i"
+    done
+fi
+

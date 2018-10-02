@@ -1,0 +1,165 @@
+#!/bin/sh
+#
+# Copyright 1995, by Hewlett-Packard Company
+#
+# The code in this file is from the book "Shell Programming
+# Examples" by Bruce Blinn, published by Prentice Hall.
+# This file may be copied free of charge for personal,
+# non-commercial use provided that this notice appears in
+# all copies of the file.  There is no warranty, either
+# expressed or implied, supplied with this code.
+#
+# このファイルのコードはBruce Blinn著、Prentice Hall刊行の
+# 「Shell Programming Examples」に掲載されていたものです。
+# このファイルは、個人として営利を目的とせず利用する限り、
+# 無償で複製してかまいません。その場合、複製のすべてに
+# この説明文が含まれている必要があります。このコードに
+# 関しては、明示的にも暗黙的にもいかなる保証も行いません。
+#
+# 名称
+#    Kill - プロセス名に対してシグナルを送る
+#
+# 書式
+#    Kill [-signal] ProcessName
+#
+# 解説
+#    プロセス番号ではなくプロセスの名前を指定して
+#    シグナルを送る。
+#    実際にシグナルを送る前に確認応答が発生する。
+#
+#    -signal
+#         ここにはシグナルの番号やシグナルの種類を指定する。
+#         kill(1) コマンドで指定できる形式でならどう書いてもよい。
+#         例えば -9 あるいは -KILL とすればそのプロセスに９番の
+#         シグナルを送る。
+#         この指定がなかったらデフォルトとして１５番を送る。
+#
+# リターン値
+#    0    正常終了
+#    1    エラー
+#
+############################################################
+PATH=$PATH:`dirname $0`
+
+. SystemType.sh
+. GetYesNo.sh
+
+CMDNAME=`basename $0`
+USAGE="Usage: $CMDNAME [-signal] ProcessName"
+OLD_IFS=$IFS              # IFS 変数のもとの値をセット
+SIGNAL=                   # オプションで指定したシグナル。kill(1)を参照
+NAME=                     # 指定するプロセスの名前を入れる
+PID=                      # そのプロセス番号
+PROCNAME=                 # そのプロセスの名前
+OWNER=                    # そのプロセスのオーナ
+PS_OPTS=                  # ps コマンドのオプションを入れる変数
+PROCESS_LIST=/tmp/list.$$ # ps の出力結果を入れる一時ファイル
+TITLE_PRINTED=FALSE       # タイトルを出すか出さないかのフラグ
+FOUND=FALSE               # 該当のプロセスがあるかないかのフラグ
+LINE=                     # ps コマンドで抜き出した1行
+COL=                      # プロセス名称の始まるカラム位置
+SYSTEM=`SystemType`       # そのシステムが何かということをセット
+
+trap 'rm -f /tmp/*.$$; exit 1' 1 2 3 15
+
+#
+# コマンド行の操作
+#
+case $1 in
+     --)  shift
+          ;;
+     -*)  SIGNAL=$1      # ハイフンは残しておく
+          shift
+          ;;
+esac
+if [ $# -ne 1 ]; then
+     echo "$USAGE" 1>&2
+     exit 1
+fi
+
+NAME=$1        # シグナルを送るプロセスの名前
+
+#
+# ps コマンドのオプションをシステムによって区別する
+#
+case $SYSTEM in
+     LINUX )                     PS_OPTS="auxw"   ;;
+     FREEBSD | SUNBSD | ULTRIX ) PS_OPTS="-auxw"  ;;
+     * )                         PS_OPTS="-ef"    ;;
+esac
+
+#
+# ps コマンドでプロセスのリストを得て、
+# そこから必要なものだけを抜き出す
+#
+ps $PS_OPTS                   |    # ps コマンド
+     sed '1d'                 |    # タイトル行を削除
+     grep "$NAME"             |    # 指定した名前の含まれる行を抜き出し、
+     grep -v "$0"             |    # 余計な行は除く
+     grep -v "ps $PS_OPTS"    > $PROCESS_LIST
+
+#
+# それぞれの（指定した名前に該当する）プロセスのチェック
+#
+exec < $PROCESS_LIST
+IFS=
+while read LINE
+do
+     IFS=$OLD_IFS
+     #
+     # 指定したもののオーナ、プロセスＩＤ、プロセス名称を取り出す
+     #
+     set $LINE
+     OWNER=$1
+     PID=$2
+
+     #
+     # ps の表示で、プロセス名称は何カラム目から始まっているか
+     #
+     case $SYSTEM in
+          LINUX )                       COL=64 ;;
+          FREEBSD )                     COL=63 ;;
+          AIX | HP | SGI | SOLARIS )    COL=48 ;;
+          SUNBSD | DECOSF )             COL=57 ;;
+          ULTRIX )                      COL=51 ;;
+          * )  echo "Unexpected system type." 1>&2
+               exit 1
+               ;;
+     esac
+
+     LINE=`echo "$LINE" | cut -c$COL-`
+     set dummy $LINE
+     shift
+     PROCNAME=$1
+
+     if [ "$PROCNAME" = "$NAME" -o \
+          "`basename $PROCNAME`" = "$NAME" ]; then
+
+          FOUND=TRUE
+
+          #
+          # タイトルの表示
+          #
+          if [ "$TITLE_PRINTED" = "FALSE" ]; then
+               echo "PID	Owner	Process"
+               TITLE_PRINTED=TRUE
+          fi
+
+          #
+          # ユーザへの問い合わせ
+          #
+          if GetYesNo \
+               "$PID	$OWNER	$PROCNAME (y/n)? " </dev/tty
+          then
+               kill $SIGNAL $PID
+          fi
+     fi
+     IFS=
+done
+
+if [ "$FOUND" = "FALSE" ]; then
+     echo "Process \"$NAME\" not found."
+fi
+
+rm -f /tmp/*.$$
+exit 0
