@@ -11,6 +11,8 @@ else:
     echo programName
     system.programResult = 0
 
+echo paramStr(0)
+echo paramStr(1)
 #    input: TaintedString = readLine(stdin)
 #echo programName, ", ", arguments,", ",input
 #echo len(arguments)

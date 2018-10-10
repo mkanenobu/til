@@ -1,23 +1,24 @@
 import os, times
 
-var f = open("sample_file_operate.txt", FileMode.fmWrite)
+var f: File
+f = open("sample_file_operate.txt", FileMode.fmWrite)
+defer: close(f)
 # var f = open("sample_file_operate", FileMode.fmAppend) # 追記
 f.writeLine "write1"
 f.writeLine "write2"
-close(f)
 echo "written"
 
 f = open("sample_file_operate.txt", FileMode.fmRead)
 # 一行読みこむ
 #try:
-#    echo f.readLine()
+#  echo f.readLine()
 #finally:
-#    close(f)
+#  close(f)
 
 var
-    ctime: Time = getCreationTime("sample_file_operate.txt")
-    mtime: Time = getLastModificationTime("sample_file_operate.txt")
-    ltime: Time = getLastAccessTime("sample_file_operate.txt")
+  ctime: Time = getCreationTime("sample_file_operate.txt")
+  mtime: Time = getLastModificationTime("sample_file_operate.txt")
+  ltime: Time = getLastAccessTime("sample_file_operate.txt")
 # readAllテキストファイルをすべて読み込む
 #try:
 echo f.readAll()
@@ -32,15 +33,15 @@ echo ltime
 echo os.existsFile("sample_file_operate.txt")
 echo "パターンにマッチするファイルを取得する"
 for f in walkFiles("/home/mika/Workspace/nim/*.nim"):
-    echo f
+  echo f
 echo "再帰的にディレクトリを探索"
 echo "数が多いので10個まで"
 var iTimes: int
 for i in walkDirRec("/home/mika/"):
-    iTimes += 1
-    if iTimes == 10:
-        break
-    echo i
+  iTimes += 1
+  if iTimes == 10:
+    break
+  echo i
 
 
 close(f)
