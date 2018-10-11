@@ -4,8 +4,10 @@ var
     # arrayは静的配列
     arr:array[5,int] = [1,2,3,4,5]
     # seqは動的配列
-    sequence:seq[int] = @[1,1,2,2,3,4,5]
-    seq1:seq[string] = @["1", "3", "5", "0"]
+    seqInt:seq[int] = @[1,1,2,2,3,4,5]
+
+    # seq[int] to seq[string]
+    seqString:seq[string] = seqInt.mapIt($it)
     # set
     set1 = {1,6,8,12,55,0,3}
     # table
@@ -22,16 +24,16 @@ echo largest(a)
 excl(set1, 55)
 echo set1
 
-delete(seq1,1)
+delete(seqString,1)
 
 
 # 要素のカウント
-echo count(sequence, 1)
+echo count(seqInt, 1)
 # 重複削除
-echo sequence.deduplicate()
+echo seqInt.deduplicate()
 
 # pairsイテレーター
-for key, val in pairs(sequence):
+for key, val in pairs(seqInt):
     echo key,val
 
 # openarrayは配列を汎用的に扱う型
@@ -45,5 +47,5 @@ echoHead(@[1,2,3])
 echo toSeq(0..10)
 
 # unique array
-var d = toSet(sequence)
+var d = toSet(seqInt)
 echo d.len
