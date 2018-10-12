@@ -1,8 +1,8 @@
 import sequtils, strutils, algorithm
 
 var
-    a:tuple[index:int, value:int]
-    b:seq[tuple[index:int, value:int]] = @[]
+  a:tuple[index:int, value:int]
+  b:seq[tuple[index:int, value:int]] = @[]
 
 # tupleの代入は括弧が必要
 a = (index:12, value:11)
@@ -14,7 +14,12 @@ echo b
 for i in b:
     echo "index: ", i.index," value: ", i.value
 
-# sort
+# simplest sort
+echo "sorted by value"
+echo b.sortedByIt(it.value)
+
+# or
+
 b.sort(proc(x,y:tuple[index:int,value:int]):int =
     result = cmp(x.index, y.index))
 

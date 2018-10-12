@@ -8,11 +8,16 @@ var
 
     # seq[int] to seq[string]
     seqString:seq[string] = seqInt.mapIt($it)
+
+    str = "string"
     # set
     set1 = {1,6,8,12,55,0,3}
     # table
     b = @[54,3,21,8,12,100]
     a = newCountTable[int]()
+
+# string to seq[char]
+var seqChar = str.mapIt(char, it)
 
 # table
 for i,v in b:

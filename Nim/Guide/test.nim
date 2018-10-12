@@ -1,5 +1,9 @@
 import sequtils, strutils, algorithm, math
+import os
 
-var a = "string"
-if a.contains('s'):
-  echo "include"
+var
+  a = "string"
+  s = mapIt(0..<len(a), a[it] & $it)
+
+
+echo absolutePath("a")
