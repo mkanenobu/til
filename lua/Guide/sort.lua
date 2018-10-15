@@ -17,6 +17,7 @@ Sort
 
 -- ソート
 table.sort(t)
+
 for i,v in pairs(t) do
     print(v)
 end

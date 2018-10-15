@@ -1,17 +1,18 @@
 import typetraits
 
 type
-    myInt = int
+  myInt = int
+
 
 let
-    a:int = 2
-    b:myInt = myInt(4)
+  a:int = 2
+  b:myInt = myInt(4)
 
 echo a + myInt(3) + b
 
 # | is or
 proc double[T:int | int16 | int32](x:T):T =
-    return x + x
+  return x + x
 
 # Numeric types
 echo "SomeSignedInt = int | int8 | int16 | int32 | int64"
@@ -28,3 +29,4 @@ echo "Natural = range[0 .. high(int)]"
 echo a.type.name
 echo a.type
 echo b.type
+
