@@ -1,9 +1,9 @@
 import sequtils, strutils, algorithm, math
-import os
 
-var
-  a = "string"
-  s = mapIt(0..<len(a), a[it] & $it)
+var a = toSeq('a'..'z')
 
+for i,v in a:
+  echo i
 
-echo absolutePath("a")
+echo ""
+echo a.len
