@@ -3,6 +3,6 @@
 \ ."String" --> undefined word error
 CR
 
-s" Hello, World"
+s" Hello, World" \ 一度スタックに入れて出力
 type
 CR
