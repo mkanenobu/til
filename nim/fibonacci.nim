@@ -9,4 +9,7 @@ proc main(n:int):int =
             (a, b) = (b, a + b)
         return b
 
-echo main(commandLineParams()[0].parseInt)
+# echo main(commandLineParams()[0].parseInt)
+for j in 0..1000:
+  for i in 0..60:
+    discard main(i)
