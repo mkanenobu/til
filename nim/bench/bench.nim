@@ -1,8 +1,18 @@
 # for runtime benchmark
 # gcc, clang, icc
-var n: int64 = 1
-for i in 1..50000:
-  for j in 1..50000:
-    n = n + i * j
+import math, times
 
-echo n
+const max = 10000000
+
+var
+  sins, coses, num: float64 = 0.0
+  bTime = epochTime()
+
+for i in 0..<max:
+  num = float64(i)
+  sins += sin(num)
+  coses += cos(num)
+
+echo epochTime() - bTime
+echo sins
+echo coses
