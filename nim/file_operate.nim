@@ -29,11 +29,14 @@ echo f.getFileSize
 echo ctime
 echo mtime
 echo ltime
+
 # 存在確認
 echo os.existsFile("sample_file_operate.txt")
+
 echo "パターンにマッチするファイルを取得する"
 for f in walkFiles("/home/mika/Workspace/nim/*.nim"):
   echo f
+
 echo "再帰的にディレクトリを探索"
 echo "数が多いので10個まで"
 var iTimes: int
