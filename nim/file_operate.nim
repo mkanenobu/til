@@ -33,18 +33,20 @@ echo ltime
 # 存在確認
 echo os.existsFile("sample_file_operate.txt")
 
-echo "パターンにマッチするファイルを取得する"
+# パターンにマッチするファイルを取得する
 for f in walkFiles("/home/mika/Workspace/nim/*.nim"):
   echo f
 
-echo "再帰的にディレクトリを探索"
-echo "数が多いので10個まで"
+# 再帰的にディレクトリを探索
+# 数が多いので10個まで"
 var iTimes: int
 for i in walkDirRec("/home/mika/"):
   iTimes += 1
   if iTimes == 10:
     break
   echo i
-
-
 close(f)
+
+# 引数にファイル名文字列を取るイテレーター
+for i in lines("sample_file_operate.txt"):
+  echo i
