@@ -1,16 +1,13 @@
 import os, sequtils, strutils, times, parseopt
-import system, help, strformat
+import system, strformat
+
+# Depends on "ruby-notify"
 var
     set_time:int
     display_time:string
     remain_minutes, remain_seconds, remain_hours:string
     keys:seq[string] = @[]
     sound:string
-#sound = "$HOME/Music/
-if paramCount() == 0:
-    echo "    No args!"
-    writeHelp()
-    quit 1
 
 for kind, key, val in getopt():
     case kind
@@ -29,9 +26,6 @@ for options in keys:
         set_time *= 3600
     of "m", "minute": #Default
         set_time = set_time
-    of "help":
-        writeHelp()
-        quit 0
     else:
         set_time = set_time
 
@@ -51,7 +45,7 @@ proc timer() =
         stdout.write("\r" & "          ")
         stdout.write("\r" & display_time)
         sleep 1000
-    discard execShellCmd(fmt"play {sound}")
+    discard execShellCmd(fmt"notify 'Time has come'")
     echo "\a"
 
 timer()
