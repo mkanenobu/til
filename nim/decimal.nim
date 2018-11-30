@@ -5,10 +5,9 @@ type
   BCD = tuple[integer: seq[string], decimal: seq[string]]
 
 proc toBCD*(floatString: string): BCD =
-  proc toBCD*(floatString: string): BCD =
   ## Float to BCD
   ##
-  ##-
+  ##
   var
     mpInt, tmpDec: string
     resInt: seq[string] = @[]
