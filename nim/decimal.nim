@@ -30,7 +30,8 @@ proc BcdToFloat*(d: BCD): float =
     res: string = ""
   for i in tmpInt:
     res &= parseBinInt(i)
-  res &= '.'
+  if tmpDec.len != 0:
+    res &= '.'
   for i in tmpDec:
     res &= parseBinInt(i)
   return parseFloat(res)
