@@ -1,7 +1,5 @@
 import math, sequtils, strutils
 
-### BCD
-
 type
   Decimal = tuple[integer: seq[int], decimal: seq[int]]
   BCD = tuple[integer: seq[string], decimal: seq[string]]
@@ -21,6 +19,7 @@ proc toBCD*(floatString: string): BCD =
     resDec.add(toBin(parseInt($i), 4))
   return (resInt, resDec)
 
+
 proc BcdToFloat*(d: BCD): float =
   ## Decimal to float
   ##
@@ -36,4 +35,3 @@ proc BcdToFloat*(d: BCD): float =
   for i in tmpDec:
     res &= parseBinInt(i)
   return parseFloat(res)
-
