@@ -1,2 +1,8 @@
 import sys
-print(len(sys.argv))
+
+
+def plen():
+    print(len(sys.argv))
+
+
+plen()
