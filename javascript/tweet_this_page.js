@@ -6,3 +6,7 @@ javascript:
     title=encodeURIComponent(title);
     window.open('https://twitter.com/intent/tweet?url='+url+'&text='+title,'_blank');
 })();
+
+// compiled
+var a=location.href,b=document.title;a=encodeURIComponent(a);b=encodeURIComponent(b);window.open("https://twitter.com/intent/tweet?url="+a+"&text="+b,"_blank");
+
