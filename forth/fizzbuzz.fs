@@ -6,6 +6,6 @@
     if i 1 .r then
     if ." Fizz" then
     if ." Buzz" then
-  \ cr
+  44 EMIT
   LOOP ;
 101 fizzbuzz
