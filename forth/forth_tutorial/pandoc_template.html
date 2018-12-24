@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+$if(title)$
+<header>
+$if(next)$
+<a href="$next$">next: $nextTi$</a>
+$endif$
+$if(prev)$
+<a href="$prev$">prev: $prevTi$</a>
+$endif$
+</header>
+<h1>$title$</h1>
+$endif$
+$if(toc)$
+<nav id="$idprefix$TOC">
+$toc$
+</nav>
+$endif$
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>

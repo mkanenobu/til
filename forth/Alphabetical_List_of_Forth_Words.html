@@ -8,15 +8,16 @@
     body {
         background-color: #ccc;
         font-family: Lato, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
-        font-size: 1em;
+        font-size: 1rem;
         color: #222;
     }
     article {
         width: 840px;
-        margin: auto;
+        margin: 0 auto;
+        padding: 0 auto;
     }
     h1 {
-        font-size: 2em;
+        font-size: 2rem;
     }
     h1, h2, h3 {
         color: #1c1c1c;
@@ -25,13 +26,20 @@
         font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
         font-weight: bold;
     }
+    #links {
+        margin: 0 auto;
+    }
+    #links > a {
+        font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
+        font-size: 1.1rem;
+    }
     pre {
         font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
-        font-size: .9em;
+        font-size: .9rem
     }
     p {
         color: #333;
-        text-indent: 2em;
+        text-indent: 2rem;
     }
     hr {
         border-top: 1px solid #666;
@@ -49,61 +57,63 @@
 
 <h1>Non-Floating Point Words</h1>
 
-<a href="#store">!</a>
-<a href="#quote">"</a>
-<a href="#number">#</a>
-<a href="#dollar">$</a>
-<a href="#ampersand">&amp;</a>
-<a href="#tick">'</a>
-<a href="#paren">(</a>
-<a href="#star">*</a>
-<a href="#plus">+</a>
-<a href="#comma">,</a>
-<a href="#minus">-</a>
-<a href="#dot">.</a>
-<a href="#slash">/</a>
+<div id="links">
+    <a href="#store">!</a>
+    <a href="#quote">"</a>
+    <a href="#number">#</a>
+    <a href="#dollar">$</a>
+    <a href="#ampersand">&amp;</a>
+    <a href="#tick">'</a>
+    <a href="#paren">(</a>
+    <a href="#star">*</a>
+    <a href="#plus">+</a>
+    <a href="#comma">,</a>
+    <a href="#minus">-</a>
+    <a href="#dot">.</a>
+    <a href="#slash">/</a>
 
-<a href="#digit">0123456789</a>
+    <a href="#digit">0123456789</a>
 
-<a href="#colon">:</a>
-<a href="#lessthan">&lt;</a>
-<a href="#equals">=</a>
-<a href="#to">&gt;</a>
-<a href="#question">?</a>
-<a href="#fetch">@</a>
+    <a href="#colon">:</a>
+    <a href="#lessthan">&lt;</a>
+    <a href="#equals">=</a>
+    <a href="#to">&gt;</a>
+    <a href="#question">?</a>
+    <a href="#fetch">@</a>
 
-<a href="#a">a</a>
-<a href="#b">b</a>
-<a href="#c">c</a>
-<a href="#d">d</a>
-<a href="#e">e</a>
-<a href="#f">f</a>
-<a href="#g">g</a>
-<a href="#h">h</a>
-<a href="#i">i</a>
-<a href="#j">j</a>
-<a href="#k">k</a>
-<a href="#l">l</a>
-<a href="#m">m</a>
-<a href="#n">n</a>
-<a href="#o">o</a>
-<a href="#p">p</a>
-<a href="#q">q</a>
-<a href="#r">r</a>
-<a href="#s">s</a>
-<a href="#t">t</a>
-<a href="#u">u</a>
-<a href="#v">v</a>
-<a href="#w">w</a>
-<a href="#x">x</a>
-<a href="#y">y</a>
-<a href="#z">z</a>
+    <a href="#a">a</a>
+    <a href="#b">b</a>
+    <a href="#c">c</a>
+    <a href="#d">d</a>
+    <a href="#e">e</a>
+    <a href="#f">f</a>
+    <a href="#g">g</a>
+    <a href="#h">h</a>
+    <a href="#i">i</a>
+    <a href="#j">j</a>
+    <a href="#k">k</a>
+    <a href="#l">l</a>
+    <a href="#m">m</a>
+    <a href="#n">n</a>
+    <a href="#o">o</a>
+    <a href="#p">p</a>
+    <a href="#q">q</a>
+    <a href="#r">r</a>
+    <a href="#s">s</a>
+    <a href="#t">t</a>
+    <a href="#u">u</a>
+    <a href="#v">v</a>
+    <a href="#w">w</a>
+    <a href="#x">x</a>
+    <a href="#y">y</a>
+    <a href="#z">z</a>
 
-<a href="#bracket">[</a>
-<a href="#backslash">\</a>
-<a href="#rbracket">]</a>
-<a href="#caret">^</a>
-<a href="#curly">{</a>
+    <a href="#bracket">[</a>
+    <a href="#backslash">\</a>
+    <a href="#rbracket">]</a>
+    <a href="#caret">^</a>
+    <a href="#curly">{</a>
+</div>
 
 <hr>
 <a name="store"><h1>!</h1></a>
