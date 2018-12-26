@@ -7,7 +7,7 @@
     2dup +
     rot drop
   LOOP
-  swap drop
+  nip
 ;
 
 13
