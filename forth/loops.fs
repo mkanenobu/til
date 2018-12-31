@@ -2,7 +2,7 @@
 \ 上限値、初期値、Do、処理、Loop
 : Hello ( -- )
   10 0
-  DO CR ." Hello, World!" LOOP
+  DO ." Hello, World!" CR LOOP
 ;
 
 Hello
