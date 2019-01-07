@@ -2,7 +2,8 @@
   dup *
 ;
 
-include ~/.forth_dicts/test.fs
+s" ~/.forth_dicts/test.fs" included
+\ include ~/.forth_dicts/test.fs
 
 \ if false, throw error
 T{ 3 square -> 9 }T
