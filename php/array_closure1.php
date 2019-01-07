@@ -5,6 +5,7 @@ $var = [
     ['id' => 26, 'name' => 'ライチュウ'],
     ['id' => 27, 'name' => 'サンド'],
 ];
+
 // 普通のmap, nameだけ取り出し
 $var = (array_map(function($var) {
     return $var['name'];
