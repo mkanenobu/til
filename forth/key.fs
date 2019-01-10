@@ -1,9 +1,10 @@
-#! /usr/bin/env gforth
+#! /usr/bin/env gforthrun
 
 : inputKey ( -- )
+  ." Press any key" CR
   key
-  emit
+  dup
+  emit ." 's Ascii code is " . CR
 ;
 
 inputKey
-bye
