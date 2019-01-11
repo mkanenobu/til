@@ -16,6 +16,7 @@ end
 Foo.bar
 Foo::bar
 
+
 class Hoge
   class << self
     def hoge

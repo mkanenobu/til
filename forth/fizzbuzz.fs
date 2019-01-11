@@ -1,6 +1,6 @@
 \ #! /usr/bin/env gforthrun
 
-: fizzbuzz
+: fizzbuzz ( n -- )
   1 Do
     i 5 mod 0=
     i 3 mod 0=
