@@ -2,12 +2,13 @@
 
 (1..100).each do |i|
   if i % 15 == 0
-    print "FizzBuzz, "
+    print "FizzBuzz"
   elsif i % 5 == 0
-    print "Buzz, "
+    print "Buzz"
   elsif i % 3 == 0
-    print "Fizz, "
+    print "Fizz"
   else
-    print i.to_s << ", "
+    print i.to_s
   end
+  print ","
 end
