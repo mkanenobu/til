@@ -1,2 +1,3 @@
-(print (+ 3 4))
-(print (+ 3 4))
+(format t "Hello, World!")
+(print "Hello, World!")
+
