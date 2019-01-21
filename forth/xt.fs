@@ -1,5 +1,18 @@
 #! /usr/bin/env gforthrun
 
+create var
+  1 , 2 , 3 , 4 ,
+
+variable xt
+' + xt !
+
+: xt_test ( xt n1 n2 -- n )
+  { xt }
+  xt execute
+;
+
+3 5 xt_test .s
+
 ' + dup
 3 2 rot execute .s
 4 rot execute .s
