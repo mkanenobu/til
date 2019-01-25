@@ -1,4 +1,6 @@
-var template = Hogan.compile($('#template').text())
+var user_template = document.getElementById("template").innerHTML
+var template = Hogan.compile(user_template)
+
 var data = [
   {
     'word': 'SWAP',
