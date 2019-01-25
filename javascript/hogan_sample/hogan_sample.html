@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.js"
+        integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+        crossorigin="anonymous">
+    </script>
+    <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+    <script type="text/template" id="template">
+        {{#data}}
+            <p class="word">{{word}}</p>
+            <p class="annotation">{{annotation}}</p>
+            <p>{{desc}}</p>
+        {{/data}}
+    </script>
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script src="./data.js"></script>
+</html>
