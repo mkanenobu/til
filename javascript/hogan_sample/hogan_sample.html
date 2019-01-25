@@ -13,8 +13,29 @@
     <script type="text/template" id="template">
         {{#data}}
             <p class="word">{{word}}</p>
-            <p class="annotation">{{annotation}}</p>
-            <p>{{desc}}</p>
+            {{#annotation}}
+                <p class="annotation">{{annotation}}</p>
+            {{/annotation}}
+            {{#desc}}
+                <p>{{desc}}</p>
+            {{/desc}}
+
+            {{#interpretation}}
+                <p>Interpretation:</p>
+                <p>{{interpretation}}</p>
+            {{/interpretation}}
+
+            {{#compilation}}
+                <p>Compilation:</p>
+                <p>{{compilation-annotation}}</p>
+                <p>{{compilation}}</p>
+            {{/compilation}}
+
+            {{#runtime}}
+                <p>Run-time:</p>
+                <p>{{runtime-annotation}}</p>
+                <p>{{runtime}}</p>
+            {{/runtime}}
         {{/data}}
     </script>
     <title>Document</title>
