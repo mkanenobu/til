@@ -1,5 +1,5 @@
 main =
-  print (fibo 13)
+  print $ fibo 13
 
 fibo n =
   case n of
