@@ -1,5 +1,8 @@
+main :: IO ()
 main = do
-  print (calBMI 60 170.0)
+  print $ calBMI 60 170.0
+  print $ whereSample 5
+
 
 -- 関数の末尾にwhere、そのあとに変数 = 式とすることで一時変数的なものを作成可能
 -- where内でwhere内の別の変数を参照することも可能
@@ -13,3 +16,10 @@ calBMI weight height
   where
     bmi    = weight / (heightM * heightM)
     heightM = height / 100
+
+whereSample :: Int -> Int
+whereSample n =
+  n2
+    where
+      n2 = n * n
+

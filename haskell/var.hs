@@ -1,5 +1,6 @@
 import Data.IORef
 
+main :: IO ()
 main = do
   v <- newIORef 0
   c <- readIORef v

@@ -1,8 +1,9 @@
+main :: IO ()
 main =
   print $ fibo 13
 
+fibo :: Int -> Int
+fibo 0 = 0
+fibo 1 = 1
 fibo n =
-  case n of
-    0 -> 0
-    1 -> 1
-    _ -> fibo (n - 1) + fibo (n - 2)
+  fibo (n - 1) + fibo (n - 2)

@@ -1,7 +1,9 @@
+main :: IO ()
 main = do
   name <- getName "-"
   putStrLn name
 
+getName :: String -> IO String
 getName str = do
   putStrLn "姓:"
   lastName <- getLine
