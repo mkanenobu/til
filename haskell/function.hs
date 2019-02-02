@@ -1,14 +1,17 @@
 -- doは副作用があることを明示
+nl :: IO ()
 nl = putStrLn ""
+
+main :: IO ()
 main = do
   print (sampleFunc 1)
   print (sampleFunc 13)
   nl
   print (add (1, 1) (2, 3))
   nl
-  print (ufo_operater 1 2)
-  print (ufo_operater 3 3)
-  print (5 `ufo_operater` 1)
+  print $ ufo_operater 1 2
+  print $ ufo_operater 3 3
+  print $ 5 `ufo_operater` 1
 
 -- sampleFuncが引数にInt型の値を取り、String型を返すという宣言
 sampleFunc :: Int -> String

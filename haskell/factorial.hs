@@ -1,9 +1,10 @@
+main :: IO ()
 main = do
-  let num = 8
-  print (fact num)
+  let num = 5
+  print $ fact num
 
+fact :: Int -> Int
+fact 0 = 1
 fact n =
-  case n of
-    0 -> 1
-    _ -> n * fact (n - 1)
+  n * fact (n - 1)
 
