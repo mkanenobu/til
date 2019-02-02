@@ -1,6 +1,7 @@
 -- 算術、比較演算子
+main :: IO ()
 main = do
-  print (2 + 1000 * 3)
+  print ( 2 + 1000 * 3 )
   print ( 1 == 1 )
   -- 比較では実数と整数を比較しても問題ない
   print ( 4 >= 3.99 )
@@ -12,3 +13,10 @@ main = do
   print ((*) 3 21)
 
   -- ==, /=はEqクラスで、<, >, <=, >=はOrdクラスで宣言されている
+
+  -- 商
+  print ( div 5 2 )
+  print ( 5 `div` 2 )
+  -- 余剰
+  print ( mod 5 2 )
+  print ( 5 `mod` 2 )
