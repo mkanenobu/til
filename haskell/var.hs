@@ -1,9 +1,23 @@
 import Data.IORef
 
+main :: IO ()
 main = do
-  v <- newIORef 0
-  c <- readIORef v
+  -- 再代入可能な変数の作成(変数aを0で初期化)
+  a <- newIORef 0
+  b <- readIORef a
+  print b
+  writeIORef a (b + 1)
+  c <- readIORef a
   print c
-  writeIORef v (c + 1)
-  c2 <- readIORef v
-  print c2
+
+  -- letで定義
+  let d = 30
+      e = 40
+  print d
+  print e
+
+  -- 末尾のwhereで定義
+  print f
+    where
+      f = 10
+
