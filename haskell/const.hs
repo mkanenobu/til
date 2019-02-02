@@ -1,7 +1,8 @@
 main = do
   let foo = "string"
-  let bar = 3.4
-  let baz = True
+      bar = 3.4
+      baz = True
+  -- 標準入力を読み込む
   c <- getContents
   putStrLn foo
   putStrLn (show bar) -- `show`は文字列以外のものを文字列に変換する関数
