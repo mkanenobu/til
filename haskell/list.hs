@@ -9,4 +9,17 @@ main = do
   let ls4 = ["foo", "bar", "baz"]
   print ls4
   print (ls4 !! 1) -- index
+  -- insert head
+  print $ 123 : ls2
 
+  print $ head ls
+  print $ tail ls
+  print $ init ls
+  print $ last ls
+  print $ length ls
+  -- is null?
+  print $ null ls
+  print $ null []
+  -- contains?
+  print $ 4 `elem` ls
+  print $ elem 13 ls
