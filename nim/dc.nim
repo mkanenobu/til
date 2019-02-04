@@ -9,11 +9,6 @@ var
   operaters = ["p", ".", ".s"]
   tmp: float
 
-proc stack_ctl(s: var seq[float], n: float) =
-  discard s.pop()
-  discard s.pop()
-  s.add(n)
-
 while true:
   line = readLineFromStdin("> ").split(" ")
 
@@ -21,11 +16,11 @@ while true:
     try:
       if calc_operaters.contains(i):
         case i:
-          of "+": tmp = stack[^1] + stack[^2]
-          of "-": tmp = stack[^1] - stack[^2]
-          of "*": tmp = stack[^1] * stack[^2]
-          of "/": tmp = stack[^2] / stack[^1]
-        stack_ctl(stack, tmp)
+          of "+": tmp = stack.pop() + stack.pop()
+          of "-": tmp = stack.pop() - stack.pop()
+          of "*": tmp = stack.pop() * stack.pop()
+          of "/": tmp = stack.pop(); tmp = stack.pop() / tmp
+        stack.add(tmp)
       elif operaters.contains(i):
         case i:
           of "p": echo stack.pop()
