@@ -9,7 +9,7 @@ main = do
   let ls4 = ["foo", "bar", "baz"]
   print ls4
   print (ls4 !! 1) -- index
-  -- insert head
+  -- insert head (cons)
   print $ 123 : ls2
 
   print $ head ls
