@@ -17,7 +17,7 @@ main = do
   line <- readLineSplit
   forM_ line $ \i -> do
     -- print $ strToDbl $ n
-    print $ calOrPush i s
+    print $ calcOrPush i s
 
   print $ sum $ map strToDbl line
 
@@ -31,8 +31,8 @@ pop :: Stack -> (Double, Stack)
 pop [] = error "Stack underflow"
 pop (x : xs) = (x, xs)
 
-calOrPush :: String -> Stack -> Stack
-calOrPush str s =
+calcOrPush :: String -> Stack -> Stack
+calcOrPush str s =
   if str `elem` operaters
      then calc str s
      else push (strToDbl str) s
