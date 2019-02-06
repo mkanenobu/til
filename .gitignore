@@ -1,3 +1,11 @@
+# Ignore Binary
+*
+!*.*
+!*/
+*.o
+bin/
+*/bin/*
+
 nimcache/
 Yukicoder/
 AtCorder/
@@ -7,5 +15,5 @@ AOJ/
 Private/
 mkanenobu.github.io/
 python/paiza/
-*.o
 vim/nvim-nim/
+
