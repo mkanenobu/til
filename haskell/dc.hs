@@ -1,3 +1,4 @@
+-- {-# OPTIONS -Wall #-}
 {-
 Reverese Polish calculator implementation in Haskell
 -}
@@ -12,12 +13,13 @@ operaters = ["+", "-", "*", "/"]
 
 main :: IO ()
 main = do
-  line <- readLine
-  forM_ [0..(length line - 1)] $ \i -> do
-    let n = line !! i
-    let s = []
+  let s = []
+  line <- readLineSplit
+  forM_ line $ \i -> do
     -- print $ strToDbl $ n
-    print $ calOrPush n s
+    print $ calOrPush i s
+
+  print $ sum $ map strToDbl line
 
 strToDbl :: String -> Double
 strToDbl n = read n::Double
@@ -35,8 +37,8 @@ calOrPush str s =
      then calc str s
      else push (strToDbl str) s
 
-readLine :: IO [String]
-readLine =
+readLineSplit :: IO [String]
+readLineSplit =
   words <$> getLine
 
 calc :: String -> Stack -> Stack
