@@ -1,4 +1,4 @@
-# Reverese Polish Notation calculator implementation in Haskell
+# Forth style reverese Polish calculator, implementation in Nim
 import sequtils, strutils
 import rdstdin
 
