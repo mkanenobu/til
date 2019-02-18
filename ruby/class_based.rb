@@ -11,6 +11,11 @@ end
 puts a.class()
 
 class SampleClass
+  @@val1 = 0
+  def initialize(val1)
+    @@val1 = val1
+  end
+
   def setVal1(val1)
     @@val1 = val1
   end
@@ -20,5 +25,17 @@ class SampleClass
   end
 end
 
-SampleClass.new.setVal1(13)
-SampleClass.new.putVal1()
+sc = SampleClass.new(100)
+sc.putVal1() # 100
+sc.setVal1(13)
+sc.putVal1() # 13
+
+
+l = [1,2,3]
+# 特異メソッド
+def l.cubes
+  return self.map{|i| i ** 3}
+end
+
+p l.cubes
+
