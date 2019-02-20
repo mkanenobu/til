@@ -18,4 +18,4 @@ def rot13(s)
 end
 
 p rot13("HELLO")
-p rot13(rot13("HELLO"))
+p rot13(rot13("Hello"))
