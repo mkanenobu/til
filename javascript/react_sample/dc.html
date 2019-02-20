@@ -21,8 +21,7 @@
           input = input.filter(e => e !== "");
         }
         let stack = [];
-        for (let i in input) {
-          let elem = input[i];
+        for (let elem of input) {
           let tmp = 0;
           let res = 0;
           switch (elem) {
