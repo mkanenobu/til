@@ -6,3 +6,5 @@ if w > "e":
     print("Your input bigger than \"e\"")
 else:
     print("Your input smaller than \"e\"")
+
+print("".join(sorted("string")))
