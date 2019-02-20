@@ -6,27 +6,19 @@ stack = []
 operaters = ['+', '-', '*', '/', '.s', '.']
 
 def calc(stack, op)
+  tmp1 = stack.pop
+  tmp2 = stack.pop
+  stack.push(eval("#{tmp2} #{op} #{tmp1}"))
+end
+
+def words(stack, op)
   case op
-    when '+' then
-      tmp = stack.pop
-      tmp = tmp + stack.pop
-      stack.push(tmp)
-    when '-' then
-      tmp = stack.pop
-      tmp = tmp - stack.pop
-      stack.push(tmp)
-    when '*' then
-      tmp = stack.pop
-      tmp = tmp * stack.pop
-      stack.push(tmp)
-    when '/' then
-      tmp = stack.pop
-      tmp = stack.pop / tmp
-      stack.push(tmp)
     when '.s' then
       p stack
     when '.' then
-      p stack.pop()
+      puts stack.pop()
+    else
+      calc(stack, op)
   end
 end
 
@@ -36,9 +28,13 @@ while true do
   line = line.split(' ')
   line.each do |w|
     if operaters.include?(w) then
-      calc(stack, w)
+      words(stack, w)
     else
-      stack.push(w.to_f)
+      begin
+        stack.push(Float w)
+      rescue
+        puts "Error: Invalid input"
+      end
     end
   end
 end
