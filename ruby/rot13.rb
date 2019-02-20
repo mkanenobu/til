@@ -12,7 +12,7 @@ def rot13(s)
   end
   returnString = ""
   codes.each do |a|
-    returnString += (Integer a).chr
+    returnString += a.chr
   end
   return returnString
 end
