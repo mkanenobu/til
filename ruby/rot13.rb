@@ -5,7 +5,7 @@ def rot13(s)
   s.each_char do |c|
     # get ascii code
     code = c.ord + 13
-    if code > 91 and code < 103 or code > 122 and code < 135 then
+    if (code > 91 and code < 103) or (code > 122 and code < 135) then
       code -= 26
     end
     codes.push(code)
