@@ -1,3 +1,3 @@
-#! /usr/bin/env gforthrun
+#! /usr/bin/env gforth
 
 ." Hello World!"
