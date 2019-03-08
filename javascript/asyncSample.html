@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Async sample</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script type="text/babel">
+    const asyncFunc = async (n) => { return n };
+    async function asyncFunc2() {
+      let n = Math.random() * 10;
+      if (n < 5) {
+        return await Promise.resolve(n ** n);
+      }else{
+        return await Promise.reject(new Error("too big to power"));
+      }
+    }
+    document.getElementById("btn").onclick = e => console.log(asyncFunc(10));
+    document.getElementById("btn2").onclick = e => asyncFunc2().then(res => console.log(res)).catch(err => console.log(err.message));
+  </script>
+</head>
+<body>
+  <div id="sample"></div>
+  <input type="button" value="button" id="btn">
+  <input type="button" value="button" id="btn2">
+</body>
+</html>
