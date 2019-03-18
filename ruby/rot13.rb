@@ -1,20 +1,18 @@
 #!/usr/bin/env ruby
 
 def rot13(s)
-  codes = []
+  result = ""
   s.each_char do |c|
-    # get ascii code
-    code = c.ord + 13
-    if (code > 91 and code <= 103) or (code > 122 and code <= 134) then
-      code -= 26
+    ch = c.downcase
+    if c.match(/[a-m]/) then
+      result += (c.ord + 13).chr
+    elsif c.match(/[n-z]/) then
+      result += (c.ord - 13).chr
+    else
+      result += c
     end
-    codes.push(code)
   end
-  returnString = ""
-  codes.each do |a|
-    returnString += a.chr
-  end
-  return returnString
+  return result
 end
 
 p rot13("HELLO")
