@@ -5,4 +5,13 @@
     %title Datetime
   %body
     %div#main
-      %p Now: #{@datetime}
+      %table
+        %tr
+          %th Locale
+          %th Time
+        %tr
+          %td Current locale:
+          %td #{@current}
+        %tr
+          %td UTC:
+          %td #{@utc}

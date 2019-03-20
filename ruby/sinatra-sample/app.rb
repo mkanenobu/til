@@ -9,8 +9,10 @@ class App < Sinatra::Base
     haml :index
   end
 
-  get '/date' do
-    @datetime = Sample.new.date_time.to_s
+  get '/datetime' do
+    s = Sample.new
+    @current = s.current
+    @utc = s.utc
     haml :date_time
   end
 end
