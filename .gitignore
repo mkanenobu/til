@@ -5,6 +5,8 @@
 *.o
 bin/
 */bin/*
+target/
+*/target/*
 
 nimcache/
 Yukicoder/

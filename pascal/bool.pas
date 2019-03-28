@@ -1,7 +1,7 @@
 program bool;
 
 const a = 3; b = 3;
-var res:boolean;
+var res: boolean;
 
 begin
 
