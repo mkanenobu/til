@@ -1,7 +1,8 @@
 program complecated_if;
 
-const bool1:boolean = false;
-      bool2:boolean = false;
+const
+  bool1:boolean = false;
+  bool2:boolean = false;
 
 begin
 
