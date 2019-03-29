@@ -16,11 +16,11 @@ begin
   n := 0;
   writeln('偽である限り繰り返される、最低一回は実行される');
   repeat
-        write(n);
-        write(',');
-        n := n + 1;
-    until n > 10;
-    writeln();
+    write(n);
+    write(',');
+    n := n + 1;
+  until n > 10;
+  writeln();
 
   writeln('0から10までカウントアップ');
   for i := 0 to 10 do
