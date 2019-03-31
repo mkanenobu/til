@@ -8,7 +8,9 @@ fn main(){
     let _c2: char = '💕'; // 'char' is 4 byte
 
     // String
-    let _str: &str = "string";
+    let _str: &str = "World"; // 正確には&'static str, &strはimmutable
+    let _string: String = "Hello, ".to_string();
+    println!("{}", _string + _str); // +演算子で&strとStringを連結出来る(新しいStringが生成される)
 
     // Numeric
     // integer
@@ -46,4 +48,10 @@ fn main(){
     // _fnはi32を受け取り、i32を返す関数への関数ポインタ
     fn foo(x: i32) -> i32 { x }
     let _fn: fn(i32) -> i32 = foo;
+
+    // Option<T>型は取得出来ないかもしれない値を表現するenum型である
+    enum Option<T> {
+        None,
+        Some(T),
+    }
 }
