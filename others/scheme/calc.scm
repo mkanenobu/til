@@ -1,4 +1,3 @@
-#!/usr/bin/env racket
 (write (+ 1 3))
 (display(- 10 3 1))
 (display(* 4 5))
