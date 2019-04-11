@@ -7,6 +7,10 @@ Printf.printf "%c\n" 'c';;
 (* int *)
 Printf.printf "%d\n" 10;;
 
+(* float *)
+Printf.printf "%f" 9.912113;;
+Printf.printf "%.4f" 10.912113;;
+
 
 (*
 d、 i、 n、 l、 L、 N: 引数の整数を符号付き十進数に変換します。
