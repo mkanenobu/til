@@ -3,5 +3,6 @@
 ; Hello world as a function
 (define fhello (lambda () "Hello world"))
 
+(display "Hello world\n")
 (display vhello)
 (display (fhello))
