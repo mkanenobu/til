@@ -14,7 +14,6 @@ let fibo_tail n =
 ;;
 
 let () =
-  (* Printf.printf "%d\n" (fibo_tail 10) *)
   for i = 0 to 60 do
     Printf.printf "%d\n" (fibo_tail i);
   done
