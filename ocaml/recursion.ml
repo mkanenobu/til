@@ -3,4 +3,16 @@ let rec range a b =
   if a > b then []
   else a :: range (a + 1) b;;
 
-Printf.printf "%d" ::(range 2 10)
+(* tail call *)
+let factorial n =
+  let rec iter i n' =
+    if i <= 1 then n'
+    else iter (i - 1) (n' * i)
+  in
+  iter n 1
+;;
+
+
+let () =
+  List.iter (fun n -> Printf.printf "%d\n" n) (range 2 12);
+  Printf.printf "factorial of 5: %d\n" (factorial 5)
