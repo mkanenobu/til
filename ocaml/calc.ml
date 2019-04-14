@@ -12,6 +12,7 @@ let () =
   printf "%F\n" (5.3 -. 3.0);
 
   printf "%d\n" (30 mod 7);
+  printf "%F\n" (20.0 ** 2.0);
 
   (* cast *)
   printf "%F\n" (float 3 /. 1.1);

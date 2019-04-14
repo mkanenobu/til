@@ -10,7 +10,14 @@ let is_empty_list l =
   | [] -> true
   | _ -> false
 
+(* or pattern *)
+let is_operater c =
+  match c with
+  | '+' | '-' | '*' | '/' -> true
+  | _ -> false
+
 let () =
   Printf.printf "%d\n" n;
   Printf.printf "%b\n" (is_empty_list t);
   Printf.printf "%b\n" (is_empty_list []);
+  Printf.printf "%b\n" (is_operater '+');
