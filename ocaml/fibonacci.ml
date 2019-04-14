@@ -14,6 +14,9 @@ let fibo_tail n =
 ;;
 
 let () =
-  for i = 0 to 60 do
-    Printf.printf "%d\n" (fibo_tail i);
+  for i = 0 to 100 do
+    Printf.printf "% d\n" (match fibo_tail i with
+        | n when n < 0 -> Printf.printf "overflow"; exit 1;
+        | n -> n);
   done
+

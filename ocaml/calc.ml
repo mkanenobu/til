@@ -11,6 +11,8 @@ let () =
   printf "%F\n" (3.12 *. 4.3);
   printf "%F\n" (5.3 -. 3.0);
 
+  printf "%d\n" (30 mod 7);
+
   (* cast *)
   printf "%F\n" (float 3 /. 1.1);
   (* like floor, but floor is not convert type *)

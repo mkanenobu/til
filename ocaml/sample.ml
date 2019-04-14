@@ -1,1 +1,8 @@
-Printf.printf "%d" (100 * 100)
+open Printf
+
+type t =
+  int;;
+
+let test =
+  printf "test"
+

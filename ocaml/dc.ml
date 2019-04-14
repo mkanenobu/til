@@ -1,17 +1,28 @@
 open Printf
 
-let read_line =
-  try Some (input_line stdin)
-  with End_of_file -> None
+let read_line_split =
+  try Some (Str.split (Str.regexp " ") (input_line stdin))
+  with _ -> None
 
-let readLines =
-  let rec loop acc =
-    match read_line with
-    | Some line -> loop (line::acc)
-    | None -> List.rev acc
-  in
-  loop []
+let push x stack =
+  List.cons x stack
+
+let pop stack =
+  try List.hd stack
+  with _ -> printf "Stack underflow"; exit 1
+
+let main stack =
+  let splitted_line =
+    match read_line_split with
+    | Some string_line -> string_line
+    | _ -> printf "Invalid input"; exit 1
+
 
 let () =
-  Printf.printf "%s" (input_line stdin)
+  while true do
+    let splitted_line =
+      match read_line_split with
+      | Some sl -> sl
+      | None -> ignore (exit 1); ()
+  done;
 
