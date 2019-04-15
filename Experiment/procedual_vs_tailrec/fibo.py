@@ -4,21 +4,21 @@ import time
 
 
 def procedual(n):
-    acc1 = 0
-    acc2 = 1
+    n1 = 0
+    n2 = 1
     if n == 0:
         return 0
     else:
         for i in range(1, n):
-            (acc1, acc2) = (acc2, (acc1 + acc2))
-        return acc2
+            (n1, n2) = (n2, (n1 + n2))
+        return n2
 
 
-def tail_recursion(n, acc1=0, acc2=1):
+def tail_recursion(n, n1=0, n2=1):
     if n == 0:
-        return acc1
+        return n1
     else:
-        return tail_recursion(n - 1, acc2, (acc1 + acc2))
+        return tail_recursion(n - 1, n2, (n1 + n2))
 
 
 sTime1 = time.time()
