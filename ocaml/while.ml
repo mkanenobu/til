@@ -1,8 +1,11 @@
 
 let () =
-  let b = ref false in
-  while not !b do
-    print_string "(y/n): ";
-    let str = read_line () in
-    if str.[0] = 'y' then b := true
-  done;;
+  (* procedual *)
+  let c = ref true in
+  let i = ref 0 in
+  while !c do
+    Printf.printf "%d\n" !i;
+    if i > ref 10 then c := false
+    else i := !i + 1;
+  done
+
