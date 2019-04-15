@@ -1,7 +1,8 @@
 let t = [6;2;3;4;5];;
 let words = ["one"; "two"; "three"];;
 
-let n = match t with
+let nth l =
+  match l with
   | [] -> 0
   | x::xs -> x;;
 
@@ -17,7 +18,7 @@ let is_operater c =
   | _ -> false
 
 let () =
-  Printf.printf "%d\n" n;
+  Printf.printf "%d\n" (nth t) ;
   Printf.printf "%b\n" (is_empty_list t);
   Printf.printf "%b\n" (is_empty_list []);
   Printf.printf "%b\n" (is_operater '+');
