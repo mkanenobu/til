@@ -1,5 +1,6 @@
 (* tuple (object) *)
 type person = {name: string; age: int}
+type two_strings = string * string
 
 let print_person person' =
   Printf.printf "name: %s\n" person'.name;
@@ -13,3 +14,8 @@ let () =
 
   let amelia = {name = "Amelia Brand"; age = 28} in
   print_person amelia;
+
+  let (one, two) = ("one", "two") in
+  Printf.printf "%s\n" one;
+  Printf.printf "%s\n" two;
+
