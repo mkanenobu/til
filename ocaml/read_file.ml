@@ -5,7 +5,7 @@ let read_file filename =
   let s = Bytes.create n in
   really_input ic s 0 n;
   close_in ic;
-  s
+  Bytes.to_string s
 
 let () =
-  Printf.printf  "%s" (Bytes.to_string (read_file "hello.ml"))
+  Printf.printf  "%s" (read_file "hello.ml")
