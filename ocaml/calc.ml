@@ -17,6 +17,6 @@ let () =
   (* cast *)
   printf "%F\n" (float 3 /. 1.1);
   (* like floor, but floor is not convert type *)
-  printf "%d\n" ((int_of_float 3.6) + 1);
+  printf "%d\n" (int_of_float 3.6 + 1);
   (* ceil *)
   printf "%d\n" (int_of_float (ceil 3.6) + 1);
