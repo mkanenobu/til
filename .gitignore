@@ -7,15 +7,16 @@ bin/
 */bin/*
 target/
 */target/*
+a.out
 
 nimcache/
+_build/
+node_modules/
 Yukicoder/
 AtCorder/
 Projects/
-mkanenobu.github.io/
 AOJ/
 Private/
 mkanenobu.github.io/
 python/paiza/
-vim/nvim-nim/
 
