@@ -3,3 +3,4 @@ _build
 *.cmx
 *.cmo
 *.o
+.merlin
