@@ -1,8 +1,6 @@
 open Printf
 
-let read_line_split =
-  try Some (Str.split (Str.regexp " ") (input_line stdin))
-  with _ -> None
+let stack_underfrow = 1;;
 
 (** is_parsable_float -> string -> bool **)
 let is_parable s =
@@ -11,10 +9,9 @@ let is_parable s =
     true
   with _ -> false
 
-
 (** push -> float -> float list -> float list **)
 let push f stack =
-  List.cons f stack
+  f :: List.rev stack
 
 (** pop -> float list -> float -> float list **)
 let pop stack =
@@ -33,8 +30,8 @@ let calc op stack =
   | "/" -> push (f2 /. f1) stack'
   | _ -> failwith "Parse error"
 
-(** detect -> string -> float list -> float list **)
-let detect e stack =
+(** push_or_calc -> string -> float list -> float list **)
+let push_or_calc e stack =
   match e with
   | "." ->
     begin
@@ -50,27 +47,37 @@ let detect e stack =
   | _ when (is_parable e) -> push (float_of_string e) stack
   | _ -> printf "Invalid input\n"; exit 1
 
-let print_list l =
-  printf "[ ";
+let print_list (l: float list) =
+  print_string "[";
   List.iter (fun e -> printf "%F " e) l;
-  printf "]";
+  print_string "]";
+  print_string "\n";
+;;
 
-  let main stack =
-    let stack = [] in
-    let splitted_line =
-      match read_line_split with
-      | Some string_line -> string_line
-      | None -> printf "Invalid input\n"; exit 1 in
-    List.iter (
-      fun e ->
-        let stack = (detect e stack) in
-    ) splitted_line
+let main stack (splitted_line: string list) =
+  let m = List.length splitted_line in
+  let rec iter n stack' =
+    if n < m then
+      iter (n + 1) (push_or_calc (List.nth splitted_line n) stack')
+    else
+      stack'
+  in
+  iter 0 stack
+;;
+
+let stack: float list = [];;
 
 let () =
-  while true do
-    let splitted_line =
-      match read_line_split with
-      | Some sl -> sl
-      | None -> ignore (exit 1); ()
-  done;
+  let rec iter stack' =
+    let read_line_split =
+      try Str.split (Str.regexp " ") (input_line stdin)
+      with _ -> printf "Invalid input\n"; exit 1
+    in
+    let stack_ = main stack' read_line_split in
+    print_list stack_;
+    flush stdout;
+    iter stack_;
+  in
+  iter stack
+;;
 

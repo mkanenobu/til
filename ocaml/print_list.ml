@@ -3,7 +3,7 @@ open Printf
 let print_int_list l =
   printf "[";
   List.iter (fun e -> printf "%d; " e) l;
-  printf "]"
+  printf "\b]"
 ;;
 
 let print_float_list l =
@@ -23,3 +23,6 @@ let print_char_list l =
   List.iter (fun e -> printf "%C; " e) l;
   printf "]"
 ;;
+
+let () =
+  print_int_list [1;2;3]
