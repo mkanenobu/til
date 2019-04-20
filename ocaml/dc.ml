@@ -10,7 +10,7 @@ let exit_with_error e =
   exit 1
 ;;
 
-(** is_parsable: string -> bool **)
+(* is_parsable: string -> bool **)
 let is_parsable s =
   try
     let _ = float_of_string s in
@@ -18,12 +18,12 @@ let is_parsable s =
   with _ -> false
 ;;
 
-(** push: a' -> a' list -> a' list **)
+(** push: 'a -> 'a list -> 'a list **)
 let push f stack =
   f :: List.rev stack
 ;;
 
-(** pop: a' list -> a' -> a' list **)
+(** pop: 'a list -> 'a -> 'a list **)
 let pop stack =
   (
     try List.hd stack
