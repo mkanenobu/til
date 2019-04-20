@@ -14,10 +14,23 @@ let is_empty_list l =
 ;;
 
 (* or pattern *)
-let is_operater c =
+(* redundant *)
+let _is_operater c =
   match c with
   | '+' | '-' | '*' | '/' -> true
   | _ -> false
+;;
+(* good *)
+let is_operater = function
+  | '+' | '-' | '*' | '/' -> true
+  | _ -> false
+;;
+
+(* returns last element 'a list -> 'a option *)
+let rec last = function
+  | [] -> None
+  | [x] -> Some x
+  | _ :: t -> last t
 ;;
 
 let () =
