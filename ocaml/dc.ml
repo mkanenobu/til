@@ -1,5 +1,6 @@
 (** Reverse Polish Notation Caliculator impl in OCaml **)
 open Printf;;
+type t_stack = float list;;
 
 let exit_with_error e =
   begin match e with
@@ -18,13 +19,13 @@ let is_parsable s =
   with _ -> false
 ;;
 
-(** push: 'a -> 'a list -> 'a list **)
-let push f stack =
-  f :: List.rev stack
+(** push: float -> float list -> t_stack **)
+let push (f: float) (stack: t_stack) =
+  f :: stack
 ;;
 
-(** pop: 'a list -> 'a -> 'a list **)
-let pop stack =
+(** pop: float list -> float * t_stack **)
+let pop (stack: t_stack) =
   (
     try List.hd stack
     with _ -> exit_with_error "stack_underflow"
@@ -32,10 +33,10 @@ let pop stack =
   List.tl stack
 ;;
 
-(** calc: string -> float list -> float list **)
-let calc op stack =
-  let (f1, stack') = pop stack in
-  let (f2, stack') = pop stack' in
+(** calc: string -> t_stack -> t_stack **)
+let calc op (stack: t_stack) =
+  let f1, stack' = pop stack in
+  let f2, stack' = pop stack' in
   begin match op with
     | "+" -> push (f2 +. f1) stack'
     | "-" -> push (f2 -. f1) stack'
@@ -51,7 +52,7 @@ let push_or_calc e stack =
   | "." ->
     begin
       (* pop and show *)
-      let (f, stack') = pop stack in
+      let f, stack' = pop stack in
       printf "%F\n" f;
       stack'
     end
@@ -60,15 +61,16 @@ let push_or_calc e stack =
   | _ -> exit_with_error "invalid_input"
 ;;
 
-(** print_list: float list -> unit **)
-let print_list (l: float list) =
+(** print_stack: t_stack -> unit **)
+let print_stack (l: t_stack) =
+  printf "<%d> " (List.length l);
   print_string "[";
-  List.iter (fun e -> printf "%F " e) l;
+  List.iter (fun e -> printf "%F " e) (List.rev l);
   print_string "]";
   print_string "\n";
 ;;
 
-
+(** main: t_stack -> string list -> t_stack **)
 let main stack (splitted_line: string list) =
   let m = List.length splitted_line in
   let rec iter n stack' =
@@ -81,16 +83,16 @@ let main stack (splitted_line: string list) =
 ;;
 
 
-let stack: float list = [];;
+let stack = ([]: t_stack);;
 
 let () =
-  let rec iter stack' =
+  let rec iter (stack': t_stack) =
     let read_line_split =
       try Str.split (Str.regexp " ") (input_line stdin)
       with _ -> exit_with_error "invalid_input"
     in
     let stack_ = main stack' read_line_split in
-    print_list stack_;
+    print_stack stack_;
     flush stdout;
     iter stack_;
   in

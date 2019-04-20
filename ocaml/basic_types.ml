@@ -31,6 +31,9 @@ let l = [1; 2; 3; 4; 5];;
 (* array *)
 let a = [|1; 2; 3;|];;
 
+(* tuple *)
+let t = "First", "Second";;
+
 let print n =
   Printf.printf "%d\n" n
 
