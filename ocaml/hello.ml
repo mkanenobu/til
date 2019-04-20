@@ -1,4 +1,4 @@
-let hello = 
+let hello =
   "Hello, World!\n"
 ;;
 

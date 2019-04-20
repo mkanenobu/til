@@ -5,17 +5,20 @@ let nth l =
   match l with
   | [] -> 0
   | x::xs -> x;;
+;;
 
 let is_empty_list l =
   match l with
   | [] -> true
   | _ -> false
+;;
 
 (* or pattern *)
 let is_operater c =
   match c with
   | '+' | '-' | '*' | '/' -> true
   | _ -> false
+;;
 
 let () =
   Printf.printf "%d\n" (nth t) ;

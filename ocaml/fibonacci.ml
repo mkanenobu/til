@@ -17,11 +17,11 @@ let fibo_pair_ n =
 ;;
 
 let fibo_tail n =
-  let rec iter i n1 n2 =
+  let rec iter i (n1, n2) =
     if i = 1 then n2
-    else iter (i - 1) n2 (n1 + n2)
+    else iter (i - 1) (n2, (n1 + n2))
   in
-  iter n 0 1
+  iter n (0, 1)
 ;;
 
 let () =
