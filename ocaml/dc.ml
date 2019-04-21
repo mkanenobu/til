@@ -2,13 +2,22 @@
 open Printf;;
 type t_stack = float list;;
 
-let exit_with_error e =
-  begin match e with
-    | "stack_underfrow" -> printf "Stack underflow\n"
-    | "invalid_input" -> printf "Invalid input\n"
-    | _ -> printf "Unknown error\n"
-  end;
-  exit 1
+let exit_with_message = function
+  | "stack_underflow" ->
+    begin
+      printf "Stack underflow\n";
+      exit 1
+    end
+  | "invalid_input" ->
+    begin
+      printf "Invalid input\n";
+      exit 2
+    end
+  | _ ->
+    begin
+      printf "Unknown error\n";
+      exit 3
+    end
 ;;
 
 (* is_parsable: string -> bool **)
@@ -28,9 +37,13 @@ let push (f: float) (stack: t_stack) =
 let pop (stack: t_stack) =
   (
     try List.hd stack
-    with _ -> exit_with_error "stack_underflow"
-  ),
-  List.tl stack
+    with _ -> exit_with_message "stack_underflow"
+  )
+  ,
+  (
+    try List.tl stack
+    with _ -> exit_with_message "stack_underflow"
+  )
 ;;
 
 (** calc: string -> t_stack -> t_stack **)
@@ -42,7 +55,7 @@ let calc op (stack: t_stack) =
     | "-" -> push (f2 -. f1) stack'
     | "*" -> push (f2 *. f1) stack'
     | "/" -> push (f2 /. f1) stack'
-    | _ -> exit_with_error "unknown"
+    | _ -> exit_with_message "unknown"
   end
 ;;
 
@@ -58,14 +71,14 @@ let push_or_calc e stack =
     end
   | "+" | "-" | "*" | "/" -> calc e stack
   | _ when (is_parsable e) -> push (float_of_string e) stack
-  | _ -> exit_with_error "invalid_input"
+  | _ -> exit_with_message "invalid_input"
 ;;
 
 (** print_stack: t_stack -> unit **)
 let print_stack (l: t_stack) =
   printf "<%d> " (List.length l);
   print_string "[";
-  List.iter (fun e -> printf "%F " e) (List.rev l);
+  List.iter (printf "%F ") (List.rev l);
   print_string "]";
   print_string "\n";
 ;;
@@ -89,7 +102,7 @@ let () =
   let rec iter (stack': t_stack) =
     let read_line_split =
       try Str.split (Str.regexp " ") (input_line stdin)
-      with _ -> exit_with_error "invalid_input"
+      with _ -> exit_with_message "invalid_input"
     in
     let stack_ = main stack' read_line_split in
     print_stack stack_;
