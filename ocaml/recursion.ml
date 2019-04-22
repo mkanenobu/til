@@ -14,5 +14,5 @@ let factorial n =
 
 
 let () =
-  List.iter (fun n -> Printf.printf "%d\n" n) (range 2 12);
+  List.iter (Printf.printf "%d ") (range 2 12);
   Printf.printf "factorial of 5: %d\n" (factorial 5)

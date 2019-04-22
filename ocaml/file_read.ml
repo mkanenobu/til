@@ -27,4 +27,5 @@ let () =
   Printf.printf  "%s\n" (read_file_all "hello.ml");
 
   Printf.printf "%s\n" "Returns string list";
-  List.iter (fun e -> Printf.printf "%s\n" e) (read_file_lines "hello.ml")
+  List.iter (Printf.printf "%s\n") (read_file_lines "hello.ml")
+
