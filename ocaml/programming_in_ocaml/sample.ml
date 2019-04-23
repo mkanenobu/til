@@ -1,5 +1,7 @@
 let () =
-  print_int 3;
-  print_int 3;
-  print_int 3;
+  Printf.printf "%d\n" 3;
+  Printf.printf "%d\n" 3;
+  Printf.printf "%d\n" 3;
+
+  Printf.printf "%c\n" (max 'x' 'a');
 
