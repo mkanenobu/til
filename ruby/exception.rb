@@ -20,9 +20,15 @@ rescue
   puts "some error occurred"
 end
 
+begin
+  raise "MyException"
+rescue => e
+  pp e
+end
+
 # 
 num = Integer "a" rescue 10
 puts num
 
 # create new Exception
-class MyException < StandardError; end
+# class MyException < StandardError; end
