@@ -4,5 +4,5 @@ let rec tarai x y z =
 ;;
 
 let () =
-  Printf.printf "%d\n" (tarai 12 6 0);
+  Printf.printf "%d\n" @@ tarai 12 6 0;
 

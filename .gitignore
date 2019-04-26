@@ -9,6 +9,7 @@ target/
 */target/*
 a.out
 
+Contest/
 nimcache/
 _build/
 node_modules/

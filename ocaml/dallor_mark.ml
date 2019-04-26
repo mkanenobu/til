@@ -7,5 +7,5 @@ let add_one n =
 ;;
 
 let () =
-  Printf.printf "%d\n" (add_one $ add_one 3)
+  Printf.printf "%d\n" @@ add_one @@ add_one 3
 
