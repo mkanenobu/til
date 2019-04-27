@@ -1,5 +1,6 @@
-open Graphics;;
-open Unix;;
+open Printf
+open Graphics
+open Unix
 
 let () =
   open_graph "";
@@ -9,7 +10,7 @@ let () =
     let x = i * 2 + 400 in
     let y = i * 1 + 400 in
     resize_window x y;
-    sleepf 0.1;
+    sleepf 0.05;
   done;
   close_graph ();
 
