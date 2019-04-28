@@ -109,6 +109,7 @@ let () =
     flush stdout;
     iter stack_;
   in
-  iter stack
+  iter stack;
 ;;
+
 

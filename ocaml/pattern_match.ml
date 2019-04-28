@@ -38,3 +38,4 @@ let () =
   Printf.printf "%b\n" (is_empty_list t);
   Printf.printf "%b\n" (is_empty_list []);
   Printf.printf "%b\n" (is_operater '+');
+
