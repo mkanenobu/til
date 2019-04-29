@@ -1,4 +1,4 @@
-class sample x =
+class sample1 x =
   object
     val mutable n = x
     method get_n = n
@@ -7,9 +7,21 @@ class sample x =
   end
 ;;
 
+class sample2 =
+  object
+    method print = Printf.printf "sample2"
+  end
+;;
+
 class inherited x =
   object
-    inherit sample x
+    (* 同名のメソッドを持つクラスを多重継承した場合後勝ち *)
+    (* スーパークラスの参照名を定義すればクラスを指定してメソッド呼び出し可能 *)
+    inherit sample1 x as super1
+    inherit sample2
+    (* 本来sample2のprintがinheritedのprintメソッドになるが
+       sample1のprintでオーバーライド *)
+    method print = super1#print
   end
 ;;
 
