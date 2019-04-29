@@ -13,6 +13,7 @@ let () =
   (* `10`, `-`, `1`と解釈されエラー *)
   (* print_two_ints 10 -1; *)
 
+  (* float版 *)
+  print_two_floats 3.5 ~-.12.4;
   (* エラー *)
   (* print_two_floats 3.5 -12.4; *)
-  print_two_floats 3.5 ~-.12.4;
