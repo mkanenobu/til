@@ -1,16 +1,12 @@
-open Printf
 open Graphics
-open Unix
 
 let () =
-  open_graph "";
-  set_window_title "OCaml Graphics sample";
-  (* wait 1 seconds by 10 times *)
-  for i = 0 to 100 do
-    let x = i * 2 + 400 in
-    let y = i * 1 + 400 in
-    resize_window x y;
-    sleepf 0.05;
+  open_graph " 640x480";
+  for i = 12 downto 1 do
+    let radius = i * 20 in
+    print_endline ("radius is " ^ string_of_int radius);
+    set_color (if i mod 2 = 0 then green else red);
+    fill_circle 320 240 radius;
+    Unix.sleep 1;
   done;
-  close_graph ();
 
