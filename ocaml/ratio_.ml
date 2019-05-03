@@ -24,7 +24,7 @@ let gcd a b =
 ;;
 
 let divide_by_gcd a b gcd_ =
-  if max a b = gcd_ then (a, b)
+  if min a b = 0 then (a, b)
   else (a / gcd_), (b / gcd_)
 ;;
 
