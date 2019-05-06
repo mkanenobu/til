@@ -7,7 +7,7 @@ let print_list xs =
   print_string "]\n";
 ;;
 
-(* buble sort *)
+(* buble sort O(n^2) *)
 let rec bubble_sort l =
   let rec walk = function
     | x :: y :: xs when x > y -> y :: walk (x :: xs)
@@ -20,7 +20,7 @@ let rec bubble_sort l =
   else l;
 ;;
 
-(* selection sort *)
+(* selection sort O(n^2) *)
 let rec selection_sort = function
   | [] -> []
   | x :: xs ->
@@ -32,8 +32,20 @@ let rec selection_sort = function
     select_r x [] xs
 ;;
 
+(* insertion sort O(n^2) *)
+let rec insertion_sort l =
+  let rec insert x l' =
+    match l' with
+    | [] -> [x]
+    | y :: ys -> if x < y then x :: y :: ys else y :: insert x ys
+  in
+  match l with
+  | [] -> []
+  | x :: xs -> insert x (insertion_sort xs)
+;;
 
 let () =
   print_list @@ bubble_sort l;
   print_list @@ selection_sort l;
+  print_list @@ insertion_sort l;
 
