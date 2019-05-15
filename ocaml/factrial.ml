@@ -18,5 +18,7 @@ let fact2 n =
   iter n 1
 ;;
 
-Printf.printf "%d\n" (fact1 10);
-Printf.printf "%d\n" (fact2 10)
+let () =
+  let arg1 = int_of_string Sys.argv.(1) in
+  Printf.printf "%d\n" (fact1 arg1);
+  Printf.printf "%d\n" (fact2 arg1);
