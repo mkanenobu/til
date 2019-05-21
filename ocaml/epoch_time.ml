@@ -4,6 +4,7 @@ open Printf
 let () =
   (* time function truncates float part *)
   let _epoch = Unix.time () in
+  Printf.printf _epoch;
 
   (* epoch time *)
   let start = Unix.gettimeofday () in

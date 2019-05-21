@@ -11,8 +11,7 @@
   nip
 ;
 
-13
-fibo1 . CR
+13 fibo1 . CR
 
 
 : fibo2 { n -- n1 }
@@ -26,5 +25,4 @@ fibo1 . CR
   nip
 ;
 
-13
-fibo2 . CR
+13 fibo2 . CR

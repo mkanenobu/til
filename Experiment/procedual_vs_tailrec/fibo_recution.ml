@@ -8,5 +8,8 @@ let tail_recursion n =
 ;;
 
 let () =
-  Printf.printf "%d\n" (tail_recursion 100);
+  print_endline "tail_recursion";
+  let start = Unix.gettimeofday () in
+  printf "%d\n" (tail_recursion 100);
+  printf "%.10f\n" ((Unix.gettimeofday ()) -. start);
 
