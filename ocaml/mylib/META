@@ -1,0 +1,7 @@
+version = "4.0.7"
+description = ""
+requires = ""
+archive(byte) = "mylib.cma"
+archive(native) = "mylib.cmxa"
+plugin(byte) = "mylib.cma"
+plugin(native) = "mylib.cmxs"
