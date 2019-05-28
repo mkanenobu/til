@@ -1,8 +1,7 @@
-#lang racket
 ; Hello world as a variable
 (define vhello "Hello world\n")
 ; Hello world as a function
-(define fhello (lambda () "Hello world"))
+(define fhello (lambda () "Hello world\n"))
 
-(print vhello)
+(display vhello)
 (display (fhello))
