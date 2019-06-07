@@ -1,6 +1,11 @@
 a, b = 0, 1
-for i=0, 50 do
-	io.write(b .. ", ")
-	a, b = b, a + b
+function fibo(n)
+  res = ""
+  for i = 0, n do
+    res = res .. (b .. ", ")
+    a, b = b, a + b
+  end
+  return res
 end
-print()
+
+print(fibo(50))
