@@ -1,4 +1,4 @@
-open Spotlib.Base;;
+open Spotlib.Base
 
 let f a b =
   a + b

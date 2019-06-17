@@ -1,4 +1,3 @@
-#! /usr/bin/env gforthrun
 
 : inputKey ( -- )
   ." Press any key" CR

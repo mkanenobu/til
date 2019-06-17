@@ -7,10 +7,11 @@ bin/
 */bin/*
 target/
 */target/*
-a.out
+*.out
 
 Contest/
 nimcache/
+CTF/
 _build/
 node_modules/
 Yukicoder/

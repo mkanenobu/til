@@ -7,3 +7,12 @@
 1orOther
 1
 1orOther
+
+: isOne? ( n -- )
+  1 =
+  if true
+  else false then
+;
+
+1 isOne? .
+0 isOne? .
