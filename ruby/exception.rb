@@ -3,7 +3,7 @@
 # 
 begin
   p (Integer "string")
-rescue ArgumentError
+rescue ArgumentError => e
   puts "Argument error"
 rescue
   puts "Some error"
