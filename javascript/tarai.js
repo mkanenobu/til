@@ -7,4 +7,4 @@ const tarai = (x, y, z) => {
   }
 };
 
-console.log(tarai(12, 6, 0));
+tarai(12, 6, 0)

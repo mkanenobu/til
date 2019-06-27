@@ -7,4 +7,4 @@ function tarai(x, y, z)
   end
 end
 
-print(tarai(12,6,0))
+tarai(12,6,0)
