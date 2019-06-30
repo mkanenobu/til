@@ -1,15 +1,8 @@
-import sequtils,strutils,os
-proc main(n:int):int =
-  var
-    a:int = 0
-    b:int = 1
-  if n == 0: return 0
-  else:
-    for i in 1..<n:
-      (a, b) = (b, a + b)
-    return b
 
-# echo main(commandLineParams()[0].parseInt)
-for j in 0..1000:
-  for i in 0..60:
-    discard main(i)
+proc fibonacci(n: int): int =
+  if n <= 1:
+    return n
+  else:
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+echo fibonacci(10)

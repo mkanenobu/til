@@ -21,10 +21,9 @@ let () =
   print_endline "";
 
   (* iter with index *)
-  List.iteri (
-    fun i e ->
-      printf "index: %d, element: %d\n" i e;
-  ) l;
+  let pretty_print i e =
+    printf "index: %d, element: %d\n" i e in
+  List.iteri pretty_print l;
 
   (* map *)
   let triple = List.map (fun n -> n * 3) l in
