@@ -1,8 +1,10 @@
-import hashes, random
+import random
+
+import hashes
 
 randomize()
 var
-    h:Hash = 0
+    h: Hash = 0
     x = "Test string"
     a = @[1,2,3,4]
 

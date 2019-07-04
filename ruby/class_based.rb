@@ -21,12 +21,14 @@ class SampleClass
   def put_val1
     puts @val1
   end
+  attr_reader :val1
 end
 
 sc = SampleClass.new(100)
 sc.putVal1 # 100
 sc.setVal1(13)
 sc.putVal1 # 13
+sc.val1
 
 
 l = [1, 2, 3]

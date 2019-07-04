@@ -22,3 +22,15 @@ a =  complex_hash.map do |key, value|
 end
 
 pp a
+
+h = {
+  '001' => [1, 3, 6],
+  '002' => [4, 7, 8],
+}
+
+h2 = h.map do |n, r|
+  pp "#{n}: #{r.join(', ')}"
+  "#{n}: #{r.join(', ')}"
+end
+
+pp h2
