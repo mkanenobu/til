@@ -22,7 +22,7 @@ let () =
   (* inherit super class *)
   Printf.printf "%d\n" n;
 
-  let (tup_one, tup_two):my_tuple = ("string1", "string2") in
+  let (tup_one, tup_two): my_tuple = ("string1", "string2") in
   Printf.printf "%s\n" tup_one;
   Printf.printf "%s\n" tup_two;
 
