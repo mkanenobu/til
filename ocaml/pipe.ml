@@ -15,6 +15,12 @@ let pipe_sample list_ =
   |> List.map (sprintf "%d")
 ;;
 
+let div a b =
+  a / b
+
+let abc a b c =
+  (a, b, c)
+
 let () =
   List.iter (fun e -> printf "%S\n" e) (pipe_sample l);
 
@@ -22,3 +28,9 @@ let () =
                      |> split (regexp " ")
                      |> List.map (fun e -> int_of_string e) in
   List.iter (fun s -> Printf.printf "%d\n" s) li;
+
+  (* pipeで渡されたものは最後の引数になる *)
+  printf "a / b = %d\n" (4 |> div 30);
+  let (a, b, c) = 3 |> abc 1 2 in
+  printf "a: %d, b: %d, c: %d\n" a b c
+

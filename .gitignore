@@ -9,6 +9,7 @@ target/
 */target/*
 *.out
 
+__pycache__
 Contest/
 nimcache/
 CTF/

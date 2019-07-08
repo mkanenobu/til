@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-pattern = /^[-A-Za-z0-9+\u3040-\u30FF\uFF61-\uFF9F０-９Ａ-Ｚａ-ｚ＋ー−$]+$/
+pattern = /\p{Katakana}+/
 
-p '3'.match(pattern).to_a
+p 'ｶﾀｶﾅ'.match(pattern).to_a
+
