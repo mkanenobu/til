@@ -1,0 +1,15 @@
+@startuml
+
+object A
+object B
+
+A ------ B  :1
+A ----|| B  :1 and only 1
+A ----o| B  :0 or 1
+A -----{ B  :many
+A ----|{ B  :1 or more
+A ----o{ B  :0 or many
+
+
+@enduml
+

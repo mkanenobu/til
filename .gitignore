@@ -10,6 +10,7 @@ target/
 *.out
 
 __pycache__
+.mypy_cache
 Contest/
 nimcache/
 CTF/

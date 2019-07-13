@@ -1,0 +1,48 @@
+@startuml
+' Comment
+' ECサイトのER図おためし
+
+/' Block comment
+one user has one personal_data
+one user has 0 or more than 1 shopping_history
+one shopping_history has 1 or more item
+'/
+
+package "DB" <<Database>> {
+  class User {
+    + id [PK]
+    --
+    username
+    password
+  }
+
+  class PersonalData {
+    + id [PK]
+    --
+    # user_id [FK]
+    --
+    birthday
+    address
+  }
+
+  class Item {
+    + id [PK]
+    --
+    item_name
+    price
+  }
+
+  class ShoppingHistory {
+    + id [PK]
+    --
+    # user_id [FK]
+    --
+    date
+  }
+
+  User ----- PersonalData
+  User ----o{ ShoppingHistory
+  ShoppingHistory ----|{ Item
+}
+@enduml
+

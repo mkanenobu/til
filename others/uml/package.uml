@@ -1,0 +1,11 @@
+@startuml
+
+package "データベース" as db <<Database>> {
+  entity "Sample" {
+    name
+    password
+  }
+}
+
+@enduml
+
