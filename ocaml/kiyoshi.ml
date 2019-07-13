@@ -15,14 +15,14 @@ let kiyoshi () =
 
   if is_kiyoshi s_l then (
     printf "キヨシ!\n";
-    false
+    true
   ) else (
     printf "\n";
-    true
+    false
   )
 ;;
 
 let () =
-  while kiyoshi () do
+  while not (kiyoshi ()) do
     ()
   done
