@@ -7,5 +7,8 @@ let () =
     Printf.printf "%d\n" !i;
     if i > ref 10 then c := false
     else i := !i + 1;
-  done
+  done;
 
+  for i = 0 to 10 do
+    Printf.printf "%d\n" i
+  done;
