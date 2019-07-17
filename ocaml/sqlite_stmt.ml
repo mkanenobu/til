@@ -5,6 +5,10 @@ let db_exec db query =
     fun _ -> ()
   ) query
 
+let db_prepare db query =
+  Sqlite3.prepare db query
+
+
 let () =
   let db = Sqlite3.db_open "./sqlite_sample.db" in
   db_exec db "DROP TABLE sample_table";
@@ -18,17 +22,17 @@ let () =
       )
   ) "INSERT INTO sample_table values(3, \"Sam\")";
 
-  let result = ref [||] in
-  let headers = ref [||] in
-  ignore (Sqlite3.exec_not_null db (
-      fun row header ->
-        result := Array.append !result row;
-        headers := Array.append !headers header;
-        (* Array.iter row ~f:(fun e -> printf "%s: \n" e); *)
-    ) "select * from sample_table");
-  ignore @@ Sqlite3.db_close db;
+  let db_statement = db_prepare db "SELECT * FROM sample_table" in
+  let column_count = Sqlite3.column_count db_statement in
+  let data_count = Sqlite3.data_count db_statement in
 
-  printf "Results\n";
-  Array.iter !result ~f:(fun e -> printf "%s\n" e);
-  printf "Headers\n";
-  printf "%s\n" @@ Array.get !headers 0;
+  (* data count *)
+  printf "Data count\n";
+  printf "%d\n" data_count;
+  (* print column names *)
+  printf "Column names\n";
+  let l = List.init column_count (fun x -> x) in
+  List.iter l (fun n ->
+      Sqlite3.column_name db_statement n |> printf "%s "
+    );
+  printf "\n";
