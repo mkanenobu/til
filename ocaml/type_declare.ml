@@ -7,6 +7,7 @@ type my_tuple = string * string
 
 (* variant type *)
 (* それぞれがコンストラクタ、これらによって初期化された値が型`foo`を持つ *)
+(* enum *)
 type foo = Type1 | Type2 | Type3
 type bar =
   | Nothing

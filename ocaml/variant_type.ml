@@ -1,3 +1,4 @@
+(* enum *)
 type oneTwoThree = One | Two | Three
 
 let to_int x =
@@ -6,4 +7,7 @@ let to_int x =
   | Two -> 2
   | Three -> 3
 
+let l: oneTwoThree list = List.rev [One; Two; Three]
 
+let () =
+  List.iter (fun x -> Printf.printf "%d\n" @@ to_int x) l;

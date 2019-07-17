@@ -22,7 +22,7 @@ fun valiables() {
 
 // nullable
 fun parseInt(str: String): Int? {
-  // 
+  return null
 }
 
 fun main(args: Array<String>) {

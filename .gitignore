@@ -8,6 +8,7 @@ bin/
 target/
 */target/*
 *.out
+*.db
 
 __pycache__
 .mypy_cache
