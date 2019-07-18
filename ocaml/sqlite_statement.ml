@@ -14,13 +14,16 @@ let () =
   db_exec db "DROP TABLE sample_table";
   db_exec db "CREATE TABLE sample_table(id INTEGER UNIQUE NOT NULL, name TEXT)";
 
-  db_exec db "INSERT INTO sample_table values(1, \"Bob\")";
-  db_exec db "INSERT INTO sample_table values(2, \"Alice\")";
+  db_exec db "INSERT INTO sample_table VALUES(1, \"Bob\")";
+  db_exec db "INSERT INTO sample_table VALUES(2, \"Alice\")";
+  db_exec db "INSERT INTO sample_table VALUES(3, \"Sam\")";
+
+  (* Read時以外はcallbackが呼ばれない *)
   ignore @@ Sqlite3.exec_not_null db ~cb:(
     fun row header -> Array.iter2_exn row header ~f:(
-        fun row header -> printf "Header: %s\nRow: %s" header row
+        fun row header -> printf "Header: %S, Row: %S\n" header row
       )
-  ) "INSERT INTO sample_table values(3, \"Sam\")";
+  ) "SELECT * FROM sample_table";
 
   let db_statement = db_prepare db "SELECT * FROM sample_table" in
   let column_count = Sqlite3.column_count db_statement in
@@ -33,6 +36,6 @@ let () =
   printf "Column names\n";
   let l = List.init column_count (fun x -> x) in
   List.iter l (fun n ->
-      Sqlite3.column_name db_statement n |> printf "%s "
+      Sqlite3.column_name db_statement n |> printf "%S "
     );
   printf "\n";

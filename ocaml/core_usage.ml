@@ -13,3 +13,5 @@ let () =
 
   let str_list = String.split "a b c d e f" ~on:' ' in
   List.iter str_list ~f:(fun s -> printf "%S\n" s);
+
+  printf "%S\n" @@ String.concat ?sep:(Some ", ") ["a"; "b"; "c"];
