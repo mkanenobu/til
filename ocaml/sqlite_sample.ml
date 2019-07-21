@@ -1,4 +1,5 @@
 open Core
+open Sqlite3
 
 let db_exec db query =
   ignore @@ Sqlite3.exec_not_null_no_headers db (
@@ -18,6 +19,12 @@ let () =
       )
   ) "INSERT INTO sample_table values(3, \"Sam\")";
 
+  ignore @@ Sqlite3.exec_not_null db ~cb:(
+    fun row header -> Array.iter2_exn row header ~f:(
+        fun row header -> printf "Header: %s\nRow: %s\n" header row
+      )
+  ) "SELECT * FROM sample_table";
+
   let result = ref [||] in
   let headers = ref [||] in
   ignore (Sqlite3.exec_not_null db (
@@ -30,5 +37,5 @@ let () =
 
   printf "Results\n";
   Array.iter !result ~f:(fun e -> printf "%s\n" e);
-  printf "Headers\n";
+  printf "Header ";
   printf "%s\n" @@ Array.get !headers 0;

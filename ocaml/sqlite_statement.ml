@@ -1,9 +1,8 @@
 open Core
+open Sqlite3
 
 let db_exec db query =
-  ignore @@ Sqlite3.exec_not_null_no_headers db (
-    fun _ -> ()
-  ) query
+  ignore @@ Sqlite3.exec_not_null_no_headers db query
 
 let db_prepare db query =
   Sqlite3.prepare db query
@@ -18,7 +17,7 @@ let () =
   db_exec db "INSERT INTO sample_table VALUES(2, \"Alice\")";
   db_exec db "INSERT INTO sample_table VALUES(3, \"Sam\")";
 
-  (* Read時以外はcallbackが呼ばれない *)
+  (* Readのみcallbackが呼ばれる *)
   ignore @@ Sqlite3.exec_not_null db ~cb:(
     fun row header -> Array.iter2_exn row header ~f:(
         fun row header -> printf "Header: %S, Row: %S\n" header row
