@@ -1,7 +1,7 @@
 (* client_example.ml *)
 open Lwt
 open Cohttp
-open Cohttp_lwt_unix
+(* open Cohttp_lwt_unix *)
 
 let get url =
   Client.get (Uri.of_string url) >>= fun (resp, body) ->

@@ -1,0 +1,2 @@
+
+console.dir(new Error())

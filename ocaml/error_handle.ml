@@ -7,8 +7,8 @@ let square_area f =
 let () =
   let area = square_area 3.0 in
   Printf.printf "%F\n" area;
-  let area = (
+  let area =
     try square_area (-3.0)
     with _ -> Printf.printf "error"; exit 1
-  ) in
+  in
   Printf.printf "%F\n" area;
