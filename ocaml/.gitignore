@@ -3,6 +3,5 @@ _build
 *.cmx
 *.cmo
 *.o
-.merlin
 dune-project
 out_args.txt
