@@ -26,12 +26,12 @@ let () =
   ignore @@ Sqlite3.exec_not_null db ~cb:(
     fun row headers -> Array.iter2_exn row headers ~f:(
         fun row header ->
-          (Hashtbl.set hash_table header (row ::
-                                          (match Hashtbl.find hash_table header with
-                                           | Some x -> x
-                                           | None -> []
-                                          )
-                                         )
+          (Hashtbl.set hash_table header
+             (row ::
+              match Hashtbl.find hash_table header with
+              | Some x -> x
+              | None -> []
+             )
           )
       )
   ) "SELECT * FROM sample_table";
