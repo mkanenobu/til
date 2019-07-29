@@ -1,5 +1,9 @@
 
-(* Listモジュールの一部のように定義する *)
+(* Listモジュールの一部のように定義する
+   標準のListモジュールの全て + 新たに定義したcount関数を持つ、
+   Extension.Listモジュールを生成している
+*)
+
 module List = struct
   include List
   let count l ~f = List.filter f l |> List.length
