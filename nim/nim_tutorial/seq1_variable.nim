@@ -24,10 +24,3 @@ c = 10
 ### エラー
 # const d = c + 3
 
-
-
-# 関数呼び出し
-echo(a)
-echo a
-a.echo
-

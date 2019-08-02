@@ -1,5 +1,3 @@
-
-
 let () =
   let _ =
     try
@@ -20,4 +18,3 @@ let () =
 
     (* not evaluate (inside 'with' statement) *)
     Printf.printf "end of extern";
-
