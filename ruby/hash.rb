@@ -6,13 +6,11 @@ h = {
   b: '2',
 }
 
-pp h
-p h.values
-
+# pp h
+# p h.values
 
 hoge = {}
 hoge['key1'] ||= {}
 hoge['key1']['ch1'] ||= []
 hoge['key1']['ch1'] << 'hoge'
-pp hoge
-
+# pp hoge
