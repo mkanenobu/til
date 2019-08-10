@@ -4,7 +4,7 @@ import sequtils, strutils
 # jester hands on
 routes:
   get "/":
-    resp "Hello, World!"
+    resp $(%*{"response": "Hello, World!"}), "application/json"
   get "/user/@id":
     var data = %*{"id": @"id"}
     resp $data, "application/json"
