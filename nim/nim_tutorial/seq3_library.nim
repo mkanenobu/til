@@ -1,4 +1,4 @@
-import lib/helloWorld
+import lib/hello_world
 
 # 識別子の最後に `*` をつけることで外から使用できる
 proc hoge*(): string = "hoge"
