@@ -11,6 +11,7 @@
     i dup .
     2 * 10 = IF UNLOOP EXIT THEN
   LOOP
+  ." last"
 ;
 
 break_loop
@@ -18,4 +19,3 @@ CR
 
 exit_in_loop
 CR
-.s
