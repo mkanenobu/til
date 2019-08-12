@@ -1,3 +1,0 @@
-#!/bin/bash
-
-gforth "$1" -e bye

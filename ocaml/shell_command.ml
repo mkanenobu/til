@@ -10,7 +10,7 @@ let syscall cmd =
      done
    with End_of_file -> ());
   ignore @@ Unix.close_process (in_ch, out_ch);
-  (Buffer.contents buffer)
+  Buffer.contents buffer
 
 let () =
   (* Sys.command return exit code *)

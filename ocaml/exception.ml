@@ -11,24 +11,24 @@ let () =
     | _ -> printf "catch other exception";
   in
 
-  (* finally *)
-  let _ =
-    try
-      Core.protect
-        (* fの中でexceptionが発生してもfinallyの中身は必ず実行される *)
-        ~f:(fun () -> raise (Failure "fail"))
-        ~finally:(fun () -> print_endline "finally")
-    with _ -> ()
-  in
-
   (* evaluate *)
   printf "end of extern\n";
+  (
+    try
+      raise Exit;
+    with
+    | Exit -> printf "catch exception \"Exit\"\n"
+    | _ -> printf "catch other exception";
+      (* not evaluate (still in `with` statement) *)
+      printf "in `with` statement"
+  );
+  printf "evaluate";
 
+  (* finally *)
   try
-    raise Exit;
-  with
-  | Exit -> printf "catch exception \"Exit\"\n";
-  | _ -> printf "catch other exception";
+    Core.protect
+      (* fの中でexceptionが発生してもfinallyの中身は必ず実行される *)
+      ~f:(fun () -> raise (Failure "fail"))
+      ~finally:(fun () -> print_endline "finally")
+  with _ -> printf "Exception";
 
-    (* not evaluate (still in `with` statement) *)
-    Printf.printf "end of extern";
