@@ -1,9 +1,10 @@
-let l = [1;2;3];;
+open Core
 
-let i = input_line stdin;;
+let fol = List.fold
+let l = ["1"; "2"; "3"]
 
 let () =
-  (* iはinput_lineが代入されたもの *)
-  (* input_line stdinが２回行われるわけでは無い *)
-  Printf.printf "%s\n" i;
-  Printf.printf "%s\n" i;
+  printf "%s\n" @@ List.fold l ~init:("") ~f:(
+    fun acc x -> acc ^ " " ^ x
+  );
+

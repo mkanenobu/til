@@ -11,6 +11,3 @@ PKG cohttp-lwt-unix
 PKG lwt
 PKG re2
 PKG sqlite3
-
-# ignore pattern-match exhaustive
-# FLG -w -8 
