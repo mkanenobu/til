@@ -9,5 +9,6 @@ PKG base
 PKG cohttp
 PKG cohttp-lwt-unix
 PKG lwt
+PKG re
 PKG re2
 PKG sqlite3

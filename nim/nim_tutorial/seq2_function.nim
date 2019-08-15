@@ -41,9 +41,11 @@ intVar  = addOne(10)
 
 
 # Rubyと同様の括弧の省略や
-# D言語由来のUFCSという、関数をメソッド風に呼べる構文をサポートしている
+# D言語由来のUFCSを導入しているしている
 ### 以下全て同じ
 echo(int_var)
 echo int_var
 int_var.echo
+e_c_h_o intVar
+
 echo f4(10)
