@@ -47,5 +47,6 @@ echo(int_var)
 echo int_var
 int_var.echo
 e_c_h_o intVar
+int_var.eCho
 
 echo f4(10)
