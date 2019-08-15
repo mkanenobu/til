@@ -25,6 +25,10 @@ func f3(s: string): string =
 proc f4(n: int): int =
   result + n
 
+# 無名関数を変数に代入
+const f5 = proc(s: string): string =
+  return s
+
 proc addOne(n: int): int =
   n + 1
 
