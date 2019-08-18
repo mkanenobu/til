@@ -3,8 +3,8 @@ import sequtils, strutils, algorithm, math
 # 関数定義
 
 ### 関数定義
-proc f1(s: string) =
-  echo s
+proc f1() =
+  echo "Hello, World!"
 
 ### 副作用がないことをプラグマで宣言
 proc f2(s: string): string {.nosideeffect.} =
@@ -25,15 +25,31 @@ func f3(s: string): string =
 proc f4(n: int): int =
   result + n
 
-# 無名関数を変数に代入
-const f5 = proc(s: string): string =
-  return s
+# 無名関数を変数に代入(関数もトップレベルオブジェクト)
+const f5 = proc(s: string): string = s
 
 proc addOne(n: int): int =
   n + 1
 
 proc echoBack(x: string or int) =
   echo x
+
+# 引数、戻り値の型も型推論に任せる
+proc f6(x: auto): auto = x
+
+# ジェネリクス
+proc f7[T](a: T, b: int): auto =
+  when T is int:
+    result = 123 + b
+  when T is string:
+    result = "string" & $b
+
+# template: マクロっぽいもの
+template mapIt2[T](s: openarray[T], op: untyped): untyped =
+  var result: seq[T] = @[]
+  for it {.inject.} in items(s):
+    result.add(op)
+  result
 
 # 関数呼び出し
 var int_var: int

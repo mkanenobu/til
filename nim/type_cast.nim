@@ -12,3 +12,6 @@ echo @s
 # seq[T] to seq[string]
 echo arrInt.mapIt($it)
 
+# iterator to seq
+echo (0..<10).mapIt(it)
+echo toSeq(0..<10)

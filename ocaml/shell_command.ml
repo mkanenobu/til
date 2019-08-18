@@ -14,8 +14,7 @@ let syscall cmd =
 
 let () =
   (* Sys.command return exit code *)
-  print_endline "Exit code";
-  printf "%d\n" (Sys.command "ls >/dev/null");
+  printf "%d\n" (Sys.command "ls");
 
   print_endline "Exec command and capture output";
   let output = syscall "date" in
