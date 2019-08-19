@@ -10,6 +10,7 @@ target/
 *.out
 *.db
 
+.idea
 __pycache__
 .mypy_cache
 Contest/
@@ -21,7 +22,6 @@ Yukicoder/
 AtCorder/
 Projects/
 AOJ/
-Private/
 mkanenobu.github.io/
 python/paiza/
 Experiment/
