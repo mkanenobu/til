@@ -14,6 +14,6 @@ main() {
   assert(unicorn == null);
 
   // check for NaN
-  var devidedByZero = 0 / 0; // not Exception
-  assert(devidedByZero.isNan);
+  num devidedByZero = 50 / 0.0; // not Exception
+  assert(devidedByZero.isNaN);
 }

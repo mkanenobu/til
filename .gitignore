@@ -9,6 +9,7 @@ target/
 */target/*
 *.out
 *.db
+*.keystore
 
 .idea
 __pycache__
