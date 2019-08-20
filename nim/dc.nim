@@ -1,37 +1,71 @@
 # Forth style reverese Polish calculator, implementation in Nim
-import sequtils, strutils
+import sequtils, strutils, math, strformat
 import rdstdin
 
-var
-  line: seq[string]
-  stack: seq[float]
-  calc_operaters = ["+", "-", "*", "/"]
-  operaters = ["p", ".", ".s"]
-  tmp: float
+type
+  Stack = seq[float]
+  StackUnderflowError = object of Exception
 
-while true:
-  line = readLineFromStdin("> ").split(" ")
+const
+  popOperators = ["p", "."]
 
-  for i in line:
-    try:
-      if calc_operaters.contains(i):
-        case i:
-          of "+": tmp = stack.pop() + stack.pop()
-          of "-": tmp = stack.pop() - stack.pop()
-          of "*": tmp = stack.pop() * stack.pop()
-          of "/": tmp = stack.pop(); tmp = stack.pop() / tmp
-        stack.add(tmp)
-      elif operaters.contains(i):
-        case i:
-          of "p": echo stack.pop()
-          of ".": echo stack.pop()
-          of ".s": echo stack
-      else:
-        try:
-          stack.add(parseFloat(i))
-        except:
-          echo "Invalid character"
-          stack = @[]
-    except:
-      echo "Stack underflow"
+# 参照渡し
+proc calc(stack: var Stack, op: string): bool =
+  var tmp: float
+  try:
+    case op:
+      of "+": tmp = stack.pop + stack.pop
+      of "*": tmp = stack.pop * stack.pop
+      of "-": tmp = stack.pop - stack.pop
+      of "/": tmp = stack.pop; tmp = stack.pop / tmp
+      else: return false
+    stack.add(tmp)
+    true
+  except IndexError:
+    raise newException(StackUnderflowError, "stack underflow")
 
+proc stackOperation(stack: var Stack, op: string): bool =
+  try:
+    if op in popOperators:
+      echo stack.pop
+      true
+    else:
+      false
+  except IndexError:
+    raise newException(StackUnderflowError, "stack underflow")
+
+proc prettyPrint(s: Stack) =
+  let pp = s.mapIt(
+    if it mod 1.0 == 0.0:
+      $int(it)
+    else:
+      fmt"{it}"
+  )
+  echo "[" & pp.join(", ") & "]"
+
+proc main() =
+  var
+    stack: Stack = @[]
+    edited: bool
+    line: seq[string]
+
+  while true:
+    line = readLineFromStdin("> ").split.filterIt(it != "")
+
+    for atom in line:
+      try:
+        edited = stack.calc(atom) or stack.stackOperation(atom)
+        if not edited:
+          stack.add(atom.parseFloat)
+      except StackUnderflowError:
+        echo "Stack underflow!"
+      except ValueError:
+        echo "Invalid chars!"
+        stack = @[]
+    prettyPrint stack
+
+try:
+  main()
+except IOError:
+  echo "***Exit***"
+  quit 0

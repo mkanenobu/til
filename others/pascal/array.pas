@@ -16,8 +16,13 @@ var
   Count:integer;
 
 begin
-  for Count := 1 to 10 do
-    StaticArray[count] := Count * 2;
+  for Count := 0 to 10 do
+    begin
+      StaticArray[count] := Count * 2;
+      StaticArray[count] := StaticArray[count] * 2;
+    end;
+
+  writeln(StaticArray);
 
   // 動的配列の長さ宣言
   SetLength(DynamicArray, 10);
