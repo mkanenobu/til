@@ -1,0 +1,8 @@
+linter:
+  rules:
+    - camel_case_types
+
+analyzer:
+  errors:
+    unused_local_variable: ignore
+

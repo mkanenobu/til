@@ -4,6 +4,7 @@ main() {
   // fruits = [...fruits, 'apples'];  // Error
   fruits.add('apples');
   // オブジェクトの中身も不変にしたい場合は const キーワードを使用する
+  // ignore: unused_local_variable
   final List<String> constantFruits = const ['mangoes', 'bananas', 'peras', 'oranges'];
   // or (Same)
   const List<String> constantFruits2 = ['mangoes', 'bananas', 'peras', 'oranges'];

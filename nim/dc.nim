@@ -16,7 +16,7 @@ proc calc(stack: var Stack, op: string): bool =
     case op:
       of "+": tmp = stack.pop + stack.pop
       of "*": tmp = stack.pop * stack.pop
-      of "-": tmp = stack.pop - stack.pop
+      of "-": tmp = stack.pop; tmp = stack.pop - tmp
       of "/": tmp = stack.pop; tmp = stack.pop / tmp
       else: return false
     stack.add(tmp)

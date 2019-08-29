@@ -34,8 +34,8 @@ main() {
   print(carolla.carAge);
   // getter
   print(carolla.age);
-  var carollaInfomation = carolla.map;
-  print(carollaInfomation['maker']);
+  var carollaInformation = carolla.map;
+  print(carollaInformation['maker']);
 
   // setter short hand
   var leaf = Car('NISSAN', 'LEAF', 1999, 'red')

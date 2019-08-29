@@ -1,0 +1,3 @@
+name: local_dart_scripts
+dev_dependencies:
+  pedantic: ^1.0.0
