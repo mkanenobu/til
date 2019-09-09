@@ -4,6 +4,9 @@ module Hoge
   def hello
     puts 'Hello, World!'
   end
+  module_function :hello
 end
 
-Hoge.hello
+module Hoge
+  hello
+end
