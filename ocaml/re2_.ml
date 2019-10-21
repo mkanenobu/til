@@ -12,10 +12,13 @@ let unwrap = function
 let () =
   let matches = Re2.find_all_exn pattern1 "ABCdef" in
   List.iter matches ~f:(fun s -> printf "%S\n" s);
+
   let matches = Re2.find_all_exn pattern2 "ABCdef" in
   List.iter matches ~f:(fun s -> printf "%S\n" s);
+
   let matches = Re2.find_all_exn pattern3 "ABCdef" in
   List.iter matches ~f:(fun s -> printf "%S\n" s);
+
   let matches = Re2.find_all pattern4 "ABCdef" in
   List.iter (unwrap matches) ~f:(fun s -> printf "%S\n" s);
 

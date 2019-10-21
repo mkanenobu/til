@@ -11,5 +11,5 @@ if len(args) != 3:
 n1 = int(args[1])
 n2 = int(args[2])
 
-diviser = math.gcd(n1 , n2)
+diviser = math.gcd(n1, n2)
 print(n1 / diviser, "x", n2 / diviser)

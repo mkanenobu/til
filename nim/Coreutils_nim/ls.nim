@@ -1,2 +1,1 @@
 import terminal,sequtils,strutils
-;
