@@ -10,6 +10,7 @@ target/
 *.out
 *.db
 *.keystore
+.DS_Store
 
 .idea
 __pycache__

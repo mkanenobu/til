@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title></title>
+  <script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+    var fileList = [];
+    var formData = [];
+    $(document).on("change", "#fileUpload", function(e) {
+      let file = $("#fileUpload").prop("files")[0];
+      fileList.push(file);
+
+      var formDatum = new FormData();
+      formDatum.append("file", file);
+      formData.push(formDatum);
+      console.log(fileList);
+      console.log(formData);
+    })
+  </script>
+</head>
+<body>
+  <p id="hello">Hello, World!</p>
+  <div id="id"></div>
+  <input type="file" name="file" id="fileUpload">
+</body>
+</html>
