@@ -23,3 +23,9 @@ let () =
   int_stack#push 1;
   printf "%d\n" int_stack#pop;
   printf "%d\n" int_stack#pop;
+
+  let float_stack = new stack in
+  float_stack#push 0.13;
+  float_stack#push 3.14;
+  printf "%F\n" float_stack#pop;
+  printf "%F\n" float_stack#pop;
