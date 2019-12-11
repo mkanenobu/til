@@ -1,3 +1,5 @@
+open Core
+
 let rec fibo n =
   if n <= 1 then n
   else if n = 1 then 1
@@ -13,4 +15,6 @@ let fibo_tail n =
 ;;
 
 let () =
-  Printf.printf "%d\n" @@ fibo_tail 10
+  let args = Sys.get_argv () in
+  let num = int_of_string args.(1) in
+  printf "%d\n" @@ fibo_tail num

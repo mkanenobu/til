@@ -19,7 +19,13 @@ let fact2 n =
 ;;
 
 let () =
-  (* let arg1 = int_of_string Sys.argv.(1) in *)
-  let arg1 = 5 in
-  Printf.printf "%d\n" (fact1 arg1);
-  Printf.printf "%d\n" (fact2 arg1);
+  let n = ref 0 in
+  begin try
+      n := int_of_string Sys.argv.(1)
+    with _ ->
+      begin
+        Printf.printf "Require 1 argument\n";
+        ignore @@ exit 1;
+      end
+  end;
+  Printf.printf "%d\n" (fact1 !n);

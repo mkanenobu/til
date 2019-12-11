@@ -13,17 +13,17 @@ end
 
 f2(arg1: 'hoge', arg2: 'huga')
 
-
-def f3(&block)
+def f3
   yield
-  block.call # Same
+  yield # Same
 end
 
 f3 { p 'hogehoge' }
 
-def f4(arg1:, arg2:)
-  pp a / b
+def f4(arg1:, arg2: 4)
+  pp arg1 / arg2
 end
 
 f4(arg1: 10, arg2: 3.0)
 f4(arg2: 10, arg1: 3.0)
+f4(arg1: 3.0)

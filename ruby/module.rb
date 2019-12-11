@@ -10,3 +10,5 @@ end
 module Hoge
   hello
 end
+
+Hoge.hello

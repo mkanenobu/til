@@ -1,6 +1,12 @@
+import System.Environment (getArgs)
+
+convert :: String -> Int
+convert x = read x :: Int
+
 main :: IO ()
 main = do
-  let num = 5
+  args <- getArgs
+  let num = convert $ args !! 0
   print $ fact num
 
 fact :: Int -> Int

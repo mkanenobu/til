@@ -13,15 +13,14 @@ let () =
 
   (* evaluate *)
   printf "end of extern\n";
-  (
-    try
+  begin try
       raise Exit;
     with
     | Exit -> printf "catch exception \"Exit\"\n"
     | _ -> printf "catch other exception";
       (* not evaluate (still in `with` statement) *)
       printf "in `with` statement"
-  );
+  end;
   printf "evaluate";
 
   (* finally *)
