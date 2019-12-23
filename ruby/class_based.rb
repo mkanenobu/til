@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-a = String.new("Hello, World!")
-b = String.new("Hello, World!")
+a = String.new('Hello, World!')
+b = String.new('Hello, World!')
 
 a == b && p('Match')
 
@@ -25,11 +26,10 @@ class SampleClass
 end
 
 sc = SampleClass.new(100)
-sc.putVal1 # 100
-sc.setVal1(13)
-sc.putVal1 # 13
+sc.put_val1 # 100
+sc.set_val1(13)
+sc.put_val1 # 13
 sc.val1
-
 
 l = [1, 2, 3]
 # 特異メソッド
@@ -38,4 +38,3 @@ def l.cubes
 end
 
 p l.cubes
-
