@@ -1,5 +1,10 @@
-proc sample(x: int or string) =
+proc myEcho(x: int or string) =
   echo x
 
-sample("Hello")
-sample(1)
+proc by[T: int | float](v: T): T = v * 2
+
+myEcho("Hello")
+myEcho(1)
+
+echo 5.by
+echo 2.3.by

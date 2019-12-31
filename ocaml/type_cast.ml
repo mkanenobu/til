@@ -16,3 +16,22 @@ string_of_int 3;;
    int_of_char,
    string_of_int
 *)
+
+(* upcasting, downcasting *)
+class window =
+  object
+    method close = Printf.printf "Close the window\n"
+  end
+
+class dialog =
+  object
+    inherit window
+    method get_response = true
+  end
+
+let close_window (w: window) : unit = w#close
+
+let () =
+  let d = new dialog in
+  (* upcasting *)
+  close_window (d :> window)

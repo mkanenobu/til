@@ -31,7 +31,7 @@ let is_operater = function
 (* returns last element 'a list -> 'a option *)
 let rec last = function
   | [] -> None
-  | [x] -> Some x
+  | [x] -> Some x (* if one element list *)
   | _ :: t -> last t
 ;;
 
