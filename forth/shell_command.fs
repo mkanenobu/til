@@ -1,3 +1,3 @@
 \ #! /usr/bin/env gforthrun
 
-." Hello World!"
+s" ls" system

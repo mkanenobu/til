@@ -1,0 +1,8 @@
+#!/usr/bin/env dc
+
+57
+
+# save top element to "b" register
+sb
+# load from "a" register ("a" register's element is not removed)
+lb p
