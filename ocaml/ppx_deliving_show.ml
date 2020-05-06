@@ -4,8 +4,12 @@ open Core
 type two_ints = int * int
 [@@deriving show]
 
-(* pp_two_intsとshow_two_intsが生成される *)
+type obj = {
+  key: string
+} [@@deriving show]
 
 let () =
   let two_ints_ = (3, 12) in
-  printf "%s\n" @@ show_two_ints two_ints_
+  print_endline @@ show_two_ints two_ints_;
+  print_endline @@ show_obj {key = "hogehoge"};
+

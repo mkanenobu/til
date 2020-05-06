@@ -12,3 +12,5 @@ PKG lwt
 PKG re
 PKG re2
 PKG sqlite3
+PKG yojson
+PKG ppx_deriving
