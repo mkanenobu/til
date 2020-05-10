@@ -1,4 +1,3 @@
-
 (* List: 変更されない単方向のリスト
    要素を加えると常に、要素xとリストtlからなる新しいリストが生成される。 tl は変更されないしコピーもされない。
 
@@ -10,7 +9,7 @@
    向いている用途: IO、パターン・マッチング
    向いていない用途: ランダムアクセス、索引付き要素
 *)
-let list' = [1; 2; 3]
+let list' = [ 1; 2; 3 ]
 
 (* Array, String: 変更可能なベクトル
    配列と文字列は非常に似ている。 文字列は文字の並び(バイト列)の格納に特化しており、 便利な構文を備えコンパクトに格納出来る。
@@ -24,7 +23,7 @@ let list' = [1; 2; 3]
    サイズが既知である要素集合であり、数値インデックスでアクセスし、その場変更するようなもの。 
    基本的な配列や文字列は固定長である。 伸縮する文字列には標準 Buffer 型(後述)が使える。
 *)
-let array' = [|1; 2; 3|]
+let array' = [| 1; 2; 3 |]
 let string' = "string"
 
 (* Set, Map:　変更されないツリー
@@ -37,6 +36,7 @@ let string' = "string"
    他の場合はハッシュテーブルのほうがたいてい適切。
 *)
 module String_set = Set.Make (String)
+
 let s1 = String_set.singleton "string"
 
 (* Hashtbl: 伸縮性のあるハッシュ表
@@ -47,8 +47,10 @@ let s1 = String_set.singleton "string"
    要素の数を返す: O(1)
    要素の探索 : O(1)
 *)
-let hashtbl' = Hashtbl.create 10;;
-Hashtbl.add hashtbl' 1 "One";;
+let hashtbl' = Hashtbl.create 10
+
+;;
+Hashtbl.add hashtbl' 1 "One"
 
 (* Buffer: 伸縮性のある文字列
    バッファは一箇所にバイト列を蓄積する効率的な方法を提供する。 これらは変更可能である。
@@ -58,9 +60,12 @@ Hashtbl.add hashtbl' 1 "One";;
    長さ: O(1)
    要素iのアクセス: O(1)
 *)
-let buffer' = Buffer.create 5;;
-Buffer.add_string buffer' "hello";;
-assert ("hello" = Buffer.contents buffer');;
+let buffer' = Buffer.create 5
+
+;;
+Buffer.add_string buffer' "hello"
+;;
+assert ("hello" = Buffer.contents buffer')
 
 (* Queue: キュー
    OCaml のキューは変更可能な先入れ先出し (FIFO) データ構造である。
@@ -69,10 +74,14 @@ assert ("hello" = Buffer.contents buffer');;
    要素の取り出し: O(1)
    長さ: O(1)
 *)
-let queue' = Queue.create ();;
-Queue.add 1 queue';;
-Queue.add 2 queue';;
-assert ((Queue.pop queue') = 1);;
+let queue' = Queue.create ()
+
+;;
+Queue.add 1 queue'
+;;
+Queue.add 2 queue'
+;;
+assert (Queue.pop queue' = 1)
 
 (* Stack: スタック
    OCaml のスタックは変更可能な後入れ先出し (LIFO) データ構造である。
@@ -83,8 +92,11 @@ assert ((Queue.pop queue') = 1);;
    要素の取り出し: O(1)
    長さ: O(n)
 *)
-let stack' = Stack.create ();;
-Stack.push 1 stack';;
-Stack.push 2 stack';;
-assert ((Stack.pop stack') = 2);;
+let stack' = Stack.create ()
 
+;;
+Stack.push 1 stack'
+;;
+Stack.push 2 stack'
+;;
+assert (Stack.pop stack' = 2)

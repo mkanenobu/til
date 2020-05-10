@@ -7,6 +7,6 @@ let () =
     print_endline ("radius is " ^ string_of_int radius);
     set_color (if i mod 2 = 0 then green else red);
     fill_circle 320 240 radius;
-    Unix.sleep 1;
-  done;
-
+    Unix.sleep 1
+  done
+;;

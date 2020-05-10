@@ -24,5 +24,4 @@ let print_char_list l =
   printf "]"
 ;;
 
-let () =
-  print_int_list [1;2;3]
+let () = print_int_list [ 1; 2; 3 ]

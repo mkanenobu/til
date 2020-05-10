@@ -12,4 +12,5 @@ let yes_while word =
 let () =
   (* recursion is 10x faster *)
   (* yes_while "y"; *)
-  yes_rec "y";
+  yes_rec "y"
+;;

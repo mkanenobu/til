@@ -7,4 +7,5 @@ let () =
   (* stdout *)
   Stdio.print_endline str;
   (* stderr *)
-  Stdio.prerr_endline str;
+  Stdio.prerr_endline str
+;;

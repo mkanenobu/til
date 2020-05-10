@@ -8,4 +8,5 @@ module MyCore = Core
 
 let () =
   MyCore.print_endline "hello";
-  Sample.hello;
+  Sample.hello
+;;

@@ -7,11 +7,9 @@ let () =
   (* CoreではLabeled Argumentが多用されている *)
   List.iter l ~f:(fun n -> printf "%d\n" n);
   List.iteri (list_count_down 12) ~f:(fun i n -> printf "%d番目: %d\n" i n);
-
   let str = String.strip "    xyz    " in
   printf "%S\n" str;
-
   let str_list = String.split "a b c d e f" ~on:' ' in
   List.iter str_list ~f:(fun s -> printf "%S\n" s);
-
-  printf "%S\n" @@ String.concat ?sep:(Some ", ") ["a"; "b"; "c"];
+  printf "%S\n" @@ String.concat ?sep:(Some ", ") [ "a"; "b"; "c" ]
+;;
