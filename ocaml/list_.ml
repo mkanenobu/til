@@ -9,7 +9,6 @@ let l2 = List.init 3 (fun n -> n + 5)
 
 (* 1からnまでの奇数 *)
 let odd_list n = List.filter (fun n_ -> n_ mod 2 <> 0) (List.init n (fun n' -> n' + 1))
-let find_index l ~predicate = List
 
 let () =
   List.iter (fun e -> printf "%d " e) l1;
