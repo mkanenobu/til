@@ -24,10 +24,11 @@ var_dump($fullName);
 
 // 配列の各要素を順番にクロージャに適用し、適用結果を返す
 // ((((1 * 100) * 2) * 3) * 4)
-$nums = [1, 2, 3, 4];
-$prod = array_reduce($nums, function($c, $num) {
+$f = function($c, $num) {
   return $c * $num;
-}, 100);
+};
+$nums = [1, 2, 3, 4];
+$prod = array_reduce($nums, $f, 100);
 var_dump($prod);
 
 // 応用例として、多重配列の平坦化の実装。

@@ -1,5 +1,5 @@
 (define var 1)
-(write var)(newline)
+(print var)
 
 (set! var (+ var 1))
-(display var)
+(print var)

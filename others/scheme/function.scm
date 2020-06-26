@@ -1,19 +1,21 @@
 (define hello
   (lambda (name)
-    (string-append "Hello " name "!\n")))
+    (string-append "Hello " name "!")))
 
-(display (hello "World"))
-(display (hello "peaples"))
+(print (hello "World"))
+(print (hello "peaples"))
 
 (define sum3
   (lambda (a b c)
     (+ a b c)))
 
-(display (sum3 1 2 3))
-(newline)
+(print (sum3 1 2 3))
 
 ; lambda定義の省略形
 (define (hello name)
-  (string-append "Hello " name "!\n"))
+  (string-append "Hello " name "!"))
 
-(display (hello "sum"))
+(print (hello "sum"))
+
+(define (hoge) "HOGE") ; no argument
+(print (hoge))

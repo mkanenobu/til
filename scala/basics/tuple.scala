@@ -6,6 +6,10 @@ object main {
     // パラメータ数によってTuple2からTuple22まで存在する
     val ingredient: (String, Int) = ("Sugar", 25) // (String, Int) == Tuple2[String, Int]
     val integers: Tuple3[Int, Int, Int] = (1, 2, 3)
+    // Syntax Sugar
+    val integer2: Tuple2[Int, Int] = 1 -> 2 // same as (1, 2)
+    val integer3: Tuple2[Tuple2[Int, Int], Int] = 1 -> 2 -> 3 // same as ((1, 2), 3)
+    val integer4: Tuple2[Int, Tuple2[Int, Int]] = 1 -> (2 -> 3) // same as (1, (2, 3))
     // 要素へのアクセス
     println(ingredient._1)
     println(ingredient._2)
