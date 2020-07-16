@@ -3,7 +3,7 @@ const hello = () => {
 }
 
 const f = () => {
-  return hello();
+  return hello;
 }
 
-f()
+f()()
