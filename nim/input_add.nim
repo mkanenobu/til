@@ -1,14 +1,10 @@
 from strutils import split, parseInt
 from sequtils import map
 
-var
-    input = readLine(stdin).split(" ") # 標準入力をスペースでスプリット,numはseq型
-    num: seq[int] = input.map(parseInt) # numの要素をintに
+var nums = readLine(stdin).split.map(parseInt) # 標準入力をスペースでスプリットして各要素をキャスト
 
-proc mapAdd():int =
-    for i, value in num:
-        if i == num.len:
-            return result
-        result = result + value
+proc sum(): int =
+  for i, value in nums:
+    result = result + value
 
-echo mapAdd()
+echo sum()

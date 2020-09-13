@@ -9,9 +9,9 @@ doubleUs x y = x * 2 + y * 2
 doubleUs' x y = doubleMe x + doubleMe y
 
 doubleSmallerNum x =
-  if x > 100 then x 
+  if x > 100 then x
   else x * 2
 
 -- if statement is an expression
 doubleSmallerNum' x =
-  (if x > 100 then x else x*2) + 1
+  (if x > 100 then x else x * 2) + 1

@@ -4,7 +4,7 @@ main = do
   print $ whereSample 5
 
 
--- 関数の末尾にwhere、そのあとに変数 = 式とすることで一時変数的なものを作成可能
+-- 関数の末尾にwhere、そのあとに変数 = 式とすることで局所変数を作成可能
 -- where内でwhere内の別の変数を参照することも可能
 -- BMI判定
 calBMI :: Double -> Double -> String
@@ -18,8 +18,6 @@ calBMI weight height
     heightM = height / 100
 
 whereSample :: Int -> Int
-whereSample n =
-  n2
-    where
-      n2 = n * n
-
+whereSample n = n2
+  where
+    n2 = n * n
