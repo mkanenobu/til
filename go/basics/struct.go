@@ -1,26 +1,38 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"time"
 )
 
 type User struct {
-	name string
-	email string
-	age int
+	Name  string `json:"name"` // <- tag
+	Email string `json:"email"`
+	Age   int    `json:"age"`
 }
 
 func getUserBirthYear(user User) int {
-	return time.Now().Year() - user.age
+	return time.Now().Year() - user.Age
 }
 
 func printUserInfo(user User) {
-	fmt.Printf("%v is %v old, and their email address is %v\n", user.name, user.age, user.email)
+	fmt.Printf("%v is %v old, and their email address is %v\n", user.Name, user.Age, user.Email)
+}
+
+func toJsonString(user User) string {
+	jsonBytes, err := json.Marshal(user)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(jsonBytes)
 }
 
 func main() {
-	user := User{name: "John", email: "john@example.com", age: 25}
+	user := User{Name: "John", Email: "john@example.com", Age: 25}
 	fmt.Println(getUserBirthYear(user))
 	printUserInfo(user)
+
+	fmt.Println(toJsonString(user))
 }

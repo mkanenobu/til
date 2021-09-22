@@ -4,7 +4,7 @@ import "fmt"
 
 type Calc func(a int, b int) int
 
-func main() {
+func funcType() {
 	var add Calc
 	var sub Calc
 	var multi Calc
@@ -28,4 +28,16 @@ func main() {
 	fmt.Println(multi(1, 2))
 	fmt.Println(div(1, 2))
 	fmt.Println(div(multi(sub(add(100, 2), 3), 4), 5))
+}
+
+func immediate() {
+	fmt.Println(func(a int, b int) int {
+		return a + b
+	}(3, 5))
+}
+
+func main() {
+	funcType()
+
+	immediate()
 }
