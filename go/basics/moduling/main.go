@@ -5,5 +5,8 @@ import (
 )
 
 func main() {
-	lib.Hello()
+	lib.PublicFunc()
+
+	// ↓ not work
+	// lib.thisIsPrivateFunc()
 }

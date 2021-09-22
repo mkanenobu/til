@@ -2,7 +2,11 @@ package lib
 
 import "fmt"
 
-func Hello() {
+func thisIsPrivateFunc() {
+	fmt.Println("private")
+}
+
+func PublicFunc() {
 	fmt.Println("Hello, World!")
 }
 
