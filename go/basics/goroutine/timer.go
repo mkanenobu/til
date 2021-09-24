@@ -6,17 +6,22 @@ import (
 )
 
 func timerCancel() {
-	timer2 := time.NewTimer(time.Second)
+	timer := time.NewTimer(time.Second)
+
 	go func() {
-		<-timer2.C
+		<-timer.C
 		fmt.Println("Timer 2 fired")
 	}()
-	stop2 := timer2.Stop()
-	if stop2 {
+
+	stop := timer.Stop()
+	if stop {
 		fmt.Println("Timer 2 stopped")
 	}
 
 	time.Sleep(2 * time.Second)
+
+	// ↓ is deadlock error, time.Stop() is stops timer but not send timer.C event
+	// <-timer.C
 }
 
 func main() {
