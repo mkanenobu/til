@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -11,7 +10,7 @@ type Message struct {
 	Msg string `json:"msg"`
 }
 
-func root(w http.ResponseWriter, r *http.Request){
+func root(w http.ResponseWriter, r *http.Request) {
 	log.Println("hit /")
 	j, err := json.Marshal(Message{
 		Msg: "Hello, World!",
@@ -20,21 +19,27 @@ func root(w http.ResponseWriter, r *http.Request){
 		log.Fatal(err)
 	}
 
-	_, err = fmt.Fprintf(w, string(j))
+	_, err = w.Write(j)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func handleRequests() {
+func handleRequests(errored chan bool) {
 	http.HandleFunc("/", root)
-	err := http.ListenAndServe(":8081", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	go func() {
+		err := http.ListenAndServe(":8081", nil)
+		if err != nil {
+			errored <- true
+			log.Fatal(err)
+		}
+	}()
+	log.Println("Starting with http://localhost:8081")
 }
 
 func main() {
-	handleRequests()
+	err := make(chan bool)
+	handleRequests(err)
+
+	<-err
 }
