@@ -1,6 +1,7 @@
 # Ignore Binaries
 *
 !*.*
+!Makefile
 !*/
 *.o
 bin/
