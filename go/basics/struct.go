@@ -35,4 +35,8 @@ func main() {
 	printUserInfo(user)
 
 	fmt.Println(toJsonString(user))
+
+	// initialize with default value by type
+	emptyUser := User{}
+	printUserInfo(emptyUser)
 }
