@@ -1,0 +1,16 @@
+{
+  "name": "process-example",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "run:node": "node node.js",
+    "run:deno": "deno run --allow-run deno.ts"
+  },
+  "dependencies": {
+    "execa": "^6.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
+}
