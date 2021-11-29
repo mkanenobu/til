@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	pb "example.com/protocol-buffer-example/pb"
+	"fmt"
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 	"io"
@@ -31,14 +32,16 @@ func receiveData(conn net.Conn) []byte {
 }
 
 func unmarshalData(data []byte) string {
+	log.Println(fmt.Sprintf("Raw: %d", len(data)))
 	book := &pb.AddressBook{}
 	if err := proto.Unmarshal(data, book); err != nil {
 		log.Fatalln("Failed to parse address book:", err)
 	}
 
-	addressBookMarshaller := jsonpb.Marshaler{Indent: "  "}
+	addressBookMarshaller := jsonpb.Marshaler{}
 	s, _ := addressBookMarshaller.MarshalToString(book)
 
+	log.Println(fmt.Sprintf("Unmarshal: %d", len(s)))
 	return s
 }
 

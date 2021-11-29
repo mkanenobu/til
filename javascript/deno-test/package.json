@@ -1,0 +1,12 @@
+{
+  "name": "deno-test",
+  "version": "0.0.0",
+  "scripts": {
+    "format": "deno fmt src/ __tests__/",
+    "test": "deno test __tests__/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  }
+}
