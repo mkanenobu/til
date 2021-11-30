@@ -1,0 +1,10 @@
+{
+  "name": "deno-sqlite-example",
+  "scripts": {
+    "exec": "deno run --allow-read --allow-write src/index.ts",
+    "format": "deno fmt src/",
+    "lint": "deno lint src/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT"
+}
