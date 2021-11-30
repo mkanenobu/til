@@ -1,17 +1,26 @@
-import { DataBase } from "./db.ts";
-import { People } from "./people.ts";
+import { createDB } from "./db.ts";
 
 const path = "data.sqlite";
 
 const main = async () => {
-  const db = new DataBase(path);
+  const db = createDB(path);
   try {
-    const people = new People(db);
+    await db.query(`
+        CREATE TABLE IF NOT EXISTS people (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT
+        )
+    `);
 
-    await people.create("John Doe");
-    console.log(await people.getAll())
+    console.log(await db.query("SELECT * FROM people"));
 
-    console.log(await people.get(2));
+    const names = ["Peter Parker", "Clark Kent", "Bruce Wayne"];
+    names.forEach((name) => {
+      db.query("INSERT INTO people (name) VALUES (:name)", { name });
+    });
+
+    console.log(await db.query("SELECT * FROM people"));
+    console.log(await db.query("SELECT * FROM people WHERE id = 2"));
   } finally {
     db.close();
   }
