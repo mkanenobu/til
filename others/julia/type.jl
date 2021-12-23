@@ -2,7 +2,9 @@ function f(x::Int64)
   x ^ 2
 end
 
-println(f(10))
+n = 10
+println(typeof(n)) # -> Int64
+println(f(n))
 
 f2(n::Integer) = n ^ 3
 

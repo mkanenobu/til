@@ -19,7 +19,7 @@ function p(v)
 end
 p("aaa")
 
-function optionalArgs(n::Int64 = 1)
+function optionalArgs(n::Int64 = 1)::Int64
     n * 10
 end
 println(optionalArgs(10))
