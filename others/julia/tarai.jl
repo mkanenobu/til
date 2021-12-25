@@ -1,4 +1,4 @@
-function tarai(x, y, z)
+function tarai(x::Int64, y::Int64, z::Int64)
   if x <= y
     return y
   else
