@@ -4,6 +4,10 @@ import { css } from "@emotion/css";
 import { useInterval } from "./lib/use-interval";
 import { Spacer } from "./components/Spacer";
 import ClickSound from "./click.mp3";
+import { Simulate } from "react-dom/test-utils";
+
+// 10ms - 1 frame
+const FRAME = 10;
 
 const useClickSound = () => {
   const audio = useMemo(() => new Audio(ClickSound), []);
@@ -34,33 +38,42 @@ const sliderStyle = css`
 `;
 
 const App: React.VFC = () => {
-  const [bpm, setBpm] = useState(60);
-  const beatPerSeconds = useMemo(() => 60 / bpm, [bpm]);
+  const [bpm, setBpm] = useState(88);
+  const clickIntervalMs = useMemo(() => (60 / bpm) * 1000, [bpm]);
   const [status, setStatus] = useState<"play" | "pause">("pause");
 
   const [showDot, setShowDot] = useState(false);
+  const visualClick = useCallback(() => {
+    setShowDot(true);
+    setTimeout(() => setShowDot(false), clickIntervalMs / 2);
+  }, [setShowDot]);
 
   const { play } = useClickSound();
 
-  const [frame, setFrame] = useState(0);
+  const [_frameCount, setFrameCount] = useState(0);
 
   const handler = useCallback(() => {
-    setFrame((p) => {
-      const next = p + 1;
-      if (next / 100 >= beatPerSeconds) {
+    /*
+     * Event fires every $FRAME ms
+     * increment frame count everytime
+     */
+    setFrameCount((p) => {
+      const nextFrameCount = p + 1;
+      // frame count * $FRAME = spent time (ms)
+      // if spent time is greater than click interval, action "click" and clear frame count
+      if (nextFrameCount * FRAME >= clickIntervalMs) {
         if (status === "play") {
           play();
-          setShowDot(true);
-          setTimeout(() => setShowDot(false), (beatPerSeconds * 1000) / 2);
+          visualClick();
         }
         return 0;
       } else {
-        return next;
+        return nextFrameCount;
       }
     });
-  }, [setFrame, status, beatPerSeconds, setShowDot]);
+  }, [setFrameCount, status, clickIntervalMs, setShowDot]);
 
-  useInterval(handler, 10);
+  useInterval(handler, FRAME);
 
   return (
     <div className={containerStyle}>
