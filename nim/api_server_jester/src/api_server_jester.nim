@@ -1,5 +1,6 @@
 import asyncdispatch, jester
 import std/jsonutils
+import std/options
 import models/[user]
 import dotenv
 
@@ -11,7 +12,11 @@ router myrouter:
   get "/users":
     resp getAllUsers().toJson
   get "/users/@id":
-    resp getUser(@"id").toJson
+    let user = getUser(@"id")
+    if user.isSome:
+      resp getUser(@"id").toJson
+    else:
+      resp Http404
 
 proc main() =
   let port = Port(3000)

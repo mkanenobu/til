@@ -10,9 +10,12 @@ type
     name: string
 
 proc mapRowToUser(row: Row): Option[User] =
-  if row.len == 0:
+  try:
+    if row.len == 0:
+      return none(User)
+    return some(User(id: parseInt(row[0]), name: row[1]))
+  except:
     return none(User)
-  return some(User(id: parseInt(row[0]), name: row[1]))
 
 proc getAllUsers*(): seq[Option[User]] =
   let db = openDb()
