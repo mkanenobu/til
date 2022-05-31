@@ -1,0 +1,19 @@
+{
+  "name": "bloom-filter-example",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "bin": "./dist/index.js",
+  "scripts": {
+    "ts-node": "ts-node"
+  },
+  "devDependencies": {
+    "@types/murmurhash-js": "^1.0.3",
+    "@types/node": "latest",
+    "prettier": "latest",
+    "ts-node": "^10.7.0",
+    "typescript": "4.6.4"
+  },
+  "dependencies": {
+    "murmurhash-js": "^1.0.0"
+  }
+}
