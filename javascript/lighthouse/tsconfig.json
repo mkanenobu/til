@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "node16",
+    "target": "es5",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "removeComments": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "resolveJsonModule": true
+  }
+}
