@@ -7,21 +7,21 @@ import (
 	"time"
 )
 
-type User struct {
+type UserT struct {
 	Name  string `json:"name"` // <- tag
 	Email string `json:"email"`
 	Age   int    `json:"age"`
 }
 
-func getUserBirthYear(user User) int {
+func getUserBirthYear(user UserT) int {
 	return time.Now().Year() - user.Age
 }
 
-func printUserInfo(user User) {
+func printUserInfo(user UserT) {
 	fmt.Printf("%v is %v old, and their email address is %v\n", user.Name, user.Age, user.Email)
 }
 
-func toJsonString(user User) string {
+func toJsonString(user UserT) string {
 	jsonBytes, err := json.Marshal(user)
 	if err != nil {
 		log.Fatal(err)
@@ -30,13 +30,13 @@ func toJsonString(user User) string {
 }
 
 func main() {
-	user := User{Name: "John", Email: "john@example.com", Age: 25}
+	user := UserT{Name: "John", Email: "john@example.com", Age: 25}
 	fmt.Println(getUserBirthYear(user))
 	printUserInfo(user)
 
 	fmt.Println(toJsonString(user))
 
 	// initialize with default value by type
-	emptyUser := User{}
+	emptyUser := UserT{}
 	printUserInfo(emptyUser)
 }
