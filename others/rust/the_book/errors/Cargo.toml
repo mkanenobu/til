@@ -1,0 +1,12 @@
+[package]
+name = "errors"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[profile.release]
+# デフォルトでは panic! が発生した場合にスタックを巻き戻して終了するが abort にするとその場で異常終了する
+panic = "abort"
