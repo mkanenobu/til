@@ -50,4 +50,11 @@ pub fn btreemap() {
     btree_map
         .iter()
         .for_each(|(k, v)| println!("{:?}, {:?}", k, v));
+
+    let double = |v: i32| v * 2;
+    let doubled_values = btree_map
+        .iter()
+        .map(|(_k, v)| double(v.clone()))
+        .collect::<Vec<i32>>();
+    println!("Doubled values: {:?}", doubled_values);
 }
