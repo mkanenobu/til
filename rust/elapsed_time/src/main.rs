@@ -5,6 +5,7 @@ use std::time::{Duration, Instant};
 macro_rules! measure {
     ($x:expr) => {{
         println!("Measurement start.");
+        // こんばんは
         let start = Instant::now();
         let result = $x;
         let end = start.elapsed();
