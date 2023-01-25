@@ -1,0 +1,10 @@
+{
+  "name": "worker-thread-example",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.8.2"
+  }
+}
