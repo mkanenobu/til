@@ -1,0 +1,3 @@
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
