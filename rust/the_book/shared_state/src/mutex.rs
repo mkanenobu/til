@@ -2,11 +2,11 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 
 pub fn mutex() {
-    single_thread_mutext();
+    single_thread_mutex();
     multi_thread_mutex();
 }
 
-fn single_thread_mutext() {
+fn single_thread_mutex() {
     let m = Mutex::new(5);
     {
         // ロックはスコープ内でしか有効ではない
