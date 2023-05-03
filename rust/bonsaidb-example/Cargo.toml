@@ -1,0 +1,12 @@
+[package]
+name = "bonsaidb-example"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bonsaidb = { version = "0.4.0", features = ["local-full"] }
+tokio = { version = "1.16.1", features = ["full"] }
+serde = "1.0"
+chrono = "0.4"
