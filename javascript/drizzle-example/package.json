@@ -4,6 +4,7 @@
   "scripts": {
     "exec": "tsx src/main.ts",
     "create-migration": "drizzle-kit generate:mysql --out migrations --schema src/db/schema.ts",
+    "generate-schema-from-db": "drizzle-kit introspect:mysql --out=migrations/ --connectionString=mariadb://root:password@127.0.0.1:3306/drizzle_orm_test",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
