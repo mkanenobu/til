@@ -7,4 +7,4 @@ services:
     tty: true
     restart: always
     ports:
-      - 8376:8376
+      - 8376:6379
