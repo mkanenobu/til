@@ -21,6 +21,7 @@ fn compress_length(payload: &str) -> usize {
 }
 
 // NOTE: 元の文字列とクエリを足した文字列の圧縮率の差分を計算してクエリへの近さを計算するアルゴリズム
+// ref: https://gist.github.com/hirokidaichi/2a23b17dc7f56d29ccf8eb8ac2d53df3
 fn gzip_search<T>(query: String, candidate: Vec<T>, top_k: usize) -> Vec<T>
 where
     T: SearchSerializable,
