@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// 親の ID を持つ構造
+// シンプルだが階層が深くなると一度に取得するのが難しくなる
+model CategoryWithParentId {
+  id       Int                    @id @default(autoincrement())
+  name     String
+  parentId Int?
+  parent   CategoryWithParentId?  @relation("CategoryWithParentId", fields: [parentId], references: [id])
+  children CategoryWithParentId[] @relation("CategoryWithParentId")
+}
+
+// 親ノードの経路情報を持つ構造
+// 例）ID 1 の子の場合 path: 1、ID 1 の子の ID 2 の子の場合 path: 1/2
+model CategoryWithPath {
+  id   Int    @id @default(autoincrement())
+  name String
+  path String
+}
+
+// Closure Table を使った構造
+// Category Tree テーブルで親子関係を持つ
+model CategoryTree {
+  categoryTreeId       Int @id @default(autoincrement())
+  ancestorCategoryId   Int
+  descendentCategoryId Int
+  depth                Int
+
+  ancestorCategory   CategoryWithClosureTable @relation("ancestorCategoryId", fields: [ancestorCategoryId], references: [id])
+  descendentCategory CategoryWithClosureTable @relation("descendentCategoryId", fields: [descendentCategoryId], references: [id])
+
+  @@index([ancestorCategoryId])
+  @@index([descendentCategoryId])
+}
+
+model CategoryWithClosureTable {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  CategoryTreeByAncestor   CategoryTree[] @relation("ancestorCategoryId")
+  CategoryTreeByDescendent CategoryTree[] @relation("descendentCategoryId")
+}

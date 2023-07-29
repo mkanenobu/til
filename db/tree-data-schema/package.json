@@ -1,0 +1,19 @@
+{
+  "name": "tree-data-schema",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "db:push": "prisma db push",
+    "db:gen": "prisma generate",
+    "exec": "tsx --no-cache src/main.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "prettier": "^3.0.0",
+    "prisma": "^5.0.0",
+    "tsx": "^3.12.7"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  }
+}
