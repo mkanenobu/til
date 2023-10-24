@@ -1,0 +1,17 @@
+{
+  "name": "filter-schema",
+  "module": "src/main.ts",
+  "type": "module",
+  "scripts": {
+    "fmt": "prettier . --write"
+  },
+  "dependencies": {
+    "zod": "3.22.2",
+    "zod-to-json-schema": "3.21.4"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  }
+}
