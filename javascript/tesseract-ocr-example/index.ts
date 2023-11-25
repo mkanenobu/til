@@ -15,7 +15,7 @@ const main = async () => {
   console.log(res2.data.text);
 
   const res3 = await recognizeImageFile("jpn", "./japanese.png");
-  console.log(res3.data.text.replaceAll(" ", ""));
+  console.log(res3.data.text.replace(/ /g, ""));
 }
 
 main();
