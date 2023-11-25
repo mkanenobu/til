@@ -1,0 +1,19 @@
+{
+  "name": "tesseract-ocr-example",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.5.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@tesseract.js-data/jpn": "^1.0.0",
+    "tesseract.js": "^5.0.3"
+  }
+}
