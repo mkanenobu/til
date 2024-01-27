@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-example",
+  "module": "main.ts",
+  "type": "module",
+  "scripts": {
+    "start": "tsx main.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7",
+    "prettier": "^3.2.4",
+    "tsx": "^4.7.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tree-sitter": "^0.20.6",
+    "tree-sitter-go": "^0.20.0",
+    "tree-sitter-typescript": "^0.20.3"
+  }
+}
