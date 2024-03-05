@@ -1,1 +1,3 @@
-pub fn mod_function() -> Int 
+pub fn module_function() -> Int {
+  1
+}
