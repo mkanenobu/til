@@ -9,21 +9,28 @@ pub fn async_example() {
 }
 
 fn async_task_example() {
-  let wait_seconds = int.random(3)
-  io.debug("wait seconds: " <> int.to_string(wait_seconds))
+  let wait_millisec = int.random(2000)
+  io.debug("wait milliseconds: " <> int.to_string(wait_millisec))
 
-  spawn_task(1, 2, wait_seconds)
-  |> task.try_await(1)
+  spawn_task(14, 8, 0)
+  |> task.try_await(wait_millisec)
   |> io.debug
 }
 
-fn spawn_task(a: Int, b: Int, wait_seconds: Int) -> task.Task(Int) {
+fn spawn_task(x: Int, y: Int, z: Int) -> task.Task(Int) {
   task.async(fn() {
-    sleep(wait_seconds * 1000)
-
-    a + b
+    tarai(x, y, z)
   })
 }
 
-@external(erlang, "timer", "sleep")
-fn sleep(milliseconds: Int) -> Nil
+fn tarai(x: Int, y: Int, z: Int) -> Int {
+  case x <= y {
+    True -> y
+    False ->
+      tarai(
+        tarai(x - 1, y, z),
+        tarai(y - 1, z, x),
+        tarai(z - 1, x, y)
+      )
+  }
+}
