@@ -15,6 +15,13 @@ import labeled_arguments
 import document_comment
 import case_expression
 import recursion
+import tuples
+import custom_types
+import nil_example
+import results
+import bit_array
+import keywords
+import externals
 
 pub fn main() {
   int_example.int_example()
@@ -34,4 +41,11 @@ pub fn main() {
   document_comment.document_comment()
   case_expression.case_expression()
   recursion.recursion()
+  tuples.tuples_example()
+  custom_types.custom_types()
+  nil_example.nil_example()
+  results.results_example()
+  bit_array.bit_array()
+  keywords.keywords()
+  externals.externals()
 }
