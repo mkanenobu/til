@@ -18,19 +18,24 @@ fn async_task_example() {
 }
 
 fn spawn_task(x: Int, y: Int, z: Int) -> task.Task(Int) {
-  task.async(fn() {
-    tarai(x, y, z)
-  })
+  task.async(fn() { tarai(x, y, z) })
 }
 
 fn tarai(x: Int, y: Int, z: Int) -> Int {
   case x <= y {
     True -> y
-    False ->
-      tarai(
-        tarai(x - 1, y, z),
-        tarai(y - 1, z, x),
-        tarai(z - 1, x, y)
-      )
+    False -> tarai(tarai(x - 1, y, z), tarai(y - 1, z, x), tarai(z - 1, x, y))
   }
 }
+// fn race_example() {
+//   let a_wait = int.random(1000)
+//   let b_wait = int.random(1000)
+//   io.debug("a wait: " <> int.to_string(a_wait))
+//   io.debug("b wait: " <> int.to_string(b_wait))
+
+//   let task_a = task.async(fn() { sleep(a_wait) })
+//   let task_b = task.async(fn() { sleep(b_wait) })
+// }
+
+// @external(erlang, "timer", "sleep")
+// fn sleep(millisec: Int) -> Nil

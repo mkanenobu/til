@@ -13,6 +13,8 @@ pub fn json_example() {
 
   let decoded = decode(encoded)
   io.debug(decoded)
+
+  Nil
 }
 
 fn encode(struct: Struct) -> String {
