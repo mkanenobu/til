@@ -13,6 +13,12 @@ const pointer = @import("pointer.zig");
 const slices = @import("slices.zig");
 const enums = @import("enums.zig");
 const structs = @import("structs.zig");
+const unions = @import("unions.zig");
+const integerRules = @import("integer-rules.zig");
+const floats = @import("floats.zig");
+const labels = @import("labels.zig");
+const optionals = @import("optionals.zig");
+const comptimeExample = @import("comptime.zig");
 
 // ref: https://zig.guide/
 pub fn main() !void {
@@ -30,6 +36,12 @@ pub fn main() !void {
     slices.run();
     enums.run();
     structs.run();
+    unions.run();
+    integerRules.run();
+    floats.run();
+    labels.run();
+    optionals.run();
+    comptimeExample.run();
 }
 
 test "simple test" {
