@@ -11,6 +11,8 @@ const switchExample = @import("switch.zig");
 const runtimeSafety = @import("runtime-safety.zig");
 const pointer = @import("pointer.zig");
 const slices = @import("slices.zig");
+const enums = @import("enums.zig");
+const structs = @import("structs.zig");
 
 // ref: https://zig.guide/
 pub fn main() !void {
@@ -26,6 +28,8 @@ pub fn main() !void {
     runtimeSafety.run();
     pointer.run();
     slices.run();
+    enums.run();
+    structs.run();
 }
 
 test "simple test" {
