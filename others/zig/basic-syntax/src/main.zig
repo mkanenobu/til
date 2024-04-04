@@ -19,6 +19,7 @@ const floats = @import("floats.zig");
 const labels = @import("labels.zig");
 const optionals = @import("optionals.zig");
 const comptimeExample = @import("comptime.zig");
+const payloadCaptures = @import("payload-captures.zig");
 
 // ref: https://zig.guide/
 pub fn main() !void {
@@ -42,6 +43,7 @@ pub fn main() !void {
     labels.run();
     optionals.run();
     comptimeExample.run();
+    payloadCaptures.run();
 }
 
 test "simple test" {
