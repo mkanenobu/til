@@ -3,7 +3,7 @@ const expect = @import("std").testing.expect;
 pub fn run() void {
     optionalIf() catch unreachable;
     errorUnionIf() catch unreachable;
-    errorUnionWhile();
+    errorUnionWhile() catch unreachable;
     forCapture() catch unreachable;
 }
 
@@ -50,7 +50,7 @@ fn eventuallyErrorSequence() !u32 {
     };
 }
 
-fn errorUnionWhile() void {
+fn errorUnionWhile() !void {
     var sum: u32 = 0;
     numbers_left2 = 3;
 

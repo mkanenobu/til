@@ -3,12 +3,11 @@ const debugPrint = std.debug.print;
 const expect = std.testing.expect;
 
 // 前提としてzigに文字列型は無く、バイト列を使う
-// 文字列リテラルは↓のどちらかになる
-const String = []const u8;
-const PointerString = [*:0]const u8;
+// 文字列リテラルの型は *const [N:0]u8 となる（Nは文字列の長さ）
 
 pub fn main() !void {
     const s = "Hello, World!";
+    debugPrint("typeof string literal: {}\n", .{@TypeOf(s)});
     // 比較
     try expect(std.mem.eql(u8, s, "Hello, World!"));
     try expect(!std.mem.eql(u8, s, "Foo"));

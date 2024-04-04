@@ -20,6 +20,11 @@ const labels = @import("labels.zig");
 const optionals = @import("optionals.zig");
 const comptimeExample = @import("comptime.zig");
 const payloadCaptures = @import("payload-captures.zig");
+const inlineLoop = @import("inline-loop.zig");
+const opaqueExample = @import("opaque.zig");
+const anonymousStructs = @import("anonymous-structs.zig");
+const sentinelTermination = @import("sentinel-termination.zig");
+const vectors = @import("vectors.zig");
 
 // ref: https://zig.guide/
 pub fn main() !void {
@@ -44,6 +49,11 @@ pub fn main() !void {
     optionals.run();
     comptimeExample.run();
     payloadCaptures.run();
+    inlineLoop.run();
+    opaqueExample.run();
+    anonymousStructs.run();
+    sentinelTermination.run();
+    vectors.run();
 }
 
 test "simple test" {
