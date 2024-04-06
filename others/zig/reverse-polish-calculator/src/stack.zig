@@ -3,7 +3,7 @@ const ArrayList = std.ArrayList;
 const mem = std.mem;
 const Allocator = mem.Allocator;
 const Token = @import("./token.zig").Token;
-const Int = @import("./token.zig").Int;
+const Number = @import("./token.zig").Number;
 const Operator = @import("./operator.zig").Operator;
 
 const StackError = error{
@@ -11,14 +11,14 @@ const StackError = error{
 };
 
 pub const Stack = struct {
-    stack: std.ArrayList(Int),
+    stack: std.ArrayList(Number),
     allocator: Allocator,
 
     const Self = @This();
 
     pub fn init(allocator: Allocator) Self {
         return .{
-            .stack = ArrayList(Int).init(allocator),
+            .stack = ArrayList(Number).init(allocator),
             .allocator = allocator,
         };
     }
@@ -27,13 +27,13 @@ pub const Stack = struct {
         self.stack.deinit();
     }
 
-    pub fn push(self: *Self, int: Int) !void {
-        try self.stack.append(int);
+    pub fn push(self: *Self, n: Number) !void {
+        try self.stack.append(n);
     }
 
     pub fn evaluate(self: *Self, token: Token) !void {
         switch (token) {
-            .int => |i| try self.push(i),
+            .n => |n| try self.push(n),
             .op => |op| {
                 const right = self.stack.popOrNull().?;
                 const left = self.stack.popOrNull().?;
@@ -59,8 +59,8 @@ test "Stack.evaluate" {
     var stack = Stack.init(std.testing.allocator);
     defer stack.deinit();
 
-    try stack.evaluate(Token{ .int = 1 });
-    try stack.evaluate(Token{ .int = 2 });
+    try stack.evaluate(Token{ .n = 1 });
+    try stack.evaluate(Token{ .n = 2 });
     try stack.evaluate(Token{ .op = Operator.plus });
 
     try expect(stack.stack.items.len == 1);

@@ -22,8 +22,8 @@ fn parseFragment(fragment: []const u8) !Token {
         }
     }
 
-    const int = try std.fmt.parseInt(token.Int, fragment, 10);
-    return Token{ .int = int };
+    const int = try std.fmt.parseInt(token.Number, fragment, 10);
+    return Token{ .n = int };
 }
 
 test "tokenize" {
@@ -33,7 +33,7 @@ test "tokenize" {
     defer buffer.deinit();
 
     const input = "1 + 2 * 3 / 4 - 10";
-    const expected = [_]Token{ .{ .int = 1 }, .{ .op = Operator.plus }, .{ .int = 2 }, .{ .op = Operator.star }, .{ .int = 3 }, .{ .op = Operator.div }, .{ .int = 4 }, .{ .op = Operator.minus }, .{ .int = 10 } };
+    const expected = [_]Token{ .{ .n = 1 }, .{ .op = Operator.plus }, .{ .n = 2 }, .{ .op = Operator.star }, .{ .n = 3 }, .{ .op = Operator.div }, .{ .n = 4 }, .{ .op = Operator.minus }, .{ .n = 10 } };
 
     try tokenize(input, &buffer);
 

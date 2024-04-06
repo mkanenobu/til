@@ -12,16 +12,26 @@ pub fn main() !void {
     var stack = Stack.init(allocator);
     defer stack.deinit();
 
-    var inputBuffer: [1024 * 1024]u8 = undefined;
-    var writer = std.io.getStdOut().writer();
+    var stdoutWriter = std.io.getStdOut().writer();
     var stdinReader = std.io.getStdIn().reader();
 
     var tokenBuffer = ArrayList(token.Token).init(allocator);
     defer tokenBuffer.deinit();
 
+    startRepl(stdinReader, stdoutWriter, &stack) catch unreachable;
+}
+
+fn startRepl(reader: anytype, writer: anytype, stack: *Stack) !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var allocator = gpa.allocator();
+    var tokenBuffer = ArrayList(token.Token).init(allocator);
+    defer tokenBuffer.deinit();
+
+    var inputBuffer: [1024 * 1024]u8 = undefined;
+
     while (true) {
         try writer.writeAll("> ");
-        const input = (try readLine(stdinReader, &inputBuffer)).?;
+        const input = (try readLine(reader, &inputBuffer)).?;
 
         tokenize(input, &tokenBuffer) catch |err| {
             utils.printErr("{}\n", .{err});
@@ -37,7 +47,5 @@ pub fn main() !void {
 }
 
 comptime {
-    _ = @import("./stack.zig");
-    _ = @import("./tokernizer.zig");
     std.testing.refAllDecls(@This());
 }
