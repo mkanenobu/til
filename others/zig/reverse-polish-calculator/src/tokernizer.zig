@@ -9,6 +9,10 @@ const Token = token.Token;
 pub fn tokenize(input: []const u8, buffer: *ArrayList(Token)) !void {
     var iter = mem.split(u8, input, " ");
     while (iter.next()) |fragment| {
+        // Skip empty fragments
+        // When input includes multiple consecutive spaces, fragment would be empty string
+        if (fragment.len == 0) continue;
+
         const t = try parseFragment(fragment);
         try buffer.append(t);
     }
@@ -34,6 +38,25 @@ test "tokenize" {
 
     const input = "1 + 2 * 3 / 4 - 10";
     const expected = [_]Token{ .{ .n = 1 }, .{ .op = Operator.plus }, .{ .n = 2 }, .{ .op = Operator.star }, .{ .n = 3 }, .{ .op = Operator.div }, .{ .n = 4 }, .{ .op = Operator.minus }, .{ .n = 10 } };
+
+    try tokenize(input, &buffer);
+
+    try expect(buffer.items.len == expected.len);
+
+    for (expected, 0..) |expectedToken, i| {
+        const actualToken = buffer.items[i];
+        try expect(actualToken.eql(expectedToken));
+    }
+}
+
+test "tokenize skips multiple consecutive spaces" {
+    const expect = std.testing.expect;
+
+    var buffer = ArrayList(Token).init(std.testing.allocator);
+    defer buffer.deinit();
+
+    const input = "1   2    +    ";
+    const expected = [_]Token{ .{ .n = 1 }, .{ .n = 2 }, .{ .op = Operator.plus } };
 
     try tokenize(input, &buffer);
 

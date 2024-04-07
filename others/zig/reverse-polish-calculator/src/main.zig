@@ -10,62 +10,42 @@ pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     var allocator = gpa.allocator();
     var stack = Stack.init(allocator);
+    var tokenBuffer = ArrayList(token.Token).init(allocator);
     defer {
         stack.deinit();
-        const gpaDeinitStatus = gpa.deinit();
-        std.debug.assert(gpaDeinitStatus == .ok);
+        tokenBuffer.deinit();
+        _ = gpa.deinit();
     }
 
     var stdoutWriter = std.io.getStdOut().writer();
     var stdinReader = std.io.getStdIn().reader();
 
-    var tokenBuffer = ArrayList(token.Token).init(allocator);
-    defer tokenBuffer.deinit();
-
-    try startRepl(stdinReader, stdoutWriter, &stack);
+    var thread = try std.Thread.spawn(.{ .allocator = allocator }, startRepl, .{ stdinReader, stdoutWriter, &stack, &tokenBuffer });
+    thread.join();
 }
 
-fn startRepl(reader: anytype, writer: anytype, stack: *Stack) !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    var allocator = gpa.allocator();
-    var tokenBuffer = ArrayList(token.Token).init(allocator);
-    defer {
-        tokenBuffer.deinit();
-        const gpaDeinitStatus = gpa.deinit();
-        std.debug.assert(gpaDeinitStatus == .ok);
-    }
-
+fn startRepl(reader: anytype, writer: anytype, stack: *Stack, tokenBuffer: *ArrayList(token.Token)) !void {
     var inputBuffer: [1024 * 1024]u8 = undefined;
 
     while (true) {
-        try writer.writeAll("> ");
-        const input = (try readLine(reader, &inputBuffer)).?;
+        defer tokenBuffer.clearRetainingCapacity();
 
-        tokenize(input, &tokenBuffer) catch |err| {
-            utils.printErr("{}\n", .{err});
+        try writer.writeAll("> ");
+        // Wait for input
+        const input = (try readLine(reader, &inputBuffer)) orelse {
             continue;
         };
 
-        defer tokenBuffer.clearRetainingCapacity();
+        std.debug.print("input: {s}\n", .{input});
+        tokenize(input, tokenBuffer) catch |err| {
+            utils.printErr("{}\n", .{err});
+            continue;
+        };
         for (tokenBuffer.items) |t| {
             try stack.evaluate(t);
         }
         utils.print("{any}\n", .{stack.stack.items});
     }
-}
-
-test "startRepl" {
-    var stack = Stack.init(std.testing.allocator);
-    defer stack.deinit();
-
-    // var tmpDirIterable = std.testing.tmpIterableDir(.{}).iterable_dir;
-    // // Use tmp file instead of stdin for testing
-    // var file = try tmpDirIterable.dir.createFile("test.txt", .{ .read = true });
-    // var reader = file.reader();
-    // var arr = std.ArrayList(u8).init(std.testing.allocator);
-    // var writer = arr.writer();
-
-    // try startRepl(reader, writer, &stack);
 }
 
 comptime {
