@@ -36,7 +36,6 @@ fn startRepl(reader: anytype, writer: anytype, stack: *Stack, tokenBuffer: *Arra
             continue;
         };
 
-        std.debug.print("input: {s}\n", .{input});
         tokenize(input, tokenBuffer) catch |err| {
             utils.printErr("{}\n", .{err});
             continue;
