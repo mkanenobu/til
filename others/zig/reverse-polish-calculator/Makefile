@@ -1,16 +1,16 @@
 .PHONY: run, build, test, format, clean
 
 run:
-	@zig build run
+	zig build run
 
 build:
-	@zig build
+	zig build -Drelease
 
 test:
-	@zig test src/main.zig
+	zig test src/main.zig
 
 format:
-	@zig fmt **/*.zig
+	zig fmt **/*.zig
 
 clean:
-	@rm -rf zig-cache zig-out
+	rm -rf zig-cache zig-out

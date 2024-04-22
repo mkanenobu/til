@@ -14,3 +14,5 @@ format:
 
 clean:
 	@rm -rf zig-cache zig-out
+
+all: build
