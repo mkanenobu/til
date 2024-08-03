@@ -1,0 +1,5 @@
+/nimcache
+/testresults
+/testresults.html
+/tests/**/*
+!/tests/**/*.nim
