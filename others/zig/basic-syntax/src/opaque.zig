@@ -16,10 +16,10 @@ const Window = opaque {
 const Button = opaque {};
 
 fn opaqueExample() void {
-    var main_window: *Window = undefined;
+    const main_window: *Window = undefined;
     show_window(main_window);
 
-    var ok_button: *Button = undefined;
+    const ok_button: *Button = undefined;
     // show_window(ok_button); // エラー
     _ = ok_button;
 }

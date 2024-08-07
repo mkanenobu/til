@@ -1,8 +1,15 @@
 const std = @import("std");
-const Promise = @import("promise.zig").Promise;
+const Promise = @import("./promise.zig").Promise;
 
 pub fn main() !void {
-    var promise = Promise(i32).init(std.heap.page_allocator);
+    const name = "World";
+    var p = try Promise(i32).run(std.heap.page_allocator, hello, .{name});
+    p.wait();
+}
+
+fn hello(name: []const u8) i32 {
+    std.debug.print("Hello, {s}!\n", .{name});
+    return 1;
 }
 
 test "simple test" {

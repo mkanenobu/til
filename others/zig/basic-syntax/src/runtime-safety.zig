@@ -1,7 +1,7 @@
 const debug = @import("std").debug;
 
 pub fn run() void {
-    outOfIndex();
+    // outOfIndex();
     unreachableCode();
 }
 
@@ -9,8 +9,9 @@ fn outOfIndex() void {
     // ランタイムセーフティーの機能で↓は通常ならコンパイルが通らないが、組み込み関数で現在のブロックのランタイムセーフティーを無効化できる
     @setRuntimeSafety(false);
     const a = [3]u8{ 1, 2, 3 };
-    var index: u8 = 5;
+    const index: u8 = 5;
     // 使わないのでランタイムでもエラーにはならない
+    // が、コンパイル時にエラーになるようになった
     const b = a[index];
     _ = b;
 }

@@ -34,15 +34,15 @@ fn cString() void {
 
 fn coercion() void {
     // センチネル終了の値はそうではない値にcoerce出来る
-    var a: [*:0]u8 = undefined;
+    const a: [*:0]u8 = undefined;
     const b: [*]u8 = a;
     _ = b;
 
-    var c: [5:0]u8 = undefined;
+    const c: [5:0]u8 = undefined;
     const d: [5]u8 = c;
     _ = d;
 
-    var e: [:0]f32 = undefined;
+    const e: [:0]f32 = undefined;
     const f: []f32 = e;
     _ = f;
 }

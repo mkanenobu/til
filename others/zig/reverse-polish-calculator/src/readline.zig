@@ -1,7 +1,7 @@
 const std = @import("std");
 
 pub fn readLine(reader: anytype, buffer: []u8) !?[]const u8 {
-    var line = try reader.readUntilDelimiterOrEof(
+    const line = try reader.readUntilDelimiterOrEof(
         buffer,
         '\n',
     ) orelse return null;

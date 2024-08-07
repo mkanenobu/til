@@ -13,6 +13,6 @@ pub fn run() void {
     debug.print("x == {}\n", .{x});
 
     // ifステートメントは式としても機能する
-    var y: u8 = if (a) 1 else 2;
+    const y: u8 = if (a) 1 else 2;
     debug.print("y == {}\n", .{y});
 }

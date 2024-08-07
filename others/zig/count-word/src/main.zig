@@ -3,7 +3,7 @@ const std = @import("std");
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
-    var allocator = gpa.allocator();
+    const allocator = gpa.allocator();
 
     const args = try std.process.argsAlloc(allocator);
     defer std.process.argsFree(allocator, args);
@@ -17,7 +17,7 @@ pub fn main() !void {
 
     const file = try std.fs.cwd().openFile(fileName, .{});
     var bufReader = std.io.bufferedReader(file.reader());
-    var reader = bufReader.reader();
+    const reader = bufReader.reader();
 
     const res = try wordCount(reader, word);
     var stdout = std.io.getStdOut().writer();

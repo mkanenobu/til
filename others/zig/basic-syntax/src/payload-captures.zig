@@ -8,7 +8,7 @@ pub fn run() void {
 }
 
 fn optionalIf() !void {
-    var maybe_num: ?usize = 10;
+    const maybe_num: ?usize = 10;
     if (maybe_num) |n| {
         try expect(@TypeOf(n) == usize);
         try expect(n == 10);
@@ -18,7 +18,7 @@ fn optionalIf() !void {
 }
 
 fn errorUnionIf() !void {
-    var ent_num: error{UnknownEntity}!u32 = 5;
+    const ent_num: error{UnknownEntity}!u32 = 5;
     if (ent_num) |entity| {
         try expect(@TypeOf(entity) == u32);
         try expect(entity == 5);
@@ -77,7 +77,7 @@ const Info = union(enum) {
 };
 
 fn switchCapture() void {
-    var b = Info{ .a = 10 };
+    const b = Info{ .a = 10 };
     // タグ付きunionの値をキャプチャ
     const x = switch (b) {
         .b => |str| blk: {

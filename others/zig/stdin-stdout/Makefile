@@ -1,7 +1,7 @@
 .PHONY: run, build, test
 
 run:
-	@zig build run
+	echo "hogehoge" | zig build run
 
 build:
 	@zig build

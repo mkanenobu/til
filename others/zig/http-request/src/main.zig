@@ -1,26 +1,23 @@
 const std = @import("std");
 
 pub fn main() !void {
-    var client: std.http.Client = .{ .allocator = std.heap.page_allocator };
+    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+    defer arena.deinit();
+    const allocator = arena.allocator();
+
+    var client: std.http.Client = .{ .allocator = allocator };
     defer client.deinit();
 
-    const uri = try std.Uri.parse("https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json");
+    const url = "https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json";
 
-    var req = try client.request(.GET, uri, .{ .allocator = std.heap.page_allocator }, .{});
-    defer req.deinit();
+    var resBuffer = std.ArrayList(u8).init(allocator);
+    defer resBuffer.deinit();
 
-    try req.start();
-    try req.wait();
+    const result = try client.fetch(.{ .method = .GET, .location = .{ .url = url }, .response_storage = .{ .dynamic = &resBuffer } });
 
-    var resBody = std.ArrayList(u8).init(std.heap.page_allocator);
-    const responseReader = req.reader();
-    try responseReader.readAllArrayList(&resBody, 1024 * 1024 * 1024);
-
-    const stdout = std.io.getStdOut();
-    var bw = std.io.bufferedWriter(stdout);
-
-    try stdout.writeAll(resBody.items);
-    try bw.flush();
+    std.debug.print("status: {}\n", .{result.status});
+    std.debug.print("status is ok: {}\n", .{result.status == .ok});
+    std.debug.print("response body: {s}\n", .{resBuffer.items});
 }
 
 test "simple test" {

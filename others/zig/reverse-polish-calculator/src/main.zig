@@ -8,7 +8,7 @@ const utils = @import("./utils.zig");
 
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    var allocator = gpa.allocator();
+    const allocator = gpa.allocator();
     var stack = Stack.init(allocator);
     var tokenBuffer = ArrayList(token.Token).init(allocator);
     defer {
@@ -17,8 +17,8 @@ pub fn main() !void {
         _ = gpa.deinit();
     }
 
-    var stdoutWriter = std.io.getStdOut().writer();
-    var stdinReader = std.io.getStdIn().reader();
+    const stdoutWriter = std.io.getStdOut().writer();
+    const stdinReader = std.io.getStdIn().reader();
 
     var thread = try std.Thread.spawn(.{ .allocator = allocator }, startRepl, .{ stdinReader, stdoutWriter, &stack, &tokenBuffer });
     thread.join();

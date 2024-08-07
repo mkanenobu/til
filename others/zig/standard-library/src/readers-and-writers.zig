@@ -48,7 +48,7 @@ fn ioReader() !void {
 }
 
 fn nextLine(reader: anytype, buffer: []u8) !?[]const u8 {
-    var line = (try reader.readUntilDelimiterOrEof(
+    const line = (try reader.readUntilDelimiterOrEof(
         buffer,
         '\n',
     )) orelse return null;
@@ -97,9 +97,8 @@ const MyByteList = struct {
         if (self.items.len + data.len > self.data.len) {
             return error.EndOfBuffer;
         }
-        std.mem.copy(
-            u8,
-            self.data[self.items.len..],
+        @memcpy(
+            self.data[self.items.len..][0..data.len],
             data,
         );
         self.items = self.data[0 .. self.items.len + data.len];

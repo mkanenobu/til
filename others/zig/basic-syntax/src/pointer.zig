@@ -14,7 +14,7 @@ pub fn run() void {
 
     // constポインタ
     const y: u8 = 1;
-    var z = &y;
+    const z = &y;
     _ = z;
     // constポインタは変更出来ないので以下のコードはエラーになる
     // z.* += 1;

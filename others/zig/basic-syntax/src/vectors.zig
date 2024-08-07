@@ -33,7 +33,7 @@ fn vectorScalar() void {
 fn vectorLoop() void {
     // Vectorはlen属性を持たないが、インデックスアクセスが可能なので長さが分かっていればループ出来る
     const x = @Vector(4, u8){ 255, 0, 255, 0 };
-    var sum = blk: {
+    const sum = blk: {
         var tmp: u32 = 0;
         var i: u8 = 0;
         while (i < 4) : (i += 1) tmp += x[i];

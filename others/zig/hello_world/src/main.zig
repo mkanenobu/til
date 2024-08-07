@@ -1,11 +1,12 @@
-const io = @import("std").io;
+const std = @import("std");
 
 pub fn main() !void {
-    const stdout_file = io.getStdOut().writer();
-    var bw = io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
+    std.debug.print("Hello, {s}!\n", .{"World"});
+}
 
-    try stdout.print("Hello, {s}\n", .{"World"});
-
-    try bw.flush();
+test "simple test" {
+    var list = std.ArrayList(i32).init(std.testing.allocator);
+    defer list.deinit(); // try commenting this out and see if zig detects the memory leak!
+    try list.append(42);
+    try std.testing.expectEqual(@as(i32, 42), list.pop());
 }

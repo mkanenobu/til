@@ -1,7 +1,7 @@
 .PHONY: run, build, test, format, clean
 
 run:
-	@zig build run
+	zig build run -- example.txt "dolor"
 
 build:
 	@zig build

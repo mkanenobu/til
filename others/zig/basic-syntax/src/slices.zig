@@ -14,7 +14,7 @@ pub fn run() void {
     debug.print("{any}, sum: {}\n", .{ allSlice, total(allSlice) });
 
     // スライスのスライス
-    var sliceSlice = allSlice[1..];
+    const sliceSlice = allSlice[1..];
     debug.print("second to last sum: {}\n", .{total(sliceSlice)});
 }
 

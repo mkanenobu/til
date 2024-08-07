@@ -14,7 +14,7 @@ pub fn main() !void {
 
     var buf: [128]u8 = undefined;
     // sprintf的なやつ、bufferに値をセットするが返り値としても返す
-    var res = try std.fmt.bufPrint(&buf, "{s}, {}, {any}", .{ "Hello", 123, .{ .x = 1, .y = 2 } });
+    const res = try std.fmt.bufPrint(&buf, "{s}, {}, {any}", .{ "Hello", 123, .{ .x = 1, .y = 2 } });
     debugPrint("{s}\n", .{buf});
     debugPrint("{s}\n", .{res});
 }

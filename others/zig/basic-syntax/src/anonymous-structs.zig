@@ -6,7 +6,7 @@ const Point = struct { x: i32, y: i32 };
 pub fn run() void {
 
     // anonymous structを使うとstructリテラルの宣言からstructの型を省略できる
-    var pt: Point = .{
+    const pt: Point = .{
         .x = 13,
         .y = 67,
     };

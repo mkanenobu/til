@@ -11,9 +11,9 @@ pub fn run() void {
     // コードブロックはcomptimeキーワードでコンパイル時に評価出来る
 
     // xとyは同じ
-    var x = comptime fibonacci(10);
+    const x = comptime fibonacci(10);
     _ = x;
-    var y = comptime blk: {
+    const y = comptime blk: {
         break :blk fibonacci(10);
     };
     _ = y;
@@ -63,7 +63,7 @@ fn Matrix(
 fn typeFunction() void {
     // 型関数を使って型を生成する
     // この場合はi32の3x3のマトリクスの型を生成する
-    var mtrx: ?Matrix(i32, 3, 3) = null;
+    const mtrx: ?Matrix(i32, 3, 3) = null;
     debug.print("type function: {}\n", .{@TypeOf(mtrx)});
 
     debug.print("Matrix(f32, 4, 4) == [4][4]f32: {}\n", .{Matrix(f32, 4, 4) == [4][4]f32});
@@ -106,7 +106,7 @@ fn plusOne(x: anytype) @TypeOf(x) {
 }
 
 fn anyTypeExample() void {
-    var x = plusOne(@as(u32, 5));
+    const x = plusOne(@as(u32, 5));
     debug.print("plusOne(5): {}\n", .{@TypeOf(x)});
     // +演算子が実装されていない型の値を渡すとコンパイルエラーになる
     // _ = plusOne("123");

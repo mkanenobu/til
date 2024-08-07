@@ -32,7 +32,7 @@ const Tagged = union(enum) {
 const Tagged2 = union(enum) { a: u8, b: f32, c: bool, none };
 
 pub fn run() void {
-    var result = Result{ .i = 1234 };
+    const result = Result{ .i = 1234 };
     // 既にiに値が入っているので、fに値を入れることはできない
     // result.f = 12.34;
     debug.print("result = {any}\n", .{result.i});
