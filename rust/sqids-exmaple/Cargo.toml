@@ -1,0 +1,9 @@
+[package]
+name = "sqids-exmaple"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sqids = "0.4.1"
+chrono = "0.4.38"
+criterion = "0.5"

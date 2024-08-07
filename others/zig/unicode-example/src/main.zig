@@ -6,7 +6,7 @@ const ArrayList = std.ArrayList;
 pub fn main() !void {
     // 文字列リテラルの中にASCII文字ではないものを含む場合でも型は同じ（コードポイントでバラされる）
     const unicodeStr = "Hello, 世界😼";
-    std.debug.print("{s}, typeof string {}, length of string: {}\n", .{ unicodeStr, @TypeOf(unicodeStr), unicodeStr.len });
+    std.debug.print("\"{s}\", typeof string: \"{}\", length of string: {}\n", .{ unicodeStr, @TypeOf(unicodeStr), unicodeStr.len });
 
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer {
@@ -14,7 +14,7 @@ pub fn main() !void {
         if (status == .leak) @panic("Memory leak detected.");
     }
 
-    var allocator = gpa.allocator();
+    const allocator = gpa.allocator();
     var buf = ArrayList([]const u8).init(allocator);
     defer buf.deinit();
     try splitByRune(unicodeStr, &buf);

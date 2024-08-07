@@ -1,6 +1,7 @@
 package main
 
 func main() {
-	DoneExample()
-	CancelPropagationExample()
+	//DoneExample()
+	//CancelPropagationExample()
+	ErrorGroup()
 }
