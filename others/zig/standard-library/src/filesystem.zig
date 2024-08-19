@@ -1,7 +1,7 @@
 const std = @import("std");
 const expect = std.testing.expect;
 
-pub fn run() void {
+pub fn main() void {
     createWriteSeekRead() catch |err| {
         std.debug.print("Error: {any}\n", .{err});
     };
@@ -11,6 +11,7 @@ pub fn run() void {
     makeDir() catch |err| {
         std.debug.print("Error: {any}\n", .{err});
     };
+    listFiles() catch unreachable;
 }
 
 fn createWriteSeekRead() !void {
@@ -78,4 +79,14 @@ fn makeDir() !void {
         if (entry.kind == .file) file_count += 1;
     }
     std.debug.print("file_count: {}\n", .{file_count});
+}
+
+fn listFiles() !void {
+    const dir = try std.fs.cwd().openDir(".", .{ .no_follow = true });
+    var walker = try dir.walk(std.heap.page_allocator);
+    defer walker.deinit();
+
+    while (try walker.next()) |entry| {
+        std.debug.print("entry: {s}\n", .{entry.basename});
+    }
 }

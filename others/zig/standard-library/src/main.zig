@@ -11,7 +11,7 @@ const stacks = @import("stacks.zig");
 pub fn main() !void {
     allocators.run();
     arrayList.run() catch unreachable;
-    filesystem.run();
+    filesystem.main();
     readersAndWriters.run();
     formatting.run();
     randomNumbers.run();
