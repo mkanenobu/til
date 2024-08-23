@@ -1,3 +1,5 @@
+// https://docs.swift.org/swift-book/documentation/the-swift-programming-language/guidedtour/#Simple-Values
+
 // var は変数
 var myVariable = 42
 myVariable = 50
@@ -23,13 +25,13 @@ let fruitSummary = "I have \(apples + oranges) pieces of fruit."
 
 // 複数行文字列
 let quotation = """
-        Even though there's whitespace to the left,
-        the actual lines aren't indented.
-            Except for this line.
-        Double quotes (") can appear without being escaped.
+  Even though there's whitespace to the left,
+  the actual lines aren't indented.
+      Except for this line.
+  Double quotes (") can appear without being escaped.
 
-        I still have \(apples + oranges) pieces of fruit.
-        """
+  I still have \(apples + oranges) pieces of fruit.
+  """
 
 // Array
 var fruits = ["strawberries", "limes", "tangerines"]
@@ -37,9 +39,9 @@ fruits[1] = "grapes"
 
 // Dictionary
 var occupations = [
-    "Malcolm": "Captain",
-    "Kaylee": "Mechanic",
- ]
+  "Malcolm": "Captain",
+  "Kaylee": "Mechanic",
+]
 occupations["Jayne"] = "Public Relations"
 
 // 配列は要素を追加すると自動で長さが伸びる（可変長）
