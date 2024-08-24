@@ -1,0 +1,3 @@
+.PHONY:
+run:
+	swift run
