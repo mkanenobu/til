@@ -24,3 +24,6 @@
 (princ "Tutti Frutti")
 ; 文字列内のダブルクォートのエスケープ
 (print "I say \"Hello, World!\"")
+
+; 文字
+(print #\a)
