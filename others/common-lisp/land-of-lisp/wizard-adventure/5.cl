@@ -77,3 +77,25 @@
   (apply #'append (mapcar #'describe-path (cdr (assoc location edges)))))
 
 (print (describe-paths 'living-room *edges*)) ; (THERE IS A DOOR GOING WEST FROM HERE. THERE IS A LADDER GOING UPSTAIRS FROM HERE.)
+
+; 特定の場所にあるオブジェクトを描写する
+
+; まずゲーム世界に存在するオブジェクトのリストを作る
+(defparameter *objects* '(whisky bucket frog chain))
+; 次にオブジェクトの場所を管理する変数を作り、オブジェクトとその場所をalistで表現する
+(defparameter *object-locations* '((whisky living-room)
+                                   (bucket living-room)
+                                   (chain garden)
+                                   (frog garden)))
+                                
+; 与えられた場所から見えるオブジェクトを返す関数
+(defun objects-at (loc objs obj-locs)
+  ; ローカル関数at-loc-pを定義
+  ; at-loc-pはオブジェクトの名前を取って、locにそれがあるかどうかをt or nilで返す
+  ; Common Lispでは真偽値を返す関数には名前の最後にpを付ける慣習がある（predicateのp）
+  (labels ((at-loc-p (obj)
+             ; オブジェクトのある場所を (assoc obj obj-locs) で取得し、その場所がlocと一致するかどうかを調べる
+             (eq (cadr (assoc obj obj-locs)) loc)))
+    (remove-if-not #'at-loc-p objs)))
+
+(print (objects-at 'living-room *objects* *object-locations*))

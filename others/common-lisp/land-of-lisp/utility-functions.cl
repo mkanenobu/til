@@ -1,0 +1,37 @@
+; よく使いそうな関数の備忘録
+
+; carはリストの先頭の要素を返す
+(print (car '(a b c))) ; A
+; cdrはリストの2つめ以降の要素を返す
+(print (cdr '(a b c))) ; (B C)
+; carとcdrを組み合わせるとリストの任意の場所の要素を取り出すことが出来る
+(print (car (cdr '(a b c)))) ; B
+(print (car (cdr (cdr '(a b c))))) ; C
+; carとcdrの組み合わせはいくつかのショートハンドがある
+(print (cadr '(a b c))) ; (car (cdr '(a b c))) -> B
+(print (cdar '((a b) c))) ; (cdr (car '((a b) c))) -> (B)
+(print (cadar '((a b) c))) ; (car (cdr (car '((a b) c)))) -> B
+
+; assocは連想リスト（alist）の要素を探索して指定された要素が含まれる連想リストの要素を返す
+(let ((l '((a 1) (b 2) (c 3))))
+  (print (assoc 'b l))) ; (B 2)
+
+
+; appendは複数のリストを取って、それらを繋げたリストを返す
+(print (append '(a b) '(c d))) ; (A B C D)
+
+; applyは関数とリストを取って、リストをバラして関数に渡した結果を返す
+(print (apply #'+ '(2 3 4))) ; -> (+ 2 3 4) -> 9
+
+; applyとappendを組み合わせるとリストをflattenすることが出来る
+(print (apply #'append '((a b) (c d) (e f)))) ; (A B C D E F)
+
+; mapcarはリストのそれぞれの要素に関数を適用した結果をリストで返す（いわゆるmap）
+(print (mapcar #'1+ '(1 2 3))) ; (2 3 4)
+; mapcarは複数のリストを取れる
+(print (mapcar #'+ '(1 2 3) '(4 5 6))) ; (5 7 9)
+
+; remove-if-notはリストの要素をフィルタリングする
+(let ((l '(1 2 3 4 5)))
+  ; 奇数ではない要素を取り除く
+  (print (remove-if-not #'oddp l))) ; (1 3 5)
