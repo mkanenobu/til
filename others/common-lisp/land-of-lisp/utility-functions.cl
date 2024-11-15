@@ -16,6 +16,8 @@
 (let ((l '((a 1) (b 2) (c 3))))
   (print (assoc 'b l))) ; (B 2)
 
+; memberはリストを探索して指定した要素と最初に一致した要素以降の部分リストを返す
+(print (member 'b '(a b c))) ; (B C)
 
 ; appendは複数のリストを取って、それらを繋げたリストを返す
 (print (append '(a b) '(c d))) ; (A B C D)
@@ -35,3 +37,6 @@
 (let ((l '(1 2 3 4 5)))
   ; 奇数ではない要素を取り除く
   (print (remove-if-not #'oddp l))) ; (1 3 5)
+
+; findはリストを探索して指定した要素と同じを見つけたらその要素（のみ）を、見つからない場合にはnilを返す
+(print (find 'b '(a b c))) ; B

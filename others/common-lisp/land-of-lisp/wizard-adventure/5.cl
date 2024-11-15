@@ -1,5 +1,5 @@
 ; 5
-; 魔法使いのアドベンチャー
+; 5.1 魔法使いのアドベンチャー
 
 ; このゲームでは魔法使いの弟子になり、魔法使いの館を探索する
 ; 最終的にはパズルを解いて魔法のドーナツを得ることが出来るようになる
@@ -45,7 +45,7 @@
 
 (print (describe-location 'living-room *nodes*))
 
-; 通り道を描写する
+; 5.2 通り道を描写する
 ; *edges*という変数を作ってキーごとの通り道を持つ
 (defparameter *edges* '((living-room (garden west door)
                                      (attic upstairs ladder))
@@ -79,7 +79,7 @@
 
 (print (describe-paths 'living-room *edges*)) ; (THERE IS A DOOR GOING WEST FROM HERE. THERE IS A LADDER GOING UPSTAIRS FROM HERE.)
 
-; 特定の場所にあるオブジェクトを描写する
+; 5.3 特定の場所にあるオブジェクトを描写する
 
 ; まずゲーム世界に存在するオブジェクトのリストを作る
 (defparameter *objects* '(whisky bucket frog chain))
@@ -100,3 +100,37 @@
     (remove-if-not #'at-loc-p objs)))
 
 (print (objects-at 'living-room *objects* *object-locations*))
+
+; ある場所で見えるオブジェクトを描写する関数
+(defun describe-objects (loc objs obj-loc)
+  (labels ((describe-obj (obj)
+            `(you see a ,obj on the floor.)))
+    (apply #'append (mapcar #'describe-obj (objects-at loc objs obj-loc)))))
+
+; 5.4 全てを描写する
+; これまで定義してきた関数をlookというコマンドでまとめて呼び出せるようにする
+; lookはプレイヤーがプレイ中に実際にタイプして周りを見渡すコマンドなので、プレイヤーの現在の場所を知っておく必要がある（関数型スタイルの純粋な関数ではない）
+; ここでは現在地を保持する変数を作る
+(defparameter *location* 'living-room)
+
+(defun look ()
+  (append (describe-location *location* *nodes*)
+          (describe-paths *location* *edges*)
+          (describe-objects *location* *objects* *object-locations*)))
+
+(print (look))
+
+; 5.5 ゲーム世界を動き回る
+
+; walkは方向を引数に取ってそちらへ移動する関数
+; まずこの関数は現在地から進むことが出来る通り道を*edges*から取得する
+(defun walk (direction)
+  (let ((next (find direction
+                    (cdr (assoc *location* *edges*))
+                    :key #'cadr)))
+    (if next
+      (progn (setf *location* (car next))
+             (look))
+      '(you cannot go that way.))))
+
+(print (walk 'west))
