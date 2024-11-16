@@ -43,7 +43,7 @@
 (defun describe-location (location nodes)
   (cadr (assoc location nodes)))
 
-(print (describe-location 'living-room *nodes*))
+; (print (describe-location 'living-room *nodes*))
 
 ; 5.2 通り道を描写する
 ; *edges*という変数を作ってキーごとの通り道を持つ
@@ -60,7 +60,7 @@
 (defun describe-path (edge)
   `(there is a ,(caddr edge) going ,(cadr edge) from here.))
 
-(print (describe-path '(living-room west door))) ; (THERE IS A DOOR GOING WEST FROM HERE) 
+; (print (describe-path '(living-room west door))) ; (THERE IS A DOOR GOING WEST FROM HERE) 
 
 ; 一つの場所からは複数の通り道が出ているのでそれを説明する関数
 ; (assoc location edges) キー（location）から該当のエッジリストを取得
@@ -77,7 +77,7 @@
 (defun describe-paths (location edges)
   (apply #'append (mapcar #'describe-path (cdr (assoc location edges)))))
 
-(print (describe-paths 'living-room *edges*)) ; (THERE IS A DOOR GOING WEST FROM HERE. THERE IS A LADDER GOING UPSTAIRS FROM HERE.)
+; (print (describe-paths 'living-room *edges*)) ; (THERE IS A DOOR GOING WEST FROM HERE. THERE IS A LADDER GOING UPSTAIRS FROM HERE.)
 
 ; 5.3 特定の場所にあるオブジェクトを描写する
 
@@ -99,7 +99,7 @@
              (eq (cadr (assoc obj obj-locs)) loc)))
     (remove-if-not #'at-loc-p objs)))
 
-(print (objects-at 'living-room *objects* *object-locations*))
+; (print (objects-at 'living-room *objects* *object-locations*))
 
 ; ある場所で見えるオブジェクトを描写する関数
 (defun describe-objects (loc objs obj-loc)
@@ -118,19 +118,50 @@
           (describe-paths *location* *edges*)
           (describe-objects *location* *objects* *object-locations*)))
 
-(print (look))
+; (print (look))
 
 ; 5.5 ゲーム世界を動き回る
 
 ; walkは方向を引数に取ってそちらへ移動する関数
 ; まずこの関数は現在地から進むことが出来る通り道を*edges*から取得する
+; 指定した通り道があれば、通り道の先の場所に移動し、lookを呼び出す
 (defun walk (direction)
   (let ((next (find direction
                     (cdr (assoc *location* *edges*))
+                    ; :key はキーワード引数という構文、:キーワード [引数の値] という形で他の言語にもよくあるやつ
                     :key #'cadr)))
     (if next
       (progn (setf *location* (car next))
              (look))
       '(you cannot go that way.))))
 
-(print (walk 'west))
+; (print (walk 'west))
+
+; 5.6 オブジェクトを手に取る
+(defun pickup (object)
+  ; memberでオブジェクトが現在地にあるかどうかを調べる
+  (cond ((member object (objects-at *location* *objects* *object-locations*))
+          ; 存在していればオブジェクトと新しい場所（'body=プレーヤーの体）の組み合わせを*object-locations*に追加し、メッセージを返す
+          ; pushは変数の先頭に要素を追加する
+
+          ; 新しい場所を追加するのと同時に前の場所を削除する必要があるように思うが、objects-atコマンドの中で使っているassocコマンドは、
+          ; 最初に見つかった要素（以降）を返すので前の場所を消す必要はなく、新しい場所を追加するだけ更新されたように見える
+          ; このpush/assocを使ってalistを更新しているように見せるのはよく使うイディオム
+          (push (list object 'body) *object-locations*)
+          `(you are now carring the ,object))
+        ; 存在していなければ出来ないというメッセージを返す
+        (t '(you cannot get that.))))
+
+; (print (pickup 'whisky))
+
+; 5.7 持っているものを調べる
+
+; プレイヤーが現在持っているものを調べる関数を作る
+(defun inventory ()
+  ; この 'items- はそれっぽいコマンドに見えるが「アイテム:」のようなただのラベルのデータ
+  (cons 'items- (objects-at 'body *objects* *object-locations*)))
+
+; (print (inventory))
+
+; これでlookコマンドで見回す、walkコマンドで移動、pickupコマンドでオブジェクトを拾う、inventoryコマンドで今持っているものを確認する、
+; というテキストアドベンチャーゲームの基本的なエンジンができた

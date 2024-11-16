@@ -40,3 +40,13 @@
 
 ; findはリストを探索して指定した要素と同じを見つけたらその要素（のみ）を、見つからない場合にはnilを返す
 (print (find 'b '(a b c))) ; B
+; キーワード引数 :key でリストの各要素に適用する関数を指定出来る
+(print (find 'c '((a b) (c d) (e f)) :key #'car)) ; (C D)
+(print (find 'b '((a b) (c d) (e f)) :key #'cadr)) ; (A B)
+
+; pushはリスト変数の最初に要素を追加する
+; pushコマンドはsetfコマンドを作って作られた関数で (setf *l* (cons 7 *l*)) と呼び出すのと同じ
+(defparameter *l* '(1 2 3))
+(print *l*) ; (1 2 3)
+(push 7 *l*)
+(print *l*) ; (7 1 2 3)
