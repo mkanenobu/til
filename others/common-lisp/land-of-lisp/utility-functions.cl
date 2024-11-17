@@ -50,3 +50,11 @@
 (print *l*) ; (1 2 3)
 (push 7 *l*)
 (print *l*) ; (7 1 2 3)
+
+; concatenateは結果の型を指定して複数のリストを連結する
+(print (concatenate 'string "Hello, " "World!"))
+(print (concatenate 'list '(1 2) '(3 4) '(5 6)))
+
+; coerceは型変換を行う
+(print (coerce "ABC" 'list)) ; (#\A #\B #\C) ; string -> listの場合は文字のリストになる
+(print (coerce (coerce "ABC" 'list) 'string)) ; "ABC" ; 文字のリスト -> stringの場合は繋げた文字列になる
