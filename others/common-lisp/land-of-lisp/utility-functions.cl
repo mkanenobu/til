@@ -57,4 +57,4 @@
 
 ; coerceは型変換を行う
 (print (coerce "ABC" 'list)) ; (#\A #\B #\C) ; string -> listの場合は文字のリストになる
-(print (coerce (coerce "ABC" 'list) 'string)) ; "ABC" ; 文字のリスト -> stringの場合は繋げた文字列になる
+(print (coerce '(#\A #\B #\C) 'string)) ; "ABC" ; 文字のリスト -> stringの場合は繋げた文字列になる
