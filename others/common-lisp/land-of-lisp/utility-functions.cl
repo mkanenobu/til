@@ -12,8 +12,8 @@
 (print (cdar '((a b) c))) ; (cdr (car '((a b) c))) -> (B)
 (print (cadar '((a b) c))) ; (car (cdr (car '((a b) c)))) -> B
 
-; assocは連想リスト（alist）の要素を探索して指定された要素が含まれる連想リストの要素を返す
-(let ((l '((a 1) (b 2) (c 3))))
+; assocは連想リスト（alist）から指定したキーを持つ最初の要素を返す
+(let ((l '((a 1) (b 2) (c 3) (b 4))))
   (print (assoc 'b l))) ; (B 2)
 
 ; memberはリストを探索して指定した要素と最初に一致した要素以降の部分リストを返す
