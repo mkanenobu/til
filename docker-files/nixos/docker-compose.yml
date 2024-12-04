@@ -1,0 +1,7 @@
+services:
+  nixos:
+    image: "nixos/nix:latest"
+    container_name: nixos
+    tty: true
+    restart: always
+
