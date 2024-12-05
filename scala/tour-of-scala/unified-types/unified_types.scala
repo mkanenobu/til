@@ -44,7 +44,7 @@ def cast(): Unit = {
 
   val face: Char = '☺'
   val number: Int = face
-  val f: Chat = number.toChar
+  val f: Char = number.toChar
   // 明示的なキャストは出来るが暗黙のキャストは一方向なので次のコードはエラーになる
   // val f: Char = number
 }
