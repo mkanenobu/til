@@ -58,7 +58,7 @@ export const App = () => {
   }, [n]);
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div style={{ height: "100vh", width: "100vw", padding: "12px" }}>
       <div style={{ display: "inline-flex", gap: "4px" }}>
         <label htmlFor="n">N: </label>
         <input
