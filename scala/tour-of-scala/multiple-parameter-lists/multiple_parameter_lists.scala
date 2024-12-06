@@ -48,4 +48,20 @@ def main(): Unit = {
     val cubes = numberFunc((xs, x) => xs :+ x*x*x)
     println(cubes)
   }
+
+  {
+    // multiple parameter listsはカリー化に似ているが、multiple parameter listsに対してカリー化という単語を適用するのはいくつかの理由でやめた方がよい
+    // 1. multiple parameter listsは一般的なカリー化のように関数が連続している訳ではなく、そういうシンタックスであるため
+    // 2. multiple parameter listsを全く含まない、Scalaの標準ライブラリ「curried」「uncurried」と混同される危険性があるため
+
+    // ただmultiple parameter listsとカリー化には類似点があり、呼び出し側から見ると同じように見えることもある
+    def addMultiple(n1: Int)(n2: Int) = n1 + n2
+    def add(n1: Int, n2: Int) = n1 + n2
+    val addCurried1 = (add _).curried
+    val addCurried2 = (n1: Int) => (n2: Int) => n1 + n2
+
+    println(addMultiple(1)(2))
+    println(addCurried1(1)(2))
+    println(addCurried2(1)(2))
+  }
 }
