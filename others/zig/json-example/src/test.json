@@ -5,8 +5,8 @@
     "nested_value": "hello"
   },
   "array_field": [
-    "1",
-    "2",
-    "3"
+    1,
+    2,
+    3
   ]
 }
