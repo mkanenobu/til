@@ -18,10 +18,11 @@ pub fn main() !void {
     const lastNode = ast.nodes.get(ast.nodes.len - 1);
     print("lastNode tag: {any}\n", .{lastNode.tag});
 
-    const firstToken = ast.tokens.get(0);
-    print("firstToken tag: {any}\n", .{firstToken.tag});
-    const lastNodesMainToken = ast.tokens.get(lastNode.main_token);
-    print("lastNode'sMainToken tag: {any}\n", .{lastNodesMainToken.tag});
+    // tokens
+    for (0..ast.tokens.len) |i| {
+        const token = ast.tokens.get(i);
+        print("token from {d}: {any}\n", .{ token.start, token.tag });
+    }
 
     // render AST as Code
     var buf = std.ArrayList(u8).init(allocator);
