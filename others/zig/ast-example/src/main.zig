@@ -22,6 +22,12 @@ pub fn main() !void {
     print("firstToken tag: {any}\n", .{firstToken.tag});
     const lastNodesMainToken = ast.tokens.get(lastNode.main_token);
     print("lastNode'sMainToken tag: {any}\n", .{lastNodesMainToken.tag});
+
+    // render AST as Code
+    var buf = std.ArrayList(u8).init(allocator);
+    defer buf.deinit();
+    try ast.renderToArrayList(&buf, .{});
+    print("rendered: {s}\n", .{buf.items});
 }
 
 test {
