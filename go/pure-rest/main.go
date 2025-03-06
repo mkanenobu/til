@@ -11,6 +11,9 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Hello, World!"))
+	})
 	r.Post("/", EchoBackHandler)
 	http.ListenAndServe(":3000", r)
 }
@@ -33,8 +36,10 @@ func HandlerAdapter[T any](f func(request *http.Request) (*HttpResponse[T], erro
 	}
 }
 
+// Handler implementation
+
 type EchoBackResponse struct {
-	Message string `json:"message"`
+	Echo string `json:"echo"`
 }
 
 func echoBackHandler(r *http.Request) (*HttpResponse[EchoBackResponse], error) {
@@ -46,7 +51,7 @@ func echoBackHandler(r *http.Request) (*HttpResponse[EchoBackResponse], error) {
 	return &HttpResponse[EchoBackResponse]{
 		Status: http.StatusOK,
 		Body: EchoBackResponse{
-			Message: "echoback: " + string(body),
+			Echo: string(body),
 		},
 	}, nil
 }
