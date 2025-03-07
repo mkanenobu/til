@@ -1,4 +1,4 @@
-pub fn run() void {
+pub fn main() void {
     opaqueExample();
 }
 

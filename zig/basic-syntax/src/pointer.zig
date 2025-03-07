@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     var x: u8 = 32;
     // Zigの通常のポインタは値として0やnullを持つことが出来ない
     // 参照は &variable、デリファレンスは variable.* で行う

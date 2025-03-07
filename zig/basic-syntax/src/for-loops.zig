@@ -1,4 +1,4 @@
-pub fn run() void {
+pub fn main() void {
     const string = [_]u8{ 'a', 'b', 'c' };
     // with index
     for (string, 0..) |char, index| {

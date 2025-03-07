@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     var x: i8 = 10;
     // switch文、網羅性チェックあり
     switch (x) {

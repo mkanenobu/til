@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     var x: i16 = 5;
     {
         // deferは現在のブロックが終了するときにステートメントを実行するために使う

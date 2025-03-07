@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     // hex, octal, binaryフォーマットが利用できる
     const decimal_int: i32 = 98222;
     const hex_int: u8 = 0xff;

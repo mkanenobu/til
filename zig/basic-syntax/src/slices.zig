@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     // スライスはデータへのポインター [*]T と usize （要素数）のペアと考えることができる
     const arr = [_]u8{ 1, 2, 3, 4, 5 };
     // [n..m] は x[n] から x[m - 1] までの範囲

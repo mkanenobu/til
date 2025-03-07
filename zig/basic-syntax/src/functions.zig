@@ -12,7 +12,7 @@ fn fibonacci(n: u16) u16 {
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-pub fn run() void {
+pub fn main() void {
     const x: u32 = 5;
     debug.print("x + 5 = {}\n", .{addFive(x)});
 

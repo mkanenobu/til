@@ -1,7 +1,7 @@
 const debug = @import("std").debug;
 
 // zigのOptionalのポインタはnullの場合に0値が使われるためメモリ効率がいい（ポインタに0やnullが使えないのはそのため）
-pub fn run() void {
+pub fn main() void {
     // ?T でOptional型を表現できる
     var found_index: ?usize = null;
     const data = [_]i32{ 1, 2, 3, 4, 5 };

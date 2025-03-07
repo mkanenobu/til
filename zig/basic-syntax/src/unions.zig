@@ -31,7 +31,7 @@ const Tagged = union(enum) {
 // noneフィールドはvoidになる
 const Tagged2 = union(enum) { a: u8, b: f32, c: bool, none };
 
-pub fn run() void {
+pub fn main() void {
     const result = Result{ .i = 1234 };
     // 既にiに値が入っているので、fに値を入れることはできない
     // result.f = 12.34;

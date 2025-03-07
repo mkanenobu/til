@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     labeledBlock();
     labeledLoop();
     loopAsExpression();

@@ -1,6 +1,6 @@
 const expect = @import("std").testing.expect;
 
-pub fn run() void {
+pub fn main() void {
     optionalIf() catch unreachable;
     errorUnionIf() catch unreachable;
     errorUnionWhile() catch unreachable;

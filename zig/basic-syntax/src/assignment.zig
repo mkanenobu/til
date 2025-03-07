@@ -11,7 +11,7 @@ var inferred_var = @as(u32, 5000);
 const a: i32 = undefined;
 var b: u32 = undefined;
 
-pub fn run() void {
+pub fn main() void {
     debug.print("a: {}\n", .{a});
     debug.print("b: {}\n", .{b});
 }

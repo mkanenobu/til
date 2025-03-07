@@ -1,7 +1,7 @@
 const debug = @import("std").debug;
 
 // float型は `@setFloatMode(.Optimized)` が設定されない限りは IEEE に準拠する
-pub fn run() void {
+pub fn main() void {
     // floatはより大きい型にwideningされる
     const a: f16 = 0;
     const b: f16 = a;

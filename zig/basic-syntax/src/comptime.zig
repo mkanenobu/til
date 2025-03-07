@@ -1,4 +1,6 @@
-const debug = @import("std").debug;
+const std = @import("std");
+const Type = std.builtin.Type;
+const debug = std.debug;
 
 fn fibonacci(n: u32) u32 {
     if (n <= 1) {
@@ -7,7 +9,7 @@ fn fibonacci(n: u32) u32 {
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-pub fn run() void {
+pub fn main() void {
     // コードブロックはcomptimeキーワードでコンパイル時に評価出来る
 
     // xとyは同じ
@@ -75,8 +77,8 @@ fn addSmallInts(comptime T: type, a: T, b: T) T {
     // Intの場合はbitsが16以下の場合のみ足し算を行い、それ以外はコンパイルエラーを出す
     // ComptimeIntでもIntでもない場合にはコンパイルエラーを出す
     return switch (@typeInfo(T)) {
-        .ComptimeInt => a + b,
-        .Int => |info| if (info.bits <= 16) a + b else @compileError("ints too larger"),
+        Type.comptime_int => a + b,
+        .int => |info| if (info.bits <= 16) a + b else @compileError("ints too larger"),
         else => @compileError("only ints accepted"),
     };
 }
@@ -90,9 +92,9 @@ fn typeInfoSwitch() void {
 // @Type はたいていのプリミティブ型に対して実装されているが、enums, unions, functions, structs などには実装されていない
 fn GetBiggerInt(comptime T: type) type {
     // 同じsignednessの1ビット大きい型を返す
-    return @Type(.{ .Int = .{
-        .bits = @typeInfo(T).Int.bits + 1,
-        .signedness = @typeInfo(T).Int.signedness,
+    return @Type(.{ .int = .{
+        .bits = @typeInfo(T).int.bits + 1,
+        .signedness = @typeInfo(T).int.signedness,
     } });
 }
 

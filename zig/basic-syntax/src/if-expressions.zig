@@ -2,7 +2,7 @@ const std = @import("std");
 const expect = std.testing.expect;
 const debug = std.debug;
 
-pub fn run() void {
+pub fn main() void {
     const a = true;
     var x: u16 = 0;
     if (a) {

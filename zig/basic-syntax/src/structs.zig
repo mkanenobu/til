@@ -26,7 +26,12 @@ const Stuff = struct {
     }
 };
 
-pub fn run() void {
+const S = struct {
+    x: u32,
+    const default: S = .{ .x = 10 };
+};
+
+pub fn main() void {
     const v1 = Vec3{ .x = 1.0, .y = 2.0, .z = 3.0 };
     debug.print("v1 = {any}\n", .{v1});
     // デフォルト値の無いフィールドの初期値を省略することは出来ない
@@ -39,4 +44,8 @@ pub fn run() void {
     var thing = Stuff{ .x = 10, .y = 20 };
     thing.swap();
     debug.print("thing = {any}\n", .{thing});
+
+    // Decl literal
+    const val: S = .default;
+    debug.print("val = {any}\n", .{val});
 }

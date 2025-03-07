@@ -32,7 +32,7 @@ const Mode = enum {
     off,
 };
 
-pub fn run() void {
+pub fn main() void {
     enum_tag() catch {};
     enum_methods();
     enum_var();

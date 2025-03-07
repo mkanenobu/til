@@ -3,7 +3,7 @@ const meta = std.meta;
 const debug = std.debug;
 const expect = std.testing.expect;
 
-pub fn run() void {
+pub fn main() void {
     // zigはSIMDのVector型を提供している
     // これは数学的なVectorやC++のstd::vectorとは異なる（std.ArrayListがstd::vectorに近い）
 

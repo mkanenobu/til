@@ -1,6 +1,6 @@
 const debug = @import("std").debug;
 
-pub fn run() void {
+pub fn main() void {
     var i: u8 = 2;
     while (i < 10) {
         debug.print("i: {}\n", .{i});

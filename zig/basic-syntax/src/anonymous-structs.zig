@@ -3,8 +3,7 @@ const expect = @import("std").testing.expect;
 
 const Point = struct { x: i32, y: i32 };
 
-pub fn run() void {
-
+pub fn main() void {
     // anonymous structを使うとstructリテラルの宣言からstructの型を省略できる
     const pt: Point = .{
         .x = 13,
@@ -13,8 +12,7 @@ pub fn run() void {
     debug.print("point: x: {}, y: {}\n", .{ pt.x, pt.y });
 
     // Pointのフィールドを満たしているので、Point型としてcoerceされる
-    const anon = .{ .x = 5, .y = 33 };
-    debug.print("area: {}\n", .{area(anon)});
+    debug.print("area: {}\n", .{area(.{ .x = 5, .y = 33 })});
 
     fullyAnonymous();
     tuple();

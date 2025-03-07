@@ -2,7 +2,7 @@ const std = @import("std");
 const debug = std.debug;
 const expect = std.testing.expect;
 
-pub fn run() void {
+pub fn main() void {
     // 配列やスライス、多くのポインタはその値の子の型で終了するケースがある
     // これはセンチネル終了として知られている
     // これらを表現するためには [N:t]T, [:t]T, [*:t]T という構文を使う（tはTの子タイプ）

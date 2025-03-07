@@ -12,7 +12,7 @@ const FileOpenError = error{
 // FileOpenErrorのサブセットのAllocationErrorを定義
 const AllocationError = error{OutOfMemory};
 
-pub fn run() !void {
+pub fn main() !void {
     const err: FileOpenError = AllocationError.OutOfMemory;
     // サブセットはスーパーセットと同じになる
     dbg.print("AllocationError.OutOfMemory == FileOpenError.OutOfMemory: {}\n", .{err == FileOpenError.OutOfMemory});
