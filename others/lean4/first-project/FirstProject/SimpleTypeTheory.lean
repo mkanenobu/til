@@ -47,3 +47,40 @@ def b2 : Bool := false
 #eval Nat.add (10, 7).1 (10, 7).2 -- 17
 
 -- Types as objects 項としての型
+-- 型そのものも項で、それぞれの型も型を持つ
+#check Nat -- Type
+#check Bool -- Type
+#check Nat × Nat -- Type
+#check Nat -> Nat -- Type
+
+-- 型を表す新しい定数を宣言することも出来る
+def a : Type := Nat
+def F : Type -> Type := List
+def G : Type → Type → Type := Prod
+
+#check a -- Type
+#check F -- Type -> Type
+#check G -- Type -> Type -> Type
+#check F Nat -- Type
+#check G Bool -- Type -> Type
+
+-- Typeも型を持つ
+-- 型の階層が無限に続く
+-- 任意の自然数 n に対して型 Type n が存在する
+#check Type -- Type 1
+#check Type 1 -- Type 2
+#check Type 2 -- Type 3
+-- Type は Type 0 の略記法
+#check Type 0 -- Type 0
+
+-- ポリモーフィックな型
+#check List -- List.{u} (α : Type u) : Type u
+#check Prod -- Prod.{u, v} (α : Type u) (β : Type v) : Type (max u v)
+
+-- universe コマンドで多相な項（universe variable）を定義出来る
+universe u
+def H (a : Type u) : Type u := Prod a a
+#check H -- H.{u} (a : Type u) : Type u
+-- {}を用いてuniverse parameterを定義出来る
+def I.{k} (a : Type k) : Type k := Prod a a
+#check I -- I.{k} (a : Type k) : Type k
