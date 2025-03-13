@@ -60,3 +60,7 @@ end Foo
 namespace List
   def a : Nat := 5
 end List
+
+-- namespaceはデータを整理し、セクションは定義に挿入される変数の宣言を整理するという異なる役割を持つ
+-- しかしながら多くの側面でセクションと同様の挙動をする
+-- namespace内で variable を使った場合、セクションと同様にその変数のスコープはその namespace 内に限定される
