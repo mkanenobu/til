@@ -9,7 +9,7 @@ export const testA11y = async ({
   page: Page;
   options?: {
     tags?: string[];
-    disableRules?: Array<{ rule: string; whyDisabled: string }>;
+    disableRules?: Array<{ rule: string; why: string }>;
   };
 }) => {
   const axe = new AxeBuilder({ page })
