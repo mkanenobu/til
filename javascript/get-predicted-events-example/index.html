@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    #canvas {
+      border: 1px solid black;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <canvas id="canvas" width="600" height="300"></canvas>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const pointerEvents = [];
+
+    const drawCircle = (x, y, color) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 直近の5つだけを表示
+      if (pointerEvents.length > 10) {
+        pointerEvents.shift();
+      }
+      pointerEvents.push({ x, y, color });
+
+      for (const pointerEvent of pointerEvents) {
+        ctx.beginPath();
+        // 円を描画
+        ctx.arc(pointerEvent.x, pointerEvent.y, 10, 0, 2 * Math.PI);
+        ctx.strokeStyle = pointerEvent.color;
+        ctx.stroke();
+      }
+    };
+
+    canvas.addEventListener("pointermove", (e) => {
+      // 実際のイベントの座標（黒）
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      drawCircle(x, y, "black");
+
+      const predictedEvents = e.getPredictedEvents();
+
+      for (let predictedEvent of predictedEvents) {
+        const x = predictedEvent.clientX - rect.left;
+        const y = predictedEvent.clientY - rect.top;
+
+        // 予測座標
+        drawCircle(x, y, "red");
+      }
+    });
+  </script>
+</body>
+</html>
