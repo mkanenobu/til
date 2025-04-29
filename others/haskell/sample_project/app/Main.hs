@@ -1,22 +1,23 @@
 module Main where
 
 import Control.Monad (unless)
+import System.Exit (exitSuccess)
 import System.IO (hFlush, stdout)
 import qualified System.Random as R
 import Text.Read (readMaybe)
-import System.Exit (exitSuccess)
 
 main :: IO ()
 main = do
-    putStrLn "Guess the number."
+    putStrLn "Guess the number. Enter a number between 1 and 100."
     n <- randomNumber
     repl $ eval n
   where
+    eval :: Int -> Int -> IO ()
     eval n input = do
         if input == n
             then do
-              putStrLn "Correct!"
-              exitSuccess
+                putStrLn "Correct!"
+                exitSuccess
             else
                 if input < n
                     then putStrLn "Too low!"
