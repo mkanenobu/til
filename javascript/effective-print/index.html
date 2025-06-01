@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Effect</title>
+  <style>
+    body {
+      background: black;
+      color: #0f0;
+      font-family: monospace;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .text {
+      letter-spacing: 0.1em;
+    }
+    .char {
+      display: inline-block;
+      min-width: 1ch;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="container">
+      <div class="text" id="text"></div>
+      <button onclick="printText()">Print</button>
+    </div>
+
+    <div class="container">
+      <div class="text" id="text2"></div>
+      <button onclick="printString()">Print</button>
+    </div>
+  </div>
+
+  <script>
+    const revealChar = (parent, finalChar, delay = 30, iterations = 5) => {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+      return new Promise((resolve) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        parent.appendChild(span);
+
+        if (finalChar === ' ') {
+          span.textContent = ' ';
+          resolve();
+          return;
+        }
+
+        let count = 0;
+        const interval = setInterval(() => {
+          span.textContent = chars[Math.floor(Math.random() * chars.length)];
+          count++;
+          if (count >= iterations) {
+            clearInterval(interval);
+            span.textContent = finalChar;
+            resolve();
+          }
+        }, delay);
+      });
+    };
+    const printText = async () => {
+      const element = document.getElementById('text');
+      const targetText = 'Hello, World! This is a typing effect demo.';
+
+      element.textContent = ''; // Clear previous text
+      for (const char of targetText) {
+        await revealChar(element, char, 25, 5);
+      }
+    };
+
+    const printString = async () => {
+      const element = document.getElementById('text2');
+      const targetText = 'Hello, World! This is a typing effect demo.';
+
+      element.textContent = ''; // Clear previous text
+      for (const char of targetText) {
+        revealChar(element, char, 25, 10);
+      }
+    };
+  </script>
+</body>
+</html>
