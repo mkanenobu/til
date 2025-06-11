@@ -54,6 +54,29 @@ func (g *Game) SlideLeft() bool {
 	return moved
 }
 
+func (g *Game) SlideRight() bool {
+	g.RotateRight()
+	g.RotateRight()
+	moved := g.SlideLeft()
+	g.RotateRight()
+	g.RotateRight()
+	return moved
+}
+
+func (g *Game) SlideUp() bool {
+	g.RotateLeft()
+	moved := g.SlideLeft()
+	g.RotateRight()
+	return moved
+}
+
+func (g *Game) SlideDown() bool {
+	g.RotateRight()
+	moved := g.SlideLeft()
+	g.RotateLeft()
+	return moved
+}
+
 func (g *Game) RotateRight() {
 	var newBoard [BoardHeight][BoardWidth]int
 	for i := 0; i < BoardHeight; i++ {

@@ -23,19 +23,11 @@ func main() {
 			case tcell.KeyLeft:
 				moved = game.SlideLeft()
 			case tcell.KeyRight:
-				game.RotateRight()
-				game.RotateRight()
-				moved = game.SlideLeft()
-				game.RotateRight()
-				game.RotateRight()
+				moved = game.SlideRight()
 			case tcell.KeyUp:
-				game.RotateLeft()
-				moved = game.SlideLeft()
-				game.RotateRight()
+				moved = game.SlideUp()
 			case tcell.KeyDown:
-				game.RotateRight()
-				moved = game.SlideLeft()
-				game.RotateLeft()
+				moved = game.SlideDown()
 			case tcell.KeyEscape, tcell.KeyCtrlC:
 				return
 			}
