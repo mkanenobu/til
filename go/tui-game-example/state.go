@@ -2,6 +2,10 @@ package main
 
 import "math/rand/v2"
 
+type Position struct {
+	Row, Col int
+}
+
 type Game struct {
 	Board    [BoardHeight][BoardWidth]int
 	Score    int
@@ -9,19 +13,24 @@ type Game struct {
 }
 
 func (g *Game) AddTile() {
-	var empty [][2]int
-	for i := range g.Board {
-		for j := range g.Board[i] {
-			if g.Board[i][j] == 0 {
-				empty = append(empty, [2]int{i, j})
-			}
-		}
-	}
+	empty := g.getEmptyPositions()
 	if len(empty) == 0 {
 		return
 	}
 	pos := empty[rand.IntN(len(empty))]
-	g.Board[pos[0]][pos[1]] = 2
+	g.Board[pos.Row][pos.Col] = 2
+}
+
+func (g *Game) getEmptyPositions() []Position {
+	var empty []Position
+	for i := range g.Board {
+		for j := range g.Board[i] {
+			if g.Board[i][j] == 0 {
+				empty = append(empty, Position{Row: i, Col: j})
+			}
+		}
+	}
+	return empty
 }
 
 func (g *Game) SlideLeft() bool {
