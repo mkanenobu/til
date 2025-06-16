@@ -7,7 +7,7 @@ println(2x)
 println(x \ y)
 
 # pipe
-println([1,2,3] |> x -> x * 10 |> sum)
+println([1, 2, 3] |> x -> x * 10 |> sum)
 
 # like lisp
 println(*(10, 2, 20))

@@ -1,15 +1,15 @@
 abstract type Animal end
 
 function getName(animal::Animal)
-    animal.name
+  animal.name
 end
 
 struct Dog <: Animal
-    name::String
+  name::String
 end
 
 struct Cat <: Animal
-    name::String
+  name::String
 end
 
 println(Dog("Pochi") |> getName)

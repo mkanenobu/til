@@ -1,4 +1,3 @@
 function throwError()::Nothing
-    throw(ErrorException("Error occured"))
+  throw(ErrorException("Error occured"))
 end
-

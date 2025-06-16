@@ -1,45 +1,35 @@
 # composite type (like object)
 struct User
-    name::String
-    email::String
-    age::Int64
-    option # -> Any
+  name::String
+  email::String
+  age::Int64
+  option::Any # -> Any
 end
 
 println(fieldnames(User))
 
 # construct
-u = User(
-    "John Doe",
-    "john@example.com",
-    22,
-    "Human"
-)
+u = User("John Doe", "john@example.com", 22, "Human")
 println(u)
 # error, fields are immutable
 # u.email = "john2@example.com"
 
 mutable struct MutableUser
-    name::String
-    email::String
-    age::Int64
-    option # -> Any
+  name::String
+  email::String
+  age::Int64
+  option::Any # -> Any
 end
 
-u2 = MutableUser(
-    "John Doe",
-    "john@example.com",
-    22,
-    "Human"
-)
+u2 = MutableUser("John Doe", "john@example.com", 22, "Human")
 println(u2)
 u2.email = "john2@example.com"
 
 # inner constructor method
 struct UserWithValidation
-    name::String
-    age::Int64
-    UserWithValidation(name, age) = age < 0 ? error("Age out of range") : new(name, age)
+  name::String
+  age::Int64
+  UserWithValidation(name, age) = age < 0 ? error("Age out of range") : new(name, age)
 end
 UserWithValidation("John", 18)
 # error

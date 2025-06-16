@@ -1,7 +1,7 @@
 # parametric(like generics) composite
 struct Point{T}
-   x::T
-   y::T
+  x::T
+  y::T
 end
 
 Point{Float64}(0.1, 33.3)
