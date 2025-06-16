@@ -1,0 +1,10 @@
+name = "JsonExample"
+uuid = "c9957093-6a0c-4bba-a9ab-1c29bc1d6b74"
+authors = ["mkanenobu <mitsuru.kanenobu@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+
+[compat]
+JSON = "0.21.4"

@@ -1,0 +1,4 @@
+name = "ModulingExample"
+uuid = "a864fca1-af2f-4134-9d0b-f282beb143cd"
+authors = ["mkanenobu <mitsuru.kanenobu@gmail.com>"]
+version = "0.1.0"
