@@ -13,5 +13,5 @@ run:
 	@julia --project=. --eval "using $(PROJECT_NAME); $(PROJECT_NAME).main()"
 
 fmt:
-	@julia --project=. --eval 'using JuliaFormatter; JuliaFormatter.format(".")'
+	@julia --project=. --eval 'using JuliaFormatter; JuliaFormatter.format(".", verbose=true)'
 
